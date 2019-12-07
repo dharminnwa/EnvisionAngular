@@ -1,0 +1,95 @@
+<div class="modal-header custom-header">
+  <h6 class="m-2 semi-bold">Envision Search</h6>
+  <button type="button" id="btnglobalSearchClose" class="close p-0 ClosePopupmodal" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body p-2">
+  <h6 class="m-1 semi-bold">Results for : {{searchedText}}</h6>
+
+  <div class="row m-0">
+    <div class="col-md-6 p-1">
+      <p class="mb-0">Data Results </p>
+      <!-- <small>Click parantheses to map results</small> -->
+    </div>
+    <div class="col-md-6 p-1">
+      <p class="mb-0">Pre-built Data Layer Results ({{EnergyLayerCount}})</p>
+    </div>
+  </div>
+
+  <div class="row m-0">
+    <div class="col-md-6 p-1">
+      <div *ngFor="let dR of dataResults">
+        <div *ngIf="dR.DataName">
+          <div style="border: 1px solid #bbb3b3 !important">
+            <div class="m-0 resultRow">
+              <h6 class="semi-bold" *ngIf="dR.DataName">{{dR.DataName}} :</h6>
+              <p class="m-0 m-l-10" *ngFor="let d of dR.Displayname">
+                <span *ngIf="d.Displayname && dR.DataName">- {{d.Displayname}}(<span class="custom-btnLink" (click)="CountClick(d.fieldName,dR.DataName)">{{d.Totalcount}}</span>)</span>
+                <span *ngIf="d.Displayname1 && dR.DataName">- {{d.Displayname1}}(<span class="custom-btnLink" (click)="CountClick(d.fieldName1,dR.DataName)">{{d.Totalcount1}}</span>)</span>
+                <span *ngIf="d.Displayname2 && dR.DataName">- {{d.Displayname2}}(<span class="custom-btnLink" (click)="CountClick(d.fieldName2,dR.DataName)">{{d.Totalcount2}}</span>)</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 p-1">
+      <div class="loader LayerLoader" *ngIf="LayerLoader==true">
+        <img id="loading-image" src="{{loaderImage}}" alt="Loading..." height="20" width="100"><br>
+      </div>
+      <div class="row m-0">
+        <!-- <div class="DataContainer clearfix">
+          <div class="row m-0 DataRow" *ngFor="let dlr of dataLayerResults">
+            <div class="col-lg-7 p-0 bold">
+              <img src="{{dlr.PreviewImage}}" class="searchImage" />
+              {{dlr.DisplayName}}
+            </div>
+            <div class="col-lg-5 p-0 text-right" style="display:flex">
+              <button type="button" class="btn btn-xs btn-default">{{dlr.ViewData}}</button>
+              <button type="button" class="btn btn-xs btn-primary" (click)="GlobalSearchAddtomapClick(dlr.EnergyLayerID,GlobalSearchCategoryID)">{{dlr.Addtomap}}</button>
+            </div>
+          </div>
+        </div> -->
+        <table id="tblDataResult" class="tblDataResult table-responsive">
+          <tr *ngFor="let dlr of dataLayerResults">
+            <td>
+              <img src="{{dlr.PreviewImage}}" class="searchImage" />
+            </td>
+            <td class="bold" style="font-size:12.5px">{{dlr.DisplayName}}</td>
+            <!-- <td><button type="button" class="btn btn-xs btn-default">{{dlr.ViewData}}</button></td> -->
+            <td class="text-right"><button type="button" class="btn btn-xs btn-primary" (click)="GlobalSearchAddtomapClick(dlr.EnergyLayerID,GlobalSearchCategoryID)">{{dlr.Addtomap}}</button></td>
+          </tr>
+          <tr *ngIf="dataLayerResults.length==0" style="border:none">
+            <span *ngIf="EnergyLayerMsg!=''">{{EnergyLayerMsg}}</span>
+          </tr>
+        </table>
+      </div>
+
+      <div class="row m-0">
+        <div class="loader CompanyLoader" *ngIf="CompanyLoader==true">
+          <img id="loading-image" src="{{loaderImage}}" alt="Loading..." height="20" width="100"><br>
+        </div>
+        <span class="mt-2">Company Profile Results ({{filteredCompanyListCount}})</span>
+        <div class="DataContainer clearfix">
+          <span class="ml-1" *ngIf="companyProfMsg!=''">{{companyProfMsg}}</span>
+          <div class="row m-0 DataRow" *ngFor="let cpm of filteredCompanyList">
+            <div class="col-lg-9 p-0 bold" style="font-size:12.5px">
+              {{cpm.CompanyName}}
+            </div>
+            <div class="col-lg-3 p-0 text-right">
+              <button type="button" class="btn btn-xs btn-primary" (click)="OpenCompanyDetails(cpm.CompanyID)">View
+                Profile</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row m-0">
+    <div class="col-md-12 p-1">
+      <button type="button" class="btn btn-sm btn-primary" id="btnShowAll" (click)="Showallresultsonmap()">Show all
+        results on map</button>
+    </div>
+  </div>
+</div>

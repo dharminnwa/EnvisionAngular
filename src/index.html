@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Envision</title>
+  <base href="/">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
+  <link href="assets/plugins/slim_slider/simple-sidebar.css" rel="stylesheet" type="text/css" />
+  <link href="assets/plugins/slim_slider/simple-slider-volume.css" rel="stylesheet" type="text/css" />
+  <link href="assets/plugins/slim_slider/Siteload.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="assets/plugins/font-awesome/v5.5.0/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
+  <link rel="stylesheet" href="assets/plugins/font-awesome/v5.5.0/font-awesome.min.css" />
+
+  <script type="text/javascript">
+    window['__Zone_enable_cross_context_check'] = true;
+  </script>
+
+  <script src="assets/plugins/jquery-3.1.1.min.js"></script>
+  <script src="assets/plugins/jquery-ui.min-1.12.1.js" type="text/javascript"></script>
+  <script type="text/javascript" src="assets/plugins/jquery.ui.touch-punch.min.js"></script>
+  <script src="assets/plugins/bootstrap.min-3.3.7.js"></script>
+  <script src="assets/colorpicker/js/evol-colorpicker.min.js"></script>
+  <script type="text/javascript">
+    // $(document).ready(function () {
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+    if (isIE == false) {
+      var s = document.createElement("script");
+      s.type = "text/javascript";
+      s.innerHTML = " window.paceOptions = { document: true, eventLag: true, restartOnPushState: true, restartOnRequestAfter: true, ajax: { trackMethods: ['POST', 'GET'] } }; ";
+      $("head").append(s);
+      var s2 = document.createElement("script");
+      s2.type = "text/javascript";
+      s2.src = "assets/plugins/pace/pace.min.js";
+      $("head").append(s2);
+    }
+  </script>
+
+
+  <!-- <script type="text/javascript" src="https://research.mapsearch360.com/js/html2canvas.js"></script> -->
+  <script type="text/javascript" src="assets/maps/html2canvas.js"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?v=2&libraries=drawing,places,geometry&key=AIzaSyCdCw-UMwdjTOzXPaelRVOSSzvhpspTgCU"></script>
+  <script src="assets/maps/ZeroClipboard.min.js"></script>
+  <script src="assets/maps/leaflet.js"></script>
+  <script src="assets/maps/leaflet.draw.js"></script>
+  <script src="assets/maps/leaflet.sidebar.js"></script>
+  <script src="assets/maps/mapbox.standalone.js"></script>
+  <script src="assets/maps/wkt.parser.js"></script>
+  <script src="assets/maps/proj4-src.js"></script>
+  <script src="assets/maps/proj4leaflet.js"></script>
+  <script src="assets/maps/test.runner.js"></script>
+  <script src="assets/maps/leaflet-src.js"></script>
+  <!-- <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet-src.js"></script> -->
+  <!-- <script src="https://npmcdn.com/@turf/turf/turf.min.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script> -->
+  <script src="assets/maps/turf.min.js"></script> 
+  <!-- <script src="https://cdn.rawgit.com/bjornharrtell/jsts/gh-pages/1.1.2/jsts.min.js"></script> -->
+  <!-- <script src="https://arthur-e.github.io/Wicket/wicket.js"></script> -->
+  <script src="assets/maps/wicket.js"></script>
+  <script src="assets/maps/wicket-gmap3.js"></script>
+  <script src="assets/maps/javascript.util.min.js"></script>
+  <script src="assets/maps/jsts.min.js"></script>
+</head>
+
+<body class="fixed-header menu-behind" style="overflow: auto;">
+  <app-root></app-root>
+</body>
+
+</html>

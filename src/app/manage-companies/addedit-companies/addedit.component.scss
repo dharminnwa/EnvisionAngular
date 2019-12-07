@@ -1,0 +1,68 @@
+.nav-tabs { border-bottom: 2px solid #DDD; }
+
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
+    .nav-tabs > li > a { border: none; color: #666;text-transform: none; }
+    .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: #4285F4 !important; background: transparent;text-decoration: none }
+        .nav-tabs > li > a::after { content: ""; background: #4285F4; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
+    .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
+.tab-nav > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #fff; }
+.tab-pane { padding: 15px 0; }
+.tab-content{padding:20px}
+
+.modal-header .custom-title{
+    font-size: 16px;
+    margin:0px;
+    font-weight: 500;
+}
+
+.custom-header{
+    background: #add8e661;
+}
+
+.form-horizontal .form-group .control-label{
+    opacity:1!important;
+    font-weight:600;
+    color:#4a4a4a;
+    font-size:12px;
+  }  
+  
+  .form-horizontal .form-group:hover .control-label{
+    opacity:1!important;
+  }
+  
+  .form-control{
+    border:1px solid rgba(0, 0, 0, 0.4)!important;
+  }
+  
+  .has-error .form-control{
+    border-color:#f55753!important;
+  }
+  
+  .checkbox.check-success input[type=checkbox]:checked + label:before{
+    border-color:#0054a0!important;
+  }
+  
+  .modal-footer{
+    padding:25px 0 0 0!important;
+  }
+  
+  .btn-primary{
+    background-color:#0054a0;
+    border-color:#0054a0;
+  }
+
+  .btn-primary:hover{
+    background-color:#1a81de;
+    border-color:#1a81de;
+  }
+
+  .btn-primary.active, .btn-primary:not(:disabled):not(.disabled):active, .btn-primary.active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled):active:hover, .btn-primary .show .dropdown-toggle.btn-primary{
+    background-color:#0054a0;
+    border-color:#0054a0;
+  }
+
+  .btnTSP{
+    line-height: 68px;
+  }
+
+  

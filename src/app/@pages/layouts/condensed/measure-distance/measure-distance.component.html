@@ -1,0 +1,45 @@
+<div class="modal-header custom-header">
+  <h6 class="m-2 semi-bold">Measure Distance/Area</h6>
+  <button type="button" id="btnMDClose" class="close p-0 ClosePopupmodal" aria-label="Close"
+    (click)="CloseModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body p-2">
+  <pg-collapseset Accordion="true" id='measureModal'>
+    <pg-collapse (click)="ToggleMesureDistance()" [Title]="'Measure Distance'" class="collapsePanel">
+    </pg-collapse>
+    <div class="content-wrapper" *ngIf="isMesureDistance">
+      <p class="bold"><u>Click to add first points</u></p>
+      <ul>
+        <li>{{ distanceInFeet | number : '1.2-2' }} feet</li>
+        <li>{{ distanceInMeters | number : '1.2-2' }} meters</li>
+        <li>{{ distanceInKM | number : '1.2-2' }} kilometers</li>
+        <li>{{ distanceInMiles | number : '1.2-2' }} miles</li>
+      </ul>
+    </div>
+    <pg-collapse  (click)="ToggleMesureArea()" [Title]="'Measure Area'" class="collapsePanel">
+    </pg-collapse>
+    <div class="content-wrapper" *ngIf="isMesureArea">
+      <p class="bold"><u>Click to add first points</u></p>
+      <ul>
+        <li>{{ areaInMeters | number : '1.2-2' }} m<sup>2</sup></li>
+        <li>{{ areaInKm | number : '1.2-2' }} km<sup>2</sup></li>
+        <li>{{ areaInMile | number : '1.2-2' }} mile<sup>2</sup></li>
+        <li>{{ areaInAcres | number : '1.2-2' }} acres</li>
+      </ul>
+    </div>
+  </pg-collapseset>
+
+
+
+  <hr />
+  <div class="row">
+    <div class="col-md-12 desc">
+      <p><b>Disclaimer</b></p>
+      <p>ENvision uses the Mercator projection which causes the measurement tool to display results much larger
+        than intended. The measurement results will be more distorted the farther away you get from the equator.</p>
+      <p>* The Web Mercator coordinate system uses meters.</p>
+    </div>
+  </div>
+</div>

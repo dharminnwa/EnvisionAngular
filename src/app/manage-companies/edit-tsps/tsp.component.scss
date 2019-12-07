@@ -1,0 +1,53 @@
+
+.companies-grid{
+    width: 100%; 
+    height: 500px;
+}
+
+.modal-header .custom-title{
+    font-size: 16px;
+    margin:0px;
+    font-weight: 500;
+}
+
+.custom-header{
+  border-bottom: 0.5px solid lightgray !important;
+  padding: 0px !important;
+}
+
+.btn-primary{
+    background-color:#0054a0;
+    border-color:#0054a0;
+  }
+
+  .btn-primary:hover{
+    background-color:#1a81de;
+    border-color:#1a81de;
+  }
+
+  .btn-primary.active, .btn-primary:not(:disabled):not(.disabled):active, .btn-primary.active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled):active:hover, .btn-primary .show .dropdown-toggle.btn-primary{
+    background-color:#0054a0;
+    border-color:#0054a0;
+  }
+
+  // .modal-footer{
+  //   padding:25px 0 0 0!important;
+  // }
+
+  // .picklist-firstlist-Header{
+  //   padding-left:79px;
+  // }
+
+  .picklist-secondlist-Header{
+    padding-left:23px;
+  }
+
+  .pick-list-custom-title{
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .checkbox.check-success input[type=checkbox]:checked + label:before{
+    border-color:#000000!important;
+  }
+

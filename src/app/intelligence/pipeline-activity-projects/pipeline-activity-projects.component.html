@@ -1,0 +1,109 @@
+<div class="row m-0 p-0 pl-2 pt-2">
+  <div class="col-md-12 project_data_filters m-0 p-0 pl-1 pr-1 pt-1">
+    <div class="row p-0 m-0">
+      <div class="col-md-2 p-0 pr-1 m-0">
+        <button type="button" class="btn btn-default btnFilterHead filterbtnfont p-0 m-0">States</button>
+        <p-listbox [options]="AllPipelinefilterOptionValue.state[0]" [(ngModel)]="selectedPipelineAllFilters.state"
+          [style]="{'width':'100%','height':'230px','overflow':'auto'}" multiple="multiple" checkbox="checkbox"
+          filter="filter" filterMode="startsWith" optionLabel="stateProvince" *ngIf="pipelineFilter">
+          <!-- <p-header>
+            State
+          </p-header> -->
+        </p-listbox>
+      </div>
+      <div class="col-md-2 p-0 pr-1 m-0">
+        <button type="button" class="btn btn-default btnFilterHead filterbtnfont p-0 m-0">Commodity</button>
+        <p-listbox [options]="AllPipelinefilterOptionValue.commodities[0]"
+          [(ngModel)]="selectedPipelineAllFilters.commodities"
+          [style]="{'width':'100%','height':'230px','overflow':'auto'}" multiple="multiple" checkbox="checkbox"
+          filter="filter" filterMode="startsWith" optionLabel="comodity" *ngIf="pipelineFilter">
+          <!-- <p-header>
+            Commodity
+          </p-header> -->
+        </p-listbox>
+      </div>
+      <div class="col-md-2 p-0 pr-1 m-0">
+        <button type="button" class="btn btn-default btnFilterHead filterbtnfont p-0 m-0">Project Status</button>
+        <p-listbox [options]="AllPipelinefilterOptionValue.ProjectStatus[0]"
+          [(ngModel)]="selectedPipelineAllFilters.ProjectStatus"
+          [style]="{'width':'100%','height':'230px','overflow':'auto'}" multiple="multiple" checkbox="checkbox"
+          filter="filter" filterMode="startsWith" optionLabel="projectstatusval" *ngIf="pipelineFilter">
+          <!-- <p-header>
+            Project Status
+          </p-header> -->
+        </p-listbox>
+      </div>
+      <div class="col-md-2 p-0 pr-1 m-0">
+        <button type="button" class="btn btn-xs btn-primary filterbtnfont " (click)="pipelineFilter = !pipelineFilter">
+          <span *ngIf="!pipelineFilter"><i class="fa fa-plus"></i> Expand Filters</span>
+          <span *ngIf="pipelineFilter"><i class="fa fa-minus"></i> Collapse Filters</span>
+        </button>
+      </div>
+      <div class="col-md-1 p-0"></div>
+      <div class="col-md-3 p-0 pr-1">
+        <div class="row" style="height:calc(100% - 40px);" *ngIf="pipelineFilter"></div>
+        <div class="row mt-1">
+          <div class="col-md-9 p-r-0">
+            <div class="form-group typehead">
+              <input placeholder="Search Project Name or Sponsor" [(ngModel)]="selectedPipelineCompanyName"
+                [typeahead]="AllPipelinefilterOptionValue.selectedPipelineCompanyNameList[0]"
+                [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="3" [typeaheadOptionsLimit]="500"
+                class="form-control txtIntSearch filterbtnfont"
+                (typeaheadOnSelect)="PipelineActicvtytypeaheadOnSelect($event)">
+            </div>
+          </div>
+          <div class="col-md-3 pr-0 pl-1">
+            <button type="button" class="btn btn-primary pr-1 pl-1 filterbtnfont"
+              (click)="searchCompnayName()">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row p-0 m-0">
+      <div class="col-md-12 p-1" *ngIf="pipelineFilter || selectedPipelineCompanyName!=''">
+        <div class="row p-0 m-0"
+          *ngIf="selectedPipelineAllFilters.state.length>0 || selectedPipelineAllFilters.commodities.length>0 
+                                        || selectedPipelineAllFilters.ProjectStatus.length>0 || selectedPipelineCompanyName!=''">
+          <div class="col-md-10 p-0 m-0 text-right">
+            <button type="button" class="btn btn-default btn-cons filterbtnfont" style="font-weight: bold"
+              (click)="Clearallfilters()">Clear</button>
+          </div>
+          <div class="col-md-2 p-0 m-0 text-right">
+            <button type="button" class="btn btn-primary btn-cons filterbtnfont"
+              (click)="PipelineActivityApplyfilter()">
+              Apply filters
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div clas="row m-0 p-0">
+  <div class="container-fluid m-0 p-0 pl-2 pr-0">
+    <div class="card card-default m-t-10">
+      <div class="card-body">
+        <div class="invoice">
+          <ag-grid-angular #PipelineActivity_agGrid style="width: 100%; height: 500px;" id="PipelineActivityGrid"
+            [rowData]="PipelineActivityrowData" class="ag-theme-balham" [columnDefs]="PipelinecolumnDefs"
+            [enableSorting]="true" [enableFilter]="true" [suppressRowClickSelection]="false" [debug]="true"
+            [rowSelection]="rowSelection" [enableColResize]="true" [paginationAutoPageSize]="false" [pagination]="true"
+            (gridReady)="onGridReady($event)" [paginationPageSize]="paginationPageSize"
+            [paginationNumberFormatter]="paginationNumberFormatter" [overlayLoadingTemplate]="overlayLoadingTemplate"
+            [overlayNoRowsTemplate]="overlayNoRowsTemplate" (rowClicked)="onPipelineActicityRowClicked($event)">
+          </ag-grid-angular>
+          <div class="row m-0 p-0 pl-2">
+            <span class="pr-2">Page Size:</span>
+            <select (change)="onPipelineActicityPageSizeChanged()" id="PileLineActivitypage-size" class="form-control"
+              style="width: 50px;">
+              <option value="10">10</option>
+              <option value="25" >25</option>
+              <option value="50">50</option>
+              <option value="100" selected="">100</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

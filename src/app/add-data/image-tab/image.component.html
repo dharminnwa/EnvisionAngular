@@ -1,0 +1,27 @@
+<div class="row">
+        <div class="col-md-12">
+            <p><small>Select and upload files from your computer. Size editing is enabled upon successful upload. Acceptable file types are : .png, .jpg, .ico, .bmp and .pdf.</small></p>
+        </div>
+    </div>
+    <div class="row m-t-10 m-b-20">
+        <div class="col-md-12">
+            <!-- <pg-upload Action="https://jsonplaceholder.typicode.com/posts/" Multiple="true" [FileList]="fileList2" ShowButton="true">
+                                <button class="btn btn-success btn-cons">
+                                    <i class="fa fa-upload m-r-10"></i><span>Upload</span>
+                                </button>
+                            </pg-upload> -->
+            <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple"
+                accept=".png,.jpg,.ico,.bmp,.pdf" maxFileSize="500000000">
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                    </ul>
+                </ng-template>
+            </p-fileUpload>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p>For performance reasons, there is a 500 MB file size limit for data uploads.</p>
+        </div>
+    </div>

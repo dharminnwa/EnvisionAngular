@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-md-12">
+        <form id="horizontalForm" class="form-horizontal" role="form" autocomplete="off" #horizontalForm="ngForm">
+            <div class="form-group row" [class.has-error]="HorizontalFormUrl.invalid && (HorizontalFormUrl.dirty || HorizontalFormUrl.touched)">
+                <!-- <label for="fname" class="col-md-2 control-label">Enter a WMS URL:</label> -->
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="url" placeholder="Enter a WMS URL" name="url"
+                        [(ngModel)]="HorizontalFName" #HorizontalFormUrl="ngModel" required>
+                    <div *ngIf="HorizontalFormUrl.invalid && (HorizontalFormUrl.dirty || HorizontalFormUrl.touched)">
+                        <label *ngIf="HorizontalFormUrl.errors.required" class="error">This field is required.</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-primary">Load Layers</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        <p>Example:</p>
+    </div>
+    <div class="col-md-10">
+        <p class="m-b-0"><small>http://www.myserver.com/arcgis/services/mymap/MapServer/WMSServer</small></p>
+        <p><small>http://www.example.com/servlet/com.esri.wms.Esrimap</small></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <ag-grid-angular class="ag-theme-balham feed-grid" [rowData]="rowData" [columnDefs]="columnDefs"
+            [enableSorting]="true" [enableFilter]="true" [enableColResize]="true" [rowGroupPanelShow]="rowGroupPanelShow"
+            [suppressDragLeaveHidesColumns]="true" [animateRows]="true" [groupMultiAutoColumn]="true">
+        </ag-grid-angular>
+    </div>
+</div>

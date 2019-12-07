@@ -1,0 +1,26 @@
+#PipelineActivityProjectModelIframe{
+    height:calc(100vh - 450px);
+}
+
+@media screen and (min-width:1640px) {
+    #PipelineActivityProjectModelIframe{
+        height:calc(100vh - 500px);
+    }
+}
+@media screen and (max-width: 1640px) and (min-width:1440px) {
+    #PipelineActivityProjectModelIframe{
+        height:calc(100vh - 400px);
+    }
+}
+
+@media screen and (max-width: 1440px) and (min-width:1024px) {
+    #PipelineActivityProjectModelIframe{
+        height:calc(100vh - 300px);
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #PipelineActivityProjectModelIframe{
+        height:calc(100vh - 250px);
+    }
+}

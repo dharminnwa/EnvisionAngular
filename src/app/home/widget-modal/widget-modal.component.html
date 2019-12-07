@@ -1,0 +1,44 @@
+<div class="modal-header">
+  <span class="modal-title">Add Dashboard Widgets</span>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let item of activeWidgets;">
+      <div class="btn-group btnWidget" dropdown>
+        <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+            {{item.Title}}
+          <div class="card">
+            <div class="card-body">
+              Content
+            </div>
+          </div>
+        </button>
+        <ul *dropdownMenu class="dropdown-menu row" role="menu">
+          <li  role="menuitem" class="col-md-4" *ngFor="let subItem of allWidgets;">
+            <div class="dropdown-item" (click)="ChangeWidget(subItem,item)" [class.active]="subItem.Id === item.Id">
+              {{subItem.Title}}
+              <div class="card">
+                <div class="card-body">
+                  Content
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+    <div class="row">
+      <div class="col-md-12">
+      <div class="pull-right">
+        <button type="button" class="btn btn-primary" (click)="SaveWidget()">Save</button>
+        <button type="button" class="btn btn-default" (click)="activeModal.dismiss('Close click')">Cancel</button>
+      </div>
+    </div>
+  </div>  
+</div>

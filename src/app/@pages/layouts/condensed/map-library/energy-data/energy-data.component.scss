@@ -1,0 +1,24 @@
+#MapSearchDataBodyContentTab{
+    max-height: 500px;
+    overflow: auto;
+    border: 1px lightblue solid;
+    padding: 15px;
+    min-height: 200px;
+}
+
+.layerRow{
+    border-bottom: 1px solid lightgray;
+    // box-shadow: 0 0 10px lightgrey;
+    padding: 5px;
+}
+.AddToMap{
+    font-size: 12px !important;
+    padding: 1px 3px;
+}
+
+#loading-image{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    z-index: 100;
+}

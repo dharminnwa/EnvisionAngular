@@ -1,0 +1,184 @@
+<div class="row m-0 p-0 pl-2 pt-2">
+  <div class="col-md-12 project_data_filters m-0 p-0 pl-1 pr-1 pt-1">
+    <div class="row p-0 m-0">
+      <div class="col-md-2 p-0 pr-1 m-0">
+        <button type="button" class="btn btn-default btnFilterHead filterbtnfont p-0 m-0">State</button>
+        <p-listbox [options]="AllGeneratingUnitfilterOptionValue.state[0]" [(ngModel)]="selectedAllGeneratingUnitFilters.state"
+          [style]="{'width':'100%','height':'230px','overflow':'auto'}" multiple="multiple" checkbox="checkbox" filter="filter" filterMode="startsWith"
+          optionLabel="StateProvince" *ngIf="GenUnitFilter">
+          <!-- <p-header>
+            State
+          </p-header> -->
+        </p-listbox>
+      </div>
+      <div class="col-md-2 p-0 pr-1 m-0">
+        <button type="button" class="btn btn-default btnFilterHead filterbtnfont p-0 m-0">NERC Region</button>
+        <p-listbox [options]="AllGeneratingUnitfilterOptionValue.nercRegion[0]" [(ngModel)]="selectedAllGeneratingUnitFilters.nercRegion"
+          [style]="{'width':'100%','height':'230px','overflow':'auto'}" multiple="multiple" checkbox="checkbox" filter="filter" filterMode="startsWith"
+          optionLabel="NERCRegionCode" *ngIf="GenUnitFilter">
+          <!-- <p-header>
+            NERC Region
+          </p-header> -->
+        </p-listbox>
+      </div>
+      <div class="col-md-2 p-0 pr-1 m-0">
+        <button type="button" class="btn btn-default btnFilterHead filterbtnfont p-0 m-0">Prime Mover</button>
+        <p-listbox [options]="AllGeneratingUnitfilterOptionValue.primeMover[0]" [(ngModel)]="selectedAllGeneratingUnitFilters.primeMover"
+          [style]="{'width':'100%','height':'230px','overflow':'auto'}" multiple="multiple" checkbox="checkbox" filter="filter" filterMode="startsWith"
+          optionLabel="PrimeMover" *ngIf="GenUnitFilter">
+          <!-- <p-header>
+            Prime Mover
+          </p-header> -->
+        </p-listbox>
+      </div>
+      <div class="col-md-2 p-0 pr-1 m-0">
+        <button type="button" class="btn btn-default btnFilterHead filterbtnfont p-0 m-0">Status</button>
+        <p-listbox [options]="AllGeneratingUnitfilterOptionValue.status[0]" [(ngModel)]="selectedAllGeneratingUnitFilters.status"
+          [style]="{'width':'100%','height':'230px','overflow':'auto'}" multiple="multiple" checkbox="checkbox" filter="filter" filterMode="startsWith"
+          optionLabel="Status" *ngIf="GenUnitFilter">
+          <!-- <p-header>
+            Status
+          </p-header> -->
+        </p-listbox>
+      </div>
+      <div class="col-md-2 p-0 pr-1 m-0">
+        <button type="button" class="btn btn-default btnFilterHead filterbtnfont p-0 m-0">Primary Fuel Type</button>
+        <p-listbox [options]="AllGeneratingUnitfilterOptionValue.primaryFuelType[0]" [(ngModel)]="selectedAllGeneratingUnitFilters.primaryFuelType"
+          [style]="{'width':'100%','height':'230px','overflow':'auto'}" multiple="multiple" checkbox="checkbox" filter="filter" filterMode="startsWith"
+          optionLabel="FuelTypeCode" *ngIf="GenUnitFilter">
+          <!-- <p-header>
+            Primary Fuel Type
+          </p-header> -->
+        </p-listbox>
+      </div>
+
+      <div class="col-md-2 p-0 pr-1 m-0">
+        <button type="button" class="btn btn-xs btn-primary filterbtnfont p-0 m-0" (click)="GenUnitFilter = !GenUnitFilter">
+          <span *ngIf="!GenUnitFilter"><i class="fa fa-plus"></i> Expand Filters</span>
+          <span *ngIf="GenUnitFilter"><i class="fa fa-minus"></i> Collapse Filters</span>
+        </button>
+        <div class="RangeFilter" *ngIf="GenUnitFilter">
+          <div class="row p-0 m-0">
+            <div class="col-md-4 p-0 m-0">
+            </div>
+            <div class="col-md-4 p-0 m-0">
+              <span class="filterbtnfont">From</span>
+            </div>
+            <div class="col-md-4 p-0 m-0">
+              <span class="filterbtnfont">To</span>
+            </div>
+          </div>
+          <div class="row p-0 m-0">
+            <div class="col-md-4 p-0 m-0">
+              <span class="filterbtnfont">Online Year</span>
+            </div>
+            <div class="col-md-4 p-0 m-0 pr-1 pb-1">
+              <input id="OnlineYearFrom" class="p-1" [(ngModel)]="OnlineYearFrom" class="form-control filterbtnfont"
+                value="1856">
+            </div>
+            <div class="col-md-4 p-0 m-0 pr-1 pb-1">
+              <input id="OnlineYearTo" class="p-1" [(ngModel)]="OnlineYearTo" class="form-control filterbtnfont" value="2030">
+            </div>
+          </div>
+          <div class="row p-0 m-0">
+            <div class="col-md-4 p-0 m-0">
+              <span class="filterbtnfont">Nameplate Capacity MW</span>
+            </div>
+            <div class="col-md-4 p-0 m-0 pr-1 pb-1">
+              <input id="NameplateCapacityFrom" class="p-1" [(ngModel)]="NameplateCapacityFrom" class="form-control filterbtnfont"
+                value="0">
+            </div>
+            <div class="col-md-4 p-0 m-0 pr-1 pb-1">
+              <input id="NameplateCapacityTo" class="p-1" [(ngModel)]="NameplateCapacityTo" class="form-control filterbtnfont"
+                value="99999">
+            </div>
+          </div>
+          <div class="row p-0 m-0">
+            <div class="col-md-4 p-0 m-0">
+              <span class="filterbtnfont">Summer Capacity MW</span>
+            </div>
+            <div class="col-md-4 p-0 m-0 pr-1 pb-1">
+              <input id="SummerCapacityFrom" class="p-1" [(ngModel)]="SummerCapacityFrom" class="form-control filterbtnfont"
+                value="0">
+            </div>
+            <div class="col-md-4 p-0 m-0 pr-1 pb-1">
+              <input id="SummerCapacityTo" class="p-1" [(ngModel)]="SummerCapacityTo" class="form-control filterbtnfont"
+                value="99999">
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-1">
+          <div class="col-md-9 pr-0">
+            <div class="form-group typehead">
+              <input placeholder="Search Utility or Plant Name" [(ngModel)]="selectedGeneratingUnitName" [typeahead]="AllGeneratingUnitfilterOptionValue.selectedGeneratingUnitNameList[0]"
+              [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="3" [typeaheadOptionsLimit]="500" class="form-control txtIntSearch filterbtnfont"
+                (typeaheadOnSelect)="GeneratingUnitsTypeaheadOnSelect($event,content)">
+            </div>
+          </div>
+          <div class="col-md-3 pr-0 pl-1">
+            <button type="button" class="btn btn-primary pr-1 pl-1 filterbtnfont" (click)="searchGeneratingUnitUtilityOrPowerPlant()">Search</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="row p-0 m-0">
+      <!-- <div class="col-md-4 p-0 m-0">
+      </div>
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-8 p-0 m-0 text-right">
+            <div class="form-group typehead">
+              <input placeholder="Search Utility or Plant Name" [(ngModel)]="selectedGeneratingUnitName" [typeahead]="AllGeneratingUnitfilterOptionValue.selectedGeneratingUnitNameList[0]"
+                [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="5" class="form-control"
+                (typeaheadOnSelect)="GeneratingUnitsTypeaheadOnSelect($event,content)">
+            </div>
+          </div>
+          <div class="col-md-4 p-0 m-0 text-right">
+            <button type="button" class="btn btn-primary btn-cons" (click)="searchGeneratingUnitUtilityOrPowerPlant()">Search</button>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="col-md-12 p-1 text-right" *ngIf="GenUnitFilter || selectedGeneratingUnitName!=''">
+        <div class="FilterButtons" *ngIf="selectedAllGeneratingUnitFilters.state.length>0 
+          || selectedAllGeneratingUnitFilters.nercRegion.length>0 || selectedAllGeneratingUnitFilters.primeMover.length>0
+          || selectedAllGeneratingUnitFilters.status.length>0 || selectedAllGeneratingUnitFilters.primaryFuelType.length>0
+          || NameplateCapacityFrom!='0' || NameplateCapacityTo!='99999' || SummerCapacityFrom!='0' || SummerCapacityTo!='99999'
+          || OnlineYearFrom!= '1856' || OnlineYearTo!= '2030' || selectedGeneratingUnitName!=''">
+          <button type="button" class="btn btn-default btn-cons filterbtnfont" style="font-weight: bold" (click)="ClearGeneratingUnitallfilters()">
+            Clear</button>
+          <button type="button" class="btn btn-primary btn-cons filterbtnfont" (click)="GeneratingUnitApplyfilter()">Apply
+            filters</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div clas="row m-0 p-0">
+  <div class="container-fluid m-0 p-0 pl-2 pr-0">
+    <div class="card card-default m-t-10">
+      <div class="card-body">
+        <div class="invoice">
+          <ag-grid-angular #GeneratingUnits_agGrid style="width: 100%; height: 500px;" id="GeneratingUnitsGrid"
+            [rowData]="GeneratingUnitsrowData" class="ag-theme-balham" [columnDefs]="GeneratingUnitsColumnDefs"
+            [enableSorting]="true" [enableFilter]="true" [suppressRowClickSelection]="false" [debug]="true"
+            [rowSelection]="rowSelection" [enableColResize]="true" [paginationAutoPageSize]="false" [pagination]="true"
+            (gridReady)="onGeneratingUnitGridReady($event)" [paginationPageSize]="paginationPageSize"
+            [paginationNumberFormatter]="paginationNumberFormatter" [overlayLoadingTemplate]="overlayLoadingTemplate"
+            [overlayNoRowsTemplate]="overlayNoRowsTemplate" (rowClicked)="onGeneratingUnitRowClicked($event)"></ag-grid-angular>
+          <div class="row m-0 p-0">
+            <span class="pr-2">Page Size:</span>
+            <select (change)="onGeneratingUnitPageSizeChanged()" id="GeneratingUnitpage-size" style="width: 50px;"
+              class="form-control">
+              <option value="10">10</option>
+              <option value="25" >25</option>
+              <option value="50">50</option>
+              <option value="100" selected="">100</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

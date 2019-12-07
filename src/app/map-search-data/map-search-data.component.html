@@ -1,0 +1,206 @@
+<div class="modal-header p-1">
+  <h4 class="modal-title pl-1" style="font-size: 16px">Data</h4>
+  <button type="button" id="btnMapsearchdataClose" class="close p-0 ClosePopupmodal" aria-label="Close"
+    (click)="CloseMapsearchdata()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body p-0 custom-modalBody">
+  <div class="card card-transparent classMapSearchData mb-1">
+    <pg-tabset tabAnimation="slide-left" Type="fillup" extraTabContentClass="bg-white p-0" style="height: auto">
+      <pg-tab>
+        <ng-template #TabHeading>
+          <span style="font-weight: normal" id="MapsearchDatatitle" class="tab-title">MAPSearch Data</span>
+        </ng-template>
+        <div id="MapsearchData">
+          <div class="col-md-12" style="padding: 0px 5px;">
+            <div class="row">
+              <div class="col-md-3">
+              </div>
+              <div class="col-md-7 pt-2 p-0 m-0">
+                <input type="text" name="Searchtext" class="search-box form-control" placeholder="Search Data"
+                  [(ngModel)]="Searchtext" (keyup.enter)="SearchData()" />
+                <button *ngIf="Searchtext" type="button" (click)="ResetDataLayer()" class="close pt-2"
+                  aria-label="Close" style="top:5px">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <br />
+              <div class="col-md-2 p-0 pt-2">
+                <button type="button" class="btn btn-primary btnSearch" (click)="SearchData()">Search</button>
+              </div>
+            </div>
+
+            <div class="row pt-3">
+              <div class="col-md-3  p-0 m-0">
+              </div>
+              <div class="col-md-8  pr-0 pl-3 m-0">
+                <span *ngIf="isFilteredData"><b>{{totalCount}}</b> Results
+                  Found&nbsp;&nbsp;(Displaying&nbsp;&nbsp;<b>{{DisplayingCount}}</b>)</span>
+                <span *ngIf="!isFilteredData">Displaying&nbsp;&nbsp;<b>{{DisplayingCount}}</b></span>
+              </div>
+              <!-- <div class="col-md-1  p-0 m-0">
+                  <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-default NormalView p-2" (click)="showImageListview()" title="Normal View"
+                      style=" padding-bottom: 0px !important; padding-top: 0px !important; "><i class="fa fa-th"></i></button>
+                    <button type="button" class="btn btn-default NormalView p-2" (click)="showNormalView()" title="Normal View"
+                      style=" padding-bottom: 0px !important; padding-top: 0px !important; "><i class="fa fa-th-list"></i></button>
+                    <button type="button" class="btn btn-default ReducedView p-2" (click)="showReducedView()" title="Reduced View"
+                      style=" padding-bottom: 0px !important; padding-top: 0px !important; "><i class="fa fa-list"></i></button>
+                  </div>
+                </div> -->
+            </div>
+            <div class="row pt-0">
+              <div class="col-md-3 p-0" id="CategoryColumn">
+                <div>
+                  <tree-root id="_maplayertreeroot" #maplayertree [nodes]="nodes" [options]="options">
+                    <ng-template #treeNodeTemplate let-node let-index="index">
+                      <span [class.tree-node-active]="node.data.Id == activeCategoryID">{{ node.data.Name }}</span>
+                      <!-- <span style="line-height:20px;vertical-align:top;color: white">{{ node.data.Name }}</span> -->
+                    </ng-template>
+                  </tree-root>
+                </div>
+              </div>
+              <div class="col-md-9 p-0" id="MapDataContent" infiniteScroll [infiniteScrollDistance]="0.5"
+                [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [scrollWindow]="false">
+                <div id="MapSearchDataBodyContent" class="row">
+                  <div *ngIf="LayerLoader==true" class="loader" id="LayerLibraryLoader"> <img id="loading-image"
+                      [src]="ImageURLPath + 'LayerLibraryLoader.gif'" alt="Loading..." height="20" width="100"><br>
+                  </div>
+                  <div *ngIf="NormalViewContent==true" class="NormalViewContent" style=" width: 100% !important; ">
+                    <div *ngIf="ActiveMapLayersLibrary.length>0">
+                      <div *ngFor='let EnergyLayerLibrary of ActiveMapLayersLibrary[0].LayerLibrary'>
+                        <ng-container *ngIf="EnergyLayerLibrary?.isVisible">
+                          <div class="row layerRow" id="{{EnergyLayerLibrary.EnergyLayerID}}layerRow">
+                            <div *ngIf="EnergyLayerLibrary.PreviewImage"
+                              class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pl-0 pr-0">
+                              <!-- <img [src]="ImageURLPath + 'preview/Electric.png'" class="img-thumbnail" style="width:160px;" /> -->
+                              <img src="{{EnergyLayerLibrary.PreviewImage}}" class="img-thumbnail"
+                                style="width:100%;height: 100px !important;" />
+                            </div>
+                            <div *ngIf="!EnergyLayerLibrary.PreviewImage"
+                              class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pl-0 pr-0">
+                              <!-- <img [src]="ImageURLPath + 'preview/Electric.png'"  class="img-thumbnail" style="width:160px;" /> -->
+                              <img [src]="ImageURLPath + 'publicMaps.png'" class="img-thumbnail"
+                                style="width:100%; height: 100px !important;" />
+                            </div>
+                            <div class="mapSummary col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                              <label class="lblSummary"><b>{{EnergyLayerLibrary.DisplayName}}</b></label>
+                              <p>{{EnergyLayerLibrary.LayerDescription}}</p>
+                              <p *ngIf="!EnergyLayerLibrary.LayerType"><b>Type</b> : Energy Layer</p>
+                              <p *ngIf="EnergyLayerLibrary.LayerType;">
+                                Type&nbsp;&nbsp;:&nbsp;&nbsp;{{EnergyLayerLibrary.LayerType}}</p>
+                              <p><b>Source :
+                                </b>{{EnergyLayerLibrary.Source}}&nbsp;-&nbsp;{{EnergyLayerLibrary.DateUpdated? (EnergyLayerLibrary.DateUpdated
+                              | date:'MM-dd-yyyy'):(EnergyLayerLibrary.DateCreated | date:'MM-dd-yyyy')}}
+                              </p>
+                              <div class="pull-right">
+                                <!--<button type="button" class="btn btn-xs btn-light" id="{{EnergyLayerLibrary.EnergyLayerID}}ViewData"
+                                  style="font-size: 13px;" (click)="ViewDataClick(EnergyLayerLibrary.EnergyLayerID,ActiveMapLayersLibrary[0].CategoryID)"
+                                  title="View Data">{{EnergyLayerLibrary.ViewData}}</button>-->
+                                <button type="button" class="btn btn-xs btn-primary AddToMap"
+                                  id="{{EnergyLayerLibrary.EnergyLayerID}}AddToMap"
+                                  (click)="AddtomapClick(EnergyLayerLibrary.EnergyLayerID,ActiveMapLayersLibrary[0].CategoryID)"
+                                  title="Add to Map">{{EnergyLayerLibrary.Addtomap}}</button>
+                              </div>
+                            </div>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="ReducedViewContent==true" class="ReducedViewContent" style=" width: 100% !important; ">
+                    <div *ngIf="ActiveMapLayersLibrary.length>0">
+                      <div *ngFor='let EnergyLayerLibrary of ActiveMapLayersLibrary[0].LayerLibrary'>
+                        <ng-container *ngIf="EnergyLayerLibrary?.isVisible">
+                          <div class="row layerRow" id="{{EnergyLayerLibrary.EnergyLayerID}}">
+                            <div *ngIf="EnergyLayerLibrary.PreviewImage"
+                              class="col-lg-3 col-md-3 col-sm-3 col-xs-12 p-0 pl-0 pr-0">
+                              <!-- <img [src]="ImageURLPath + 'preview/Electric.png'" class="img-thumbnail" style="width:160px;" /> -->
+                              <img src="{{EnergyLayerLibrary.PreviewImage}}" class="img-thumbnail"
+                                style="widows: 100%;;height: 60px !important" />
+                            </div>
+                            <div *ngIf="!EnergyLayerLibrary.PreviewImage"
+                              class="col-lg-3 col-md-3 col-sm-3 col-xs-12 p-0 pl-0 pr-0">
+                              <!-- <img [src]="ImageURLPath + 'preview/Electric.png'" class="img-thumbnail" style="width:160px;" /> -->
+                              <img [src]="ImageURLPath + 'publicMaps.png'" class="img-thumbnail"
+                                style="widows: 100%;;height: 60px !important;" />
+                            </div>
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 pl-0">
+                              <label class="pl-2"
+                                style="font-size: 12px;"><b>{{EnergyLayerLibrary.DisplayName}}</b></label>
+                              <div class="pull-right">
+                                <button type="button" class="btn btn-light" id="{{EnergyLayerLibrary.EnergyLayerID}}"
+                                  style="font-size: 14px;"
+                                  (click)="ViewDataClick(EnergyLayerLibrary.EnergyLayerID,ActiveMapLayersLibrary[0].CategoryID)"
+                                  title="View Data">{{EnergyLayerLibrary.ViewData}}</button>
+                                <button type="button" class="btn btn-light AddToMap"
+                                  id="{{EnergyLayerLibrary.EnergyLayerID}}" style="font-size: 14px;"
+                                  (click)="AddtomapClick(EnergyLayerLibrary.EnergyLayerID,ActiveMapLayersLibrary[0].CategoryID)"
+                                  title="Add to map">{{EnergyLayerLibrary.Addtomap}}</button>
+                              </div>
+                            </div>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="ImageListviewContent==true" class="ImageListviewContent"
+                    style=" width: 100% !important; ">
+                    <div *ngIf="ActiveMapLayersLibrary.length>0">
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div *ngFor='let EnergyLayerLibrary of ActiveMapLayersLibrary[0].LayerLibrary'>
+                            <ng-container *ngIf="EnergyLayerLibrary?.isVisible">
+                              <div class="gallery">
+                                <div *ngIf="EnergyLayerLibrary.PreviewImage">
+                                  <!-- <img [src]="ImageURLPath + 'preview/Electric.png'" class="img-thumbnail" style="width:160px;" /> -->
+                                  <img src="{{EnergyLayerLibrary.PreviewImage}}" width="600" height="400"
+                                    title="{{EnergyLayerLibrary.DisplayName}}"
+                                    (click)="AddtomapClick(EnergyLayerLibrary.EnergyLayerID,ActiveMapLayersLibrary[0].CategoryID)" />
+                                </div>
+                                <div *ngIf="!EnergyLayerLibrary.PreviewImage">
+                                  <!-- <img [src]="ImageURLPath + 'preview/Electric.png'" class="img-thumbnail" style="width:160px;" /> -->
+                                  <img [src]="ImageURLPath + 'publicMaps.png'" width="600" height="400"
+                                    title="{{EnergyLayerLibrary.DisplayName}}"
+                                    (click)="AddtomapClick(EnergyLayerLibrary.EnergyLayerID,ActiveMapLayersLibrary[0].CategoryID)" />
+                                </div>
+                                <div style=" font-size: 12px; "><b>{{EnergyLayerLibrary.DisplayName}}</b></div>
+                              </div>
+                            </ng-container>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p *ngIf="activeParentCategoryID == 97 || activeCategoryID == 97" style="width: 100%; text-align: center;"
+                class="pt-2">For performance purposes, parcel data layers may only be viewed at zoom levels 15 - 20.</p>
+            </div>
+          </div>
+        </div>
+      </pg-tab>
+      <pg-tab>
+        <ng-template #TabHeading>
+          <span style="font-weight: normal" id="MyDatatitle" class="tab-title">My Data</span>
+        </ng-template>
+        <div role="tabpanel" class="tab-pane" id="MyData">
+          <app-my-data></app-my-data>
+        </div>
+      </pg-tab>
+      <pg-tab *ngIf="AuthServices.ShowSharedRightsUIBaedOnRole()">
+        <ng-template #TabHeading>
+          <span style="font-weight: normal" id="SharedDatatitle" class="tab-title">Shared Data</span>
+        </ng-template>
+        <div role="tabpanel" class="tab-pane" id="SharedData">
+          <app-shared-data></app-shared-data>
+        </div>
+      </pg-tab>
+    </pg-tabset>
+  </div>
+</div>
+<div class="modal-footer p-t-5 p-b-5">
+  <button type="button" class="btn btn-light" (click)="CloseMapsearchdata()">Close</button>
+</div>

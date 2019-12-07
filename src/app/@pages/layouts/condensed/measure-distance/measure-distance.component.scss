@@ -1,0 +1,54 @@
+/deep/ .card-close{
+    display: none !important;
+}
+
+/deep/ #measureModal .card-group .card .card-header .card-title a{
+    text-align: left;
+    color: black !important;
+    text-transform: capitalize;
+    padding-left: 8px;
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+// /deep/#measureModal .collapsePanel .active{
+//     border: 1px solid lightgray;
+// }
+/deep/ #measureModal .collapsePanel .active .card-body{
+    padding: 0px;
+}
+/deep/#measureModal .collapsePanel .active .card-body p{
+    font-size: 12px;
+    color: black;
+}
+/deep/#measureModal .collapsePanel .active .card-body ul li{
+    font-size: 11.5px;
+    color: black;
+}
+
+/deep/ #measureModal .card-group .card .card-header{
+    background: rgb(240,240,240) !important;
+    border: 1px solid lightgray;
+}
+/deep/ #measureModal .card-group .card .card-header .card-title a{
+    background: rgb(240,240,240) !important;
+}
+
+.card-header{
+    display: flex;
+    height: 26px;
+}
+
+/deep/ .content-wrapper {
+    padding: 5px;
+    border: 1px solid lightgrey;
+    margin-bottom: 3px;
+    p {
+        font-size: 12px;
+    }
+}
+
+/deep/ .mesure-distance {
+    left: calc(100% - 320px);
+    min-height: calc(490px + 260px);
+}

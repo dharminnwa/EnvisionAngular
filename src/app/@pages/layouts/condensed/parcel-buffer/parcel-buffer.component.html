@@ -1,0 +1,42 @@
+<div class="modal-header custom-header">
+  <h6 class="m-2 semi-bold">Parcel Buffer Tool</h6>
+  <button type="button" id="parcelBufferClose" class="close pull-right p-2 ClosePopupmodal" aria-label="Close"
+    (click)="CloseModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <!-- <h5 class="semi-bold">Parce Buffer Tool</h5> -->
+</div>
+
+<div class="modal-body p-2" style="min-height:250px">
+  <div class="row m-0">
+    <div class="col-md-12 p-0 ParcelBuffer">
+      <pg-tabset tabAnimation="slide-left" Type="fillup" extraTabContentClass="bg-white">
+        <pg-tab>
+          <ng-template #TabHeading>
+            <div (click)="SelectTab(1)">
+              <span>Point</span>
+            </div>
+          </ng-template>
+          <div class="row column-seperation parcelBufferContent">
+            <div class="col-md-12">
+              <app-point></app-point>
+            </div>
+          </div>
+        </pg-tab>
+
+        <pg-tab>
+          <ng-template #TabHeading>
+            <div (click)="SelectTab(2)">
+              <span>Line</span>
+            </div>
+          </ng-template>
+          <div class="row column-seperation parcelBufferContent">
+            <div class="col-md-12">
+              <app-line></app-line>
+            </div>
+          </div>
+        </pg-tab>
+      </pg-tabset>
+    </div>
+  </div>
+</div>

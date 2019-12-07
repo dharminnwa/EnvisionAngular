@@ -1,0 +1,65 @@
+<ng-container *ngIf="!isDeletedAllLayers">
+  <div class="modal-header custom-header">
+    <h6 class="m-2 semi-bold">{{ EditLayerId? 'Update': 'Save'}} Draw Tools</h6>
+    <button type="button" [disabled]="isLoading" id="drawToolPopupClose" class="close pull-right p-2 ClosePopupmodal" aria-label="Close"
+      (click)="CloseModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form #f="ngForm" (submit)="f.form.valid && saveDrawToolData()">
+    <div class="modal-body p-2" style="min-height:200px">
+
+      <div class="col-md-12 p-0">
+        <div class="form-group form-group-default">
+          <label>Layer Name</label>
+          <input type="text" class="form-control" name="LayerName" [(ngModel)]="layerName" #layerNameIn="ngModel"
+            required />
+          <span class="text-danger" *ngIf="f.submitted && !layerNameIn.valid"><b>Layer Name is Required</b></span>
+        </div>
+      </div>
+
+      <div class="col-md-12 p-0">
+        <div class="form-group form-group-default">
+          <label>Description</label>
+          <input type="text" class="form-control" name="Description" [(ngModel)]="description"
+            #layerDescription="ngModel" />
+
+        </div>
+      </div>
+
+      <div class="col-md-12 p-0 mt-3 text-right">
+        <div class="checkbox check-success">
+          <input type="checkbox" id="shared" class="checkbox-input" [checked]="isShared"
+            (change)="isShared = !isShared">
+          <label for="shared">Shared</label>
+        </div>
+        <button type="submit" *ngIf="!isLoading" class="btn btn-primary m-0">{{ EditLayerId? 'Update': 'Save'}}</button>
+        <button type="submit" *ngIf="isLoading" disabled class="btn btn-primary m-0">Saving</button>
+        <button type="button" [disabled]="isLoading" class="btn btn-default m-0 m-l-2" (click)="CloseModal()">Close</button>
+      </div>
+
+    </div>
+  </form>
+</ng-container>
+<ng-container *ngIf="isDeletedAllLayers">
+  <div class="modal-header custom-header">
+    <h6 class="m-2 semi-bold">Error</h6>
+    <button type="button" id="drawToolPopupClose" class="close pull-right p-2 ClosePopupmodal" aria-label="Close"
+      (click)="CloseModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body p-2" style="min-height:125px">
+    <div class="col-md-12 p-0">
+      <div>
+        <label>You cannot save a Draw Tools Layer that contains no shapes. Would you like to delete the layer or add new
+          shapes?</label>
+      </div>
+    </div>
+    <div class="col-md-12 p-0 mt-3 text-right">
+      <button type="button" class="btn btn-primary m-0" (click)="DeleteDrawTools()">Delete Layer</button>
+      <button type="button" class="btn btn-default m-0 m-l-2" (click)="CloseModal()">Add New Shapes</button>
+    </div>
+  </div>
+</ng-container>

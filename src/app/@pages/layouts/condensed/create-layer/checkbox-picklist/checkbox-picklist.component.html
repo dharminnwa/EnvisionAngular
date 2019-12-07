@@ -1,0 +1,68 @@
+<div class="mb-1" *ngIf="isFilterable">
+  Filter {{ listName }} : <input id="txtFilterOwner" type="text" class="txtFilterInput" [(ngModel)]="filterText" />
+</div>
+<div class="select-all-checkbox-wrap" *ngIf="isSourceSelectAll || isTargetSelectAll">
+  <div *ngIf="isSourceSelectAll" class="picklist-firstlist-Header" style="width: 62%">
+    <div class="checkbox check-success">
+      <input type="checkbox" id="chkSourceSelectAll{{ listName }}{{ currentTab }}" [checked]="sourceSelectAll"
+        (change)="SelectAllSourceList()">
+      <label for="chkSourceSelectAll{{ listName }}{{ currentTab }}">Select All {{ listName }}</label>
+    </div>
+  </div>
+  <div *ngIf="isTargetSelectAll" class="picklist-firstlist-Header">
+    <div class="checkbox check-success">
+      <input type="checkbox" id="chkTargetSelectAll{{ listName }}{{ currentTab }}" [checked]="targetSelectAll"
+        (change)="SelectAllTargetList()">
+      <label for="chkTargetSelectAll{{ listName }}{{ currentTab }}">Select All {{ listName }} (25 {{ singularName }} Limit)</label>
+    </div>
+  </div>
+</div>
+<div class="checkbox-picklist">
+  <ng-container *ngIf="!isLazyLoad">
+    <div class="checkbox-list-wrapper">
+      <div class="ui-helper-clearfix" *ngFor="let item of sourceList | filterByName:filterText ;let i = index">
+        <div class="checkbox check-success">
+          <input type="checkbox" id='{{item.id}}{{ i }}{{ listName }}checklist' [checked]=item.isChecked
+            (change)="item.isChecked = !item.isChecked">
+          <label for='{{item.id}}{{ i }}{{ listName }}checklist'>{{item.name}}</label>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="isLazyLoad">
+    <!-- This Will Display If NO filter is Applied -->
+    <div class="checkbox-list-wrapper" infiniteScroll [infiniteScrollDistance]="0.5" [infiniteScrollThrottle]="50"
+      (scrolled)="onScroll()" [scrollWindow]="false" *ngIf="!isFilterable || !filterText">
+      <div class="ui-helper-clearfix" *ngFor="let item of dataToDisplay;let i = index">
+        <div class="checkbox check-success">
+          <input type="checkbox" id='{{item.id}}{{ i }}{{ listName }}{{ currentTab }}checklist' [checked]=item.isChecked
+            (change)="item.isChecked = !item.isChecked">
+          <label for='{{item.id}}{{ i }}{{ listName }}{{ currentTab }}checklist'>{{item.name}}</label>
+        </div>
+      </div>
+    </div>
+    <!-- This Will Display If filter is Applied -->
+    <div class="checkbox-list-wrapper" *ngIf="isFilterable && filterText">
+      <div class="ui-helper-clearfix" *ngFor="let item of sourceList | filterByName:filterText ;let i = index">
+        <div class="checkbox check-success">
+          <input type="checkbox" id='{{item.id}}{{ i }}{{ listName }}{{ currentTab }}checklist' [checked]=item.isChecked
+            (change)="item.isChecked = !item.isChecked">
+          <label for='{{item.id}}{{ i }}{{ listName }}{{ currentTab }}checklist'>{{item.name}}</label>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <div class="checkbox-action-buttons">
+    <button class="btn btn-primary btn-picklist-action" (click)="MoveToTargetList()">></button>
+    <button class="btn btn-primary btn-picklist-action" (click)="MoveToSourceList()">{{ lessThenText }}</button>
+  </div>
+  <div class="checkbox-list-wrapper">
+    <div class="ui-helper-clearfix" *ngFor="let item of targetList;let i = index">
+      <div class="checkbox check-success">
+        <input type="checkbox" id='{{item.id}}{{ i }}{{ listName }}{{ currentTab }}Targetchecklist' [checked]=item.isChecked
+          (change)="item.isChecked = !item.isChecked">
+        <label for='{{item.id}}{{ i }}{{ listName }}{{ currentTab }}Targetchecklist'>{{item.name}}</label>
+      </div>
+    </div>
+  </div>
+</div>

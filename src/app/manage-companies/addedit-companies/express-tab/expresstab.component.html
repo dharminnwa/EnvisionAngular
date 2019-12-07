@@ -1,0 +1,94 @@
+<div class="col-md-12">
+    <form id="horizontalForm" class="form-horizontal" role="form" autocomplete="off" #horizontalForm="ngForm">
+        <div class="form-group row" [class.has-error]="HorizontalFormName.invalid && (HorizontalFormName.dirty || HorizontalFormName.touched)">
+            <label for="fname" class="col-md-3 control-label">Name:</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="fname2" placeholder="Name" name="fname2" [(ngModel)]="HorizontalName"
+                    #HorizontalFormName="ngModel" required>
+                <!---->
+                <div *ngIf="HorizontalFormName.invalid && (HorizontalFormName.dirty || HorizontalFormName.touched)">
+                    <label *ngIf="HorizontalFormName.errors.required" class="error">This field is required.</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Express:</label>
+            <div class="col-md-9">
+                <div class="checkbox check-success  ">
+                    <input type="checkbox" value="1" id="chkExpressPermission1">
+                    <label for="chkExpressPermission1">Oil/Gas</label>
+                </div>
+                <div class="checkbox check-success  ">
+                    <input type="checkbox" value="1" id="chkExpressPermission2">
+                    <label for="chkExpressPermission2">Electric Power</label>
+                </div>
+                <div class="checkbox check-success  ">
+                    <input type="checkbox" value="1" id="chkExpressPermission3">
+                    <label for="chkExpressPermission3">Map Wizard</label>
+                </div>
+                <div class="checkbox check-success  ">
+                    <input type="checkbox" value="1" id="chkExpressPermission4">
+                    <label for="chkExpressPermission4">My Downloads</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Reporting:</label>
+            <div class="col-md-9">
+                <div class="checkbox check-success  ">
+                    <input type="checkbox" value="1" id="chkReportPermission1">
+                    <label for="chkReportPermission1">Company Profile</label>
+                </div>
+                <div class="checkbox check-success  ">
+                    <input type="checkbox" value="1" id="chkReportPermission2">
+                    <label for="chkReportPermission2">Pipeline Activity</label>
+                </div>
+                <div class="checkbox check-success  ">
+                    <input type="checkbox" value="1" id="chkReportPermission3">
+                    <label for="chkReportPermission3">Transmission Project</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Data:</label>
+            <div class="col-md-9">
+                <div class="checkbox check-success  ">
+                    <input type="checkbox" value="1" id="chkDataPermission1">
+                    <label for="chkDataPermission1">EN 2.0</label>
+                </div>
+                <div class="checkbox check-success  ">
+                    <input type="checkbox" value="1" id="chkDataPermission2">
+                    <label for="chkDataPermission2">Offshore</label>
+                </div>
+                <div class="checkbox check-success  ">
+                    <input type="checkbox" value="1" id="chkDataPermission3">
+                    <label for="chkDataPermission3">Incidents</label>
+                </div>
+                <div class="checkbox check-success mb-0">
+                    <input type="checkbox" value="1" id="chkDataPermission4">
+                    <label for="chkDataPermission4">PHMSA</label>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="checkbox check-success  ">
+                            <input type="checkbox" value="1" id="chkDataPermission5">
+                            <label for="chkDataPermission5">Flow Data</label>
+                        </div>
+                        <div class="checkbox check-success  ">
+                            <input type="checkbox" value="1" id="chkDataPermission6">
+                            <label for="chkDataPermission6">Dashboard</label>
+                        </div>
+                    </div>
+                    <div class="col-md-9 btnTSP">
+                        <button type="button" class="btn btn-primary" (click)="OpenTSPModal()">Edit TSPs</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="pull-right p-t-10">
+        <button type="button" class="btn btn-primary">Delete</button>
+        <button type="button" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Cancel</button>
+    </div>
+</div>

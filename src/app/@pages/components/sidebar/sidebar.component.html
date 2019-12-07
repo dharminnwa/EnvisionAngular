@@ -1,0 +1,40 @@
+<!-- BEGIN SIDEBAR MENU TOP TRAY CONTENT-->
+<div class="sidebar-overlay-slide from-top scroll show">  <!--[class.show]="drawer"-->
+  <ng-template [ngTemplateOutlet]="sideBarOverlay"></ng-template>
+</div>
+<!-- <div class="sidebar-footer" [class.hideFooter]="!drawer">
+  <ng-template [ngTemplateOutlet]="sideBarFooter"></ng-template>
+</div> -->
+<!-- END SIDEBAR MENU TOP TRAY CONTENT-->
+<!-- BEGIN SIDEBAR MENU HEADER-->
+<div class="sidebar-header">
+  <ng-template [ngTemplateOutlet]="sideBarHeader"></ng-template>
+</div>
+<!-- END SIDEBAR MENU HEADER-->
+<!-- START SIDEBAR MENU -->
+<ng-template #sideBarOverlay>
+  <div>
+    <pg-collapseset></pg-collapseset>
+    <pg-collapseset Accordion="true">
+      <pg-collapse [Title]="'Energy Layers'" class="collapseMenu" id="energyLayerArea">
+        <ng-template [ngTemplateOutlet]="menuItems"></ng-template>
+      </pg-collapse>
+      <pg-collapse [Title]="'My Layers'" class="collapseMenu" id="privateLayerArea"  >
+        <ng-template [ngTemplateOutlet]="privateMenuItems"></ng-template>
+      </pg-collapse>
+      <pg-collapse [Title]="'Shared Layers'" class="collapseMenu" id="sharedLayerArea" >
+        <ng-template [ngTemplateOutlet]="sharedMenuItems"></ng-template>
+      </pg-collapse>
+      <pg-collapse [Title]="'Temporary Layers'" class="collapseMenu" id="temporaryLayerArea">
+        <ng-template [ngTemplateOutlet]="temporaryLayerItems"></ng-template>
+      </pg-collapse>
+      <pg-collapse [Title]="'Draw Tools'" class="collapseMenu" id="drawToolArea" style="overflow: hidden;">
+          <ng-template [ngTemplateOutlet]="drawToolItems"></ng-template>
+        </pg-collapse>
+    </pg-collapseset>
+
+    <!-- BEGIN SIDEBAR MENU ITEMS-->
+    <div class="clearfix"></div>
+  </div>
+</ng-template>
+<!-- END SIDEBAR MENU -->

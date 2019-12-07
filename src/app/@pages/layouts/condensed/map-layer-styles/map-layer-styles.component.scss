@@ -1,0 +1,90 @@
+// /deep/ .MapLayerstyle .tab-wrapper {
+//     overflow: inherit;
+// }
+
+#pointImage{
+    vertical-align: middle !important;
+}
+.dropdown-toggle::after{
+    vertical-align: middle !important;
+}
+.CostomelayerIconPreview:hover {
+    float: left;
+    width: 50px;
+    padding: 12px;
+    padding-left: 5px;
+    text-align: center;
+    background-color: lightskyblue;
+}
+.closeExIcon{
+    display: none;
+}
+.CostomelayerIconPreview:hover .closeExIcon {
+ display: block;
+}
+.CostomelayerIconPreview {
+        float: left;
+        width: 50px;
+        padding: 12px;
+        text-align: center;
+        padding-left: 5px;
+        cursor: pointer;
+    }
+.layerIconPreview:hover {
+    float: left;
+    width: 50px;
+    padding: 12px;
+    text-align: center;
+    background-color: lightskyblue;
+}
+.layerIconPreview {
+        float: left;
+        width: 50px;
+        padding: 12px;
+        text-align: center;
+        cursor: pointer;
+    }
+    #_IdEnergySymbols:hover{
+        display: block !important;
+    } 
+    
+    
+    #PropertyList #detailTable {
+        height: 30px;
+        background-color: lightgray;
+        margin: 0px 2px 5px 20px;
+        padding-top: 5px;
+        text-align: center;
+    }
+    .addProperty {
+        margin-left: 2.5%;
+    }
+    
+    #PropertyData {
+        //max-height: 200px;
+        overflow: inherit;
+    }
+    #PropertyData .form-group {
+        margin-bottom: 5px;
+    }
+    #PropertyData .btn {
+        margin-top:3px;
+    }
+    #PropertyData .form-control {
+        height:30px;
+        padding-left:6px;
+        padding-bottom: 0px;
+    }
+    .UploadIcon {
+        position: relative;
+        overflow: hidden;
+      }
+      .UploadIcon input {
+        position: absolute;
+        font-size: 50px;
+        opacity: 0;
+        right: 0;
+        top: 0;
+      }
+
+    

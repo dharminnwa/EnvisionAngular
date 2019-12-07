@@ -1,0 +1,273 @@
+<pgcard Refresh="false" id="assetLookupCard">
+  <ng-template #CardTitle>Asset Lookup</ng-template>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-transparent widgetTab">
+        <pg-tabset tabAnimation="slide-left" Type="fillup" extraTabContentClass="bg-white" id="assetLookupTabs">
+          <pg-tab>
+            <ng-template #TabHeading>
+              <span id="facilitiesTabHeader">Facilities</span>
+            </ng-template>  
+            <div class="row column-seperation widgetContent">
+              <div class="col-lg-12">
+                <!-- <h6 class="widgetLabel">Facilities</h6> -->
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <input type="text" class="form-control" [(ngModel)]="searchFacilities"
+                    placeholder="By Owner, Operator, or Facility Name" required="">
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <!-- <label class="col-lg-4">Facility Type</label> -->
+                  <div class="col-lg-8 pl-0">
+                    <ng-multiselect-dropdown [placeholder]="'Facility Type'" [data]="Facilities"
+                      [(ngModel)]="selectedFacilities" [settings]="dropdownSettings"
+                      (onSelect)="OnItemSelectCommodity($event)" (onSelectAll)="onSelectAll($event)"
+                      (onDeSelect)="OnItemSelectCommodity($event)">
+                    </ng-multiselect-dropdown>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <div class="col-lg-8 pl-0">
+                    <ng-multiselect-dropdown [placeholder]="'Commodities'" [data]="Commodities"
+                      [(ngModel)]="selectedCommoditiesFL" [settings]="dropdownSettings"
+                      (onSelect)="OnItemSelectCommodity($event)" (onSelectAll)="onSelectAll($event)"
+                      (onDeSelect)="OnItemSelectCommodity($event)">
+                    </ng-multiselect-dropdown>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <div class="col-lg-8 pl-0">
+                    <ng-multiselect-dropdown [placeholder]="'States'" [data]="States" [(ngModel)]="selectedStatesFL"
+                      [settings]="dropdownSettings" (onSelect)="OnItemSelectCommodity($event)"
+                      (onSelectAll)="onSelectAll($event)" (onDeSelect)="OnItemSelectCommodity($event)">
+                    </ng-multiselect-dropdown>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </pg-tab>
+
+          <pg-tab>
+            <ng-template #TabHeading>
+              <span id="pipelinesTabHeader">Pipelines</span>
+            </ng-template>
+            <div class="row column-seperation widgetContent">
+              <div class="col-lg-12 pb-2">
+                <!-- <span>Pipelines</span> -->
+              </div>
+              <div class="col-lg-12 pb-2">
+                <input type="text" class="form-control" name="search-pipelines" [(ngModel)]="searchPipelines"
+                  #searchPipelinesInput="ngModel" placeholder="By Owner, Operator, or System Name" required="">
+              </div>
+              <div class="col-lg-12 pl-0">
+                <div class="checkbox check-complete col-lg-12">
+                  <input type="checkbox" name="Transmission" [checked]="isTransmissionPipeline"
+                    (change)="isTransmissionPipeline = !isTransmissionPipeline" id="chkPipeLine1">
+                  <label for="chkPipeLine1">Transmission</label>
+                </div>
+              </div>
+              <div class="col-lg-12 pl-0">
+                <div class="checkbox check-complete col-lg-12">
+                  <input type="checkbox" name="Transmission" [checked]="isGatheringPipeline"
+                    (change)="isGatheringPipeline = !isGatheringPipeline" id="chkPipeLine2">
+                  <label for="chkPipeLine2">Gathering</label>
+                </div>
+              </div>
+              <div class="col-lg-12 pl-0 pb-2">
+                <div class="checkbox check-complete col-lg-12">
+                  <input type="checkbox" name="Transmission" [checked]="isDistributionPipeline"
+                    (change)="isDistributionPipeline = !isDistributionPipeline" id="chkPipeLine3">
+                  <label for="chkPipeLine3">Local Distribution</label>
+                </div>
+              </div>
+              <div class="col-lg-12" hidden>
+                <div class="checkbox check-complete col-lg-12">
+                  <input type="checkbox" name="MapsearchConnection" [checked]="isMapsearchConnectionPipeline"
+                    (change)="isMapsearchConnectionPipeline = !isMapsearchConnectionPipeline" id="chkPipeLine4">
+                  <label for="chkPipeLine4">Mapsearch Connection</label>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="col-lg-8 pl-0">
+                  <ng-multiselect-dropdown [placeholder]="'Commodities'" [data]="Commodities2"
+                    [(ngModel)]="selectedCommoditiesPL" [settings]="dropdownSettings" (onSelect)="onPipelineItemSelect($event)"
+                    (onDeSelect)="onPipelineItemSelect($event)"  (onSelectAll)="onSelectAll($event)">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <div class="col-lg-8 pl-0">
+                    <ng-multiselect-dropdown [placeholder]="'Status'" [data]="Status" [(ngModel)]="selectedStatusPL"
+                      [settings]="dropdownSettings" (onSelect)="onPipelineItemSelect($event)" (onDeSelect)="onPipelineItemSelect($event)"
+                      (onSelectAll)="onSelectAll($event)">
+                    </ng-multiselect-dropdown>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <div class="col-lg-8 pl-0">
+                    <ng-multiselect-dropdown [placeholder]="'States'" [data]="States2" [(ngModel)]="selectedStatesPL"
+                      [settings]="dropdownSettings" (onSelect)="onPipelineItemSelect($event)" (onDeSelect)="onPipelineItemSelect($event)"
+                      (onSelectAll)="onSelectAll($event)">
+                    </ng-multiselect-dropdown>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </pg-tab>
+
+          <pg-tab>
+            <ng-template #TabHeading>
+              <span id="powerPlantsTabHeader">Power Plants</span>
+            </ng-template>
+            <div class="row column-seperation widgetContent">
+              <div class="col-lg-12 pb-1">
+                <!-- <span>Power Plants</span> -->
+              </div>
+              <div class="col-lg-12 pb-2">
+                <input type="text" class="form-control" name="search-power-plants" [(ngModel)]="searchPowerPlants"
+                  #searchPowerPlantsInput="ngModel" placeholder="By Owner, Operator, or PowerPlant Name" required="">
+              </div>
+
+              <div class="col-lg-12">
+                <div class="col-lg-8 pl-0">
+                  <ng-multiselect-dropdown [placeholder]="'Fuel Types'" [data]="FuelType"
+                    [(ngModel)]="selectedFuelTypes" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)" (onSelect)="onpowerplantItemselect($event)" (onDeSelect)="onpowerplantItemselect($event)">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+
+              <div class="col-lg-12">
+                <div class="col-lg-8 pl-0">
+                  <ng-multiselect-dropdown [placeholder]="'Prime Mover'" [data]="PrimeMover"
+                    [(ngModel)]="selectedPrimeMover" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)" (onSelect)="onpowerplantItemselect($event)" (onDeSelect)="onpowerplantItemselect($event)">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="col-lg-8 pl-0">
+                  <ng-multiselect-dropdown [placeholder]="'States'" [data]="PowerPlant_States" [(ngModel)]="selectedStatesPP"
+                    [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)" (onSelect)="onpowerplantItemselect($event)" (onDeSelect)="onpowerplantItemselect($event)">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+            </div>
+          </pg-tab>
+
+          <pg-tab>
+            <ng-template #TabHeading>
+              <span id="substationsTabHeader">Substations</span>
+            </ng-template>
+            <div class="row column-seperation widgetContent">
+              <div class="col-lg-12 pb-1">
+                <!-- <span>Substations</span> -->
+              </div>
+              <div class="col-lg-12 pb-2">
+                <input type="text" class="form-control" name="search-substations" [(ngModel)]="searchSubstations"
+                  #searchSubstationsInput="ngModel" placeholder="By Owner, Operator, or PowerPlant Name" required="">
+              </div>
+
+              <div class="col-lg-12">
+                <div class="col-lg-8 pl-0">
+                  <ng-multiselect-dropdown [placeholder]="'Status'" [data]="Status2" [(ngModel)]="selectedStatusSS"
+                    [settings]="dropdownSettings" (onSelect)="onsubstationItemselect($event)" (onDeSelect)="onsubstationItemselect($event)" (onSelectAll)="onSelectAll($event)">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+
+              <div class="col-lg-12">
+                <div class="col-lg-8 pl-0">
+                  <ng-multiselect-dropdown [placeholder]="'Type'" [data]="Type" [(ngModel)]="selectedTypes"
+                    [settings]="dropdownSettings" (onSelect)="onsubstationItemselect($event)" (onDeSelect)="onsubstationItemselect($event)" (onSelectAll)="onSelectAll($event)">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="col-lg-8 pl-0">
+                  <ng-multiselect-dropdown [placeholder]="'States'" [data]="substation_States" [(ngModel)]="selectedStatesSS"
+                    [settings]="dropdownSettings" (onSelect)="onsubstationItemselect($event)" (onDeSelect)="onsubstationItemselect($event)" (onSelectAll)="onSelectAll($event)">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+
+            </div>
+          </pg-tab>
+
+          <pg-tab>
+            <ng-template #TabHeading>
+              <span id="transmissionLinesTabHeader">Transmission Lines</span>
+            </ng-template>
+            <div class="row column-seperation widgetContent">
+              <div class="col-lg-12 pb-1">
+                <!-- <span>Transmission Lines</span> -->
+              </div>
+              <div class="col-lg-12 pb-2">
+                <input type="text" class="form-control" name="search-transmission-lines"
+                  [(ngModel)]="searchTransmissionLines" #searchTransmissionLinesInput="ngModel"
+                  placeholder="By Owner, Operator" required="">
+              </div>
+
+              <div class="col-lg-12">
+                <div class="col-lg-8 pl-0">
+                  <ng-multiselect-dropdown [placeholder]="'Status'" [data]="TransmissionLine_Status2" [(ngModel)]="selectedStatusTL"
+                    [settings]="dropdownSettings" (onSelect)="onTransmissionLineItemselect($event)" (onDeSelect)="onTransmissionLineItemselect($event)" (onSelectAll)="onSelectAll($event)">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+
+              <div class="col-lg-12">
+                <div class="col-lg-8 pl-0">
+                  <ng-multiselect-dropdown [placeholder]="'Voltage'" [data]="Voltage" [(ngModel)]="selectedVoltage"
+                    [settings]="dropdownSettings" (onSelect)="onTransmissionLineItemselect($event)" (onDeSelect)="onTransmissionLineItemselect($event)" (onSelectAll)="onSelectAll($event)">
+                  </ng-multiselect-dropdown>
+                </div>
+
+              </div>
+              <div class="col-lg-12">
+                <div class="col-lg-8 pl-0">
+                  <ng-multiselect-dropdown [placeholder]="'States'" [data]="TransmissionLine_States" [(ngModel)]="selectedStatesTL"
+                    [settings]="dropdownSettings" (onSelect)="onTransmissionLineItemselect($event)" (onDeSelect)="onTransmissionLineItemselect($event)" (onSelectAll)="onSelectAll($event)">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+            </div>
+          </pg-tab>
+
+        </pg-tabset>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="col-lg-12 bottomContent">
+      <button type="button" class="btn btn-complete btn-cons btn-comp" (click)="SearchAssets()">Search Assets</button>
+      <button type="button" class="btn btn-default btn-cons btn-clear" (click)="ClearFilters();">Clear Filters</button>
+    </div>
+
+    <!-- <div class="col-lg-12 bottomContent">
+      <div class="radio radio-complete">
+        <span>View Results</span>&nbsp;&nbsp;&nbsp;
+        <input type="radio" value="LookupinGrid" name="LookupAsset" id="LookupinGrid" aria-invalid="false">
+        <label for="LookupinGrid">In Grid</label>
+        <input type="radio" checked="checked" value="LookupMap" name="LookupAsset" id="LookupMap">
+        <label for="LookupMap">In Map</label>
+      </div>
+    </div> -->
+  </div>
+</pgcard>
+
+<div *ngIf="LayerLoader==true" class="loader" id="LayerLibraryLoader" class="LayerLibraryLoader"> <img
+    id="loading-image" [src]="ImageURLPath + 'LayerLibraryLoader.gif'" alt="Loading..." height="20" width="100"><br>
+</div>

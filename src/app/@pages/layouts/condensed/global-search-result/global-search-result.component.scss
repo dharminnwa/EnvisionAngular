@@ -1,0 +1,94 @@
+.btn-primary.active, .btn-primary:not(:disabled):not(.disabled):active, .btn-primary.active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled):active:hover, .btn-primary .show .dropdown-toggle.btn-primary{
+    background-color:#0054a0;
+    border-color:#0054a0;
+}
+.btn-primary:hover{
+  background-color:#1a81de;
+  border-color:#1a81de;
+}
+.btn-primary{
+    background-color:#0054a0;
+    border-color:#0054a0;
+}
+.searchImage{
+    width:60px;
+    height:40px;
+    padding: 2px;
+}
+.resultRow{
+    margin: 0px 3px !important;
+    padding: 5px;
+    box-shadow: 0 2px 3px lightgray;
+}
+.resultRow a{
+    font-size: 12px;
+    color: navy;
+}
+
+.loader {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+}
+.LayerLoader{
+    top: 20%;
+}
+.CompanyLoader{
+    top: 70%;
+}
+
+.DataContainer{
+    width:100%;
+    margin-top: 0px;
+    border: 1px solid gray;
+    min-height: 200px;
+    max-height: 200px;
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.DataRow{
+    padding: 3px 7px;
+    border-bottom: 0.5px solid lightgray;
+    align-items: center;
+}
+
+@media screen and (min-width: 1024px) {
+    /deep/.globalSearch-modal{
+        width:80% !important;
+    }
+}
+
+/deep/ .CompanyProfileviewDetail > .modal-dialog {
+    max-width: 100% !important;
+    min-width: 0px !important;
+    width: 66% !important;
+}
+
+/deep/ .tblDataResult {
+    border: 1px solid gray;
+    padding: 5px;
+    width:100% !important; 
+    height: 220px;
+    max-height: 220px;
+    overflow: auto;
+    display: block;
+}
+.tblDataResult tr {
+    border-bottom: 0.5px solid lightgray;
+    padding: 5px;
+}
+
+#tblDataResult tbody{
+    width: 100%;
+    display: inline-table;
+}
+
+.custom-btnLink{
+    cursor: pointer;
+    color: #007bff;
+}
+
+.custom-btnLink:hover{
+    color: #0056b3;
+}

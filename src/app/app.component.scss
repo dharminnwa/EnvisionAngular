@@ -1,0 +1,15 @@
+@media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0)
+{ 
+    /*  Define here the CSS styles applied only to Safari browsers     (any version and any device)  */
+    /deep/ #draw-tools{
+        left:15px !important;
+        min-height: 100% !important;
+    }
+
+    /deep/ #LegendModal{
+        min-height: 100% !important;
+    }
+    /deep/ #mesure-distance{
+        margin-left:-15px;
+    }
+}

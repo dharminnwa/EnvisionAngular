@@ -1,0 +1,78 @@
+<nav class="navbar navbar-default no-padding full-width no-margin" role="navigation" style="text-align:right">
+  <div class="full-width p-r-10 p-l-10">
+    <!-- <button id="btnAdd" class="btn btn-sm pull-left" (click)="openWidgetModal()">
+      <i class="fa fa-plus"></i>
+    </button> -->
+  </div>
+</nav>
+
+<ul class="nav nav-tabs" style="display: none;background-color: #dfe9f5;color:black">
+  <li class="active">
+    <a href="#homeTab" data-toggle="tab" style="padding: 5px 10px">Home</a>
+  </li>
+</ul>
+
+<div class="tab-content" id="tabContent">
+  <div class="row tab-pane active" id="homeTab">
+    <div id="draggablePanelList" class="">
+      <pg-container>
+        <div class="row" id="draggablePanelList1">
+          <div class="col-lg-4 panel">
+            <app-asset-lookup></app-asset-lookup>
+          </div>
+
+          <div class="col-lg-4 panel">
+            <app-parcel-center-point></app-parcel-center-point>
+          </div>
+
+          <div class="col-lg-4 panel">
+            <app-well-lookup></app-well-lookup>
+          </div>
+
+          <div class="col-lg-4 panel">
+            <app-transmission-project></app-transmission-project>
+          </div>
+
+          <div class="col-lg-4 panel">
+            <app-pipeline-activity></app-pipeline-activity>
+          </div>
+
+          <div class="col-lg-4 panel">
+            <pgcard Refresh="false" class="video">
+              <ng-template #CardTitle>Envision 101</ng-template>
+              <div class="cardvideo-raw">
+                <div class="col-md-12" *ngIf="!isVideoOpen">
+                  <div class="card card-transparent">
+                    <div class="cardvideo">
+                      <video lass="videoPanel" style="width: 100%;" controls autoplay controlsList="nodownload noremoteplayback">
+                        <source [src]="videoLink" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                      <button style="right: 0;top: 0;position: absolute;" (click)="openVideoList()"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-12" style="position: absolute;" *ngIf="isVideoOpen">
+                  <div class="card card-transparent">
+                    <div class="cardvideo">
+                      <h4 style="cursor: pointer;" (click)="playVideo(1)">1. How to Access the MAPSearch Data Library</h4>
+                      <h4 style="cursor: pointer;" (click)="playVideo(2)">2. How to Change the Basemap</h4>
+                      <h4 style="cursor: pointer;" (click)="playVideo(3)">3. How to Change the Layer Style</h4>
+                      <h4 style="cursor: pointer;" (click)="playVideo(4)">4. How To Reset Your Password</h4>
+                      <h4 style="cursor: pointer;" (click)="playVideo(5)">5. How to Return to a Blank Map</h4>
+                      <h4 style="cursor: pointer;" (click)="playVideo(6)">6. How to Upload Data</h4>
+                      <h4 style="cursor: pointer;" (click)="playVideo(7)">7. How to Use the Global Search</h4>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </pgcard>
+          </div>
+
+        </div>
+      </pg-container>
+    </div>
+  </div>
+</div>

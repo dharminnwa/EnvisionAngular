@@ -1,0 +1,52 @@
+<div class="modal-header custom-header">
+  <h6 class="m-2 semi-bold">Reverse GeoCode Tool</h6>
+  <button type="button" id="btnRevGeoClose" class="close p-0 ClosePopupmodal" aria-label="Close" (click)="CloseGeoCode()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body p-2">
+  <!-- <h7>Reverse GeoCode </h7> -->
+  <p class="semi-bold">Click on map to set location press Search button to get address:</p>
+
+  <div class="row LatlongGroup m-0">
+    <div class="col-md-6 p-1">
+      <div class="form-group form-group-default mb-0">
+        <label>Lat</label>
+        <input type="text" id="txtLat" class="form-control" [value]="lat" [(ngModel)]="lat">
+      </div>
+    </div>
+
+    <div class="col-md-6 p-1">
+      <div class="form-group form-group-default mb-0">
+        <label>Long</label>
+        <input type="text" id="txtLng" class="form-control" [value]="lng" [(ngModel)]="lng">
+      </div>
+    </div>
+
+    <div class="col-md-8 p-1" id="AddressPanel">
+      <span id="txtSearchedAddress" class="bold">{{streetAddress}}</span>
+    </div>
+
+    <div class="col-md-4 p-1">
+      <button type="button" class="btn btn-sm btn-complete" (click)="SearchStreetAddress()">Search</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 desc">
+      <!-- <pg-collapseset Accordion="true" id='measureModal'>
+        <pg-collapse [Title]="'Measure Distance'" class="collapsePanel">
+          <p>ENvision uses the Mercator projection which causes the measurement tool to display results mush larger
+            than intened. The meassurment results will bw more distorted, the farther away you get from the equator.</p>
+          <p>* The Web Mercator cordinate system uses meters.</p>
+        </pg-collapse>
+      </pg-collapseset> -->
+
+      <pgcard Refresh="false" Maximize="false" class="p-0" id="reverseGeocodeDesc">
+        <ng-template #CardTitle class="p-0">Disclaimer</ng-template>
+        <p>ENvision uses the Mercator projection which causes the measurement tool to display results much larger
+          than intended. The measurement results will be more distorted, the farther away you get from the equator.</p>
+        <p>* The Web Mercator coordinate system uses meters.</p>
+      </pgcard>
+    </div>
+  </div>
+</div>

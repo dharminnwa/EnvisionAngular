@@ -1,0 +1,211 @@
+<div class="modal-header p-0 custom-header">
+  <h4 class="modal-title pl-1 custom-title">Edit Data</h4>
+  <button type="button" id="btnEditMyDataClose" class="close p-0 ClosePopupmodal" aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form id="horizontalForm" class="form-horizontal" role="form" autocomplete="off" #horizontalForm="ngForm"
+  (ngSubmit)="horizontalForm?.valid && SaveMyData()">
+  <div class="modal-body custom-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group row"
+            [class.has-error]="HorizontalFormName.invalid && (HorizontalFormName.dirty || HorizontalFormName.touched)">
+            <label for="name" class="col-md-3 control-label">Name:</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="name" placeholder="Name" name="name" [(ngModel)]="FormName"
+                #HorizontalFormName="ngModel" required>
+              <div *ngIf="HorizontalFormName.invalid && (HorizontalFormName.dirty || HorizontalFormName.touched)">
+                <label *ngIf="HorizontalFormName.errors.required" class="error">This field is
+                  required.</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="description" class="col-md-3 control-label">Description:</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="description" placeholder="Description" name="description"
+                [(ngModel)]="FormDescription" #HorizontalFormDescription="ngModel">
+              <!-- <div *ngIf="HorizontalFormDescription.invalid && (HorizontalFormDescription.dirty || HorizontalFormDescription.touched)">
+                                  <label *ngIf="HorizontalFormDescription.errors.required" class="error">This field is
+                                      required.</label>
+                              </div> -->
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 control-label">Share:</label>
+            <div class="col-md-9">
+              <div class="checkbox check-success  ">
+                <input type="checkbox" [checked]="isShare" (change)="isShare = !isShare" id="chkShare">
+                <label for="chkShare"></label>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="form-group row">
+                              <div class="row m-0"> -->
+          <!-- <div class="col-md-12 m-0">
+                                        <div class="row">
+                                          <div class="col-md-2">{{LayerStyleVisibleList.TitleName}}</div>
+                                          <div class="col-md-10 p-0 m-0">
+                                            <div class="row p-0 m-0">
+                                              <div class="col-md-3 p-0 m-0"></div>
+                                              <div class="col-md-9 p-0 m-0">
+                                                <div class="row p-0 m-0">
+                                                  <div class="col-md-4 p-0 m-0 text-right pr-2">
+                                                    <span>Size :</span>
+                                                  </div>
+                                                  <div class="col-md-6 m-0 p-0 text-center" style="top: 2px;">
+                                                    <p-slider [(ngModel)]="LayerStyleVisibleList.Size" [style]="{'width':'100%'}" (onChange)="SizehandleChange($event)"></p-slider>
+                                                  </div>
+                                                  <div class="col-md-2 p-0 m-0 text-right">
+                                                    {{LayerStyleVisibleList.Size}}<span> %</span>
+                                                  </div>
+                                                </div>
+                                              </div>
+                            
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-md-2 pl-0 pl-1">
+                                            <div *ngIf="LayerStyleVisibleList.TitleName=='Point'">
+                                              <div class="btn-group" dropdown>
+                                                <button dropdownToggle id="_btnPoint" type="button" class="btn btn-light dropdown-toggle">
+                                                  <img id="pointImage" src="{{LayerStyleVisibleList.defaultIconURL}}">
+                                                </button>
+                                                <ul *dropdownMenu id="_IdEnergySymbols" class="dropdown-menu row" role="menu" style="max-width: 500px; width: 500px;max-height:300px;">
+                                                  <div class="card card-transparent">
+                                                    <pg-tabset tabAnimation="slide-left" Type="fillup" extraTabContentClass="bg-white pl-0" style="height: auto">
+                                                      <pg-tab>
+                                                        <ng-template #TabHeading>
+                                                          <span style="font-weight: normal">Envision Symbols</span>
+                                                        </ng-template>
+                                                        <div class="row m-0">
+                                                          <div class="col-md-12 m-0 p-0">
+                                                            <li role="menuitem" class="col-md-12" style="max-width: 100%; width: 100%;max-height:300px;overflow: auto;">
+                                                              <div class="row">
+                                                                <div *ngFor='let imgicon of IconList[0]'>
+                                                                  <div class="col-xs-2">
+                                                                    <div class="layerIconPreview" (click)="SelectIcon(imgicon)"> <span>
+                                                                        <img class="
+                                                                      Icon" alt="" src="{{imgicon}}" />
+                                                                      </span>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                            </li>
+                                                          </div>
+                                                        </div>
+                                                      </pg-tab>
+                                                      <pg-tab>
+                                                        <ng-template #TabHeading>
+                                                          <span style="font-weight: normal">Custom Symbols</span>
+                                                        </ng-template>
+                                                        <div class="row m-0">
+                                                          <div class="col-md-12 m-0">
+                                                            Custom Symbols
+                                                          </div>
+                                                        </div>
+                                                      </pg-tab>
+                                                    </pg-tabset>
+                                                  </div>
+                                                </ul>
+                                              </div>
+                                            </div>
+                                            <div *ngIf="LayerStyleVisibleList.TitleName=='Line'">
+                                              <div class="btn-group" dropdown>
+                                                <button dropdownToggle id="_btnLine" type="button" class="btn btn-light dropdown-toggle">
+                                                  <img id="pointImage" src="{{LayerStyleVisibleList.defaultIconURL}}">
+                                                </button>
+                                                <ul *dropdownMenu id="_IdLineSymbols" class="dropdown-menu row" role="menu" style="max-width: 500px; width: 72px;max-height:300px;background: #f5f0f0 !important">
+                                                  <div class="card card-transparent">
+                                                    <li role="menuitem" class="col-md-12" style="max-width: 100%; width: 100%;max-height:300px;overflow: auto;">
+                                                      <div *ngFor='let imgicon of IconList[0]'>
+                                                        <div class="col-xs-2">
+                                                          <div class="layerIconPreview" (click)="SelectLineIcon(imgicon)"> <span>
+                                                              <img class="
+                                                                Icon" alt="" src="{{imgicon}}" />
+                                                            </span>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </li>
+                                                  </div>
+                                                </ul>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-10 p-0 m-0">
+                                            <div *ngIf="LayerStyleVisibleList.TitleName=='Point'">
+                                              <div class="row m-0 p-0">
+                                                <div class="col-md-3 p-0 m-0">
+                                                  <div class="row m-0 p-0">
+                                                    <div class="col-md-6 m-0 p-0">
+                                                      Border
+                                                    </div>
+                                                    <div class="col-md-6 m-0 p-0">
+                                                      <p-colorPicker id="_pckBorder" [(ngModel)]="LayerStyleVisibleList.Border" [inline]="false"
+                                                        (onChange)="pckBorderChange($event)"></p-colorPicker>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div class="col-md-9 p-0 m-0">
+                                                  <div class="row p-0 m-0">
+                                                    <div class="col-md-4 p-0 m-0 text-right pr-2">
+                                                      <span>Thickness :</span>
+                                                    </div>
+                                                    <div class="col-md-6 m-0 p-0 text-center" style="top: 2px;">
+                                                      <p-slider [(ngModel)]="LayerStyleVisibleList.Thickness" [style]="{'width':'100%'}" (onChange)="ThicknesshandleChange($event)"></p-slider>
+                                                    </div>
+                                                    <div class="col-md-2 p-0 m-0 text-right">
+                                                      {{LayerStyleVisibleList.Thickness}}<span> %</span>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="row p-0 m-0">
+                                              <div class="col-md-3 p-0 m-0">
+                                                <div class="row m-0 p-0">
+                                                  <div class="col-md-6 m-0 p-0">
+                                                    Color
+                                                  </div>
+                                                  <div class="col-md-6 m-0 p-0">
+                                                    <p-colorPicker id="_pckColor" [(ngModel)]="LayerStyleVisibleList.Color" [inline]="false"
+                                                      (onChange)="pckcolorChange($event)"></p-colorPicker>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <div class="col-md-9 p-0 m-0">
+                                                <div class="row p-0 m-0">
+                                                  <div class="col-md-4 p-0 m-0 text-right pr-2">
+                                                    <span>Transparency :</span>
+                                                  </div>
+                                                  <div class="col-md-6 m-0 p-0 text-center" style="top: 2px;">
+                                                    <p-slider [(ngModel)]="LayerStyleVisibleList.Transparency" (onChange)="TransparencyhandleChange($event)"
+                                                      [style]="{'width':'100%'}"></p-slider>
+                                                  </div>
+                                                  <div class="col-md-2 p-0 m-0 text-right">
+                                                    {{LayerStyleVisibleList.Transparency}}<span> %</span>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div> -->
+          <!-- </div>
+                            
+                      </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" [disabled]="horizontalForm?.invalid">Save</button>
+    <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Close</button>
+  </div>
+</form>

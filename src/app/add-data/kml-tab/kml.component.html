@@ -1,0 +1,34 @@
+<div class="row">
+        <div class="col-md-12">
+            <p><small>Select and upload files from your computer. Property editing is enabled upon
+                    successful upload.</small></p>
+        </div>
+    </div>
+    <div class="row m-t-10 m-b-20">
+        <div class="col-md-12">
+            <!-- <pg-upload Action="https://jsonplaceholder.typicode.com/posts/" Multiple="true" [FileList]="fileList2" ShowButton="true">
+                        <button class="btn btn-success btn-cons">
+                            <i class="fa fa-upload m-r-10"></i><span>Upload</span>
+                        </button>
+                    </pg-upload> -->
+            <p-fileUpload name="kml[]" url="" customUpload="true" (uploadHandler)="onUpload($event)" multiple="multiple"
+                accept=".kml,.kmz" maxFileSize="2000000">
+                <!-- <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                    </ul>
+                </ng-template> -->
+            </p-fileUpload>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p>If you are unable to successfully load your KML/KMZ file due to size or format,
+                please reach out to us at help@mapsearch.com and we can attempt to convert your
+                file to a shapefile.</p>
+            <p class="m-t-10">For performance reasons, there is a 2 MB file size limit for KML
+                uploads and a 1.5 MB file size limit for KMZ uploads.</p>
+        </div>
+    </div>
+
+

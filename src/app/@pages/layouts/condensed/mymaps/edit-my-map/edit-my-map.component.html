@@ -1,0 +1,57 @@
+<div class="modal-header custom-header p-0">
+  <h6 class="m-2 semi-bold">Edit Your Map</h6>
+  <button type="button" id="btnEditMyMap" class="close  p-0 ClosePopupmodal" aria-label="Close"
+    (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body p-0" style="border-top:0.5px solid lightgray">
+  <div class="card card-transparent p-0 pt-2 MyEditmap">
+    <div class="card-body" style="padding-bottom:0px">
+      <div class="col-md-12">
+        <div class="row p-3">
+          <div class="col-md-3 text-right">
+            <span class="align-middle">Name :</span>
+          </div>
+          <div class="col-md-6 p-0">
+            <input id="txtEditMapName" type="text" class="form-control" [(ngModel)]="EditmapNameText"
+              placeholder="Enter Map Name" />
+          </div>
+        </div>
+        <div class="row p-3">
+          <div class="col-md-3 text-right">
+            <span class="align-middle">Description :</span>
+          </div>
+          <div class="col-md-6 p-0">
+            <input id="txteditMapDescription" type="text" class="form-control" [(ngModel)]="editMapDescriptionText"
+              placeholder="Enter Description" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-3 text-right pt-2"> <span class="align-middle">Shared :</span></div>
+          <div class="col-md-6 p-0">
+            <div class="checkbox check-success ">
+              <input type="checkbox" [checked]="isShared" (change)="IsSharedChanged()" id="chkShare">
+              <label for="chkShare"></label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isShared==true">
+        <div class="row pb-2">
+          <div class="col-md-6" style="margin: 0 auto;">
+            <p-listbox [options]="mapServiceService.SharedUserList" [(ngModel)]="SelectedUser"
+              [style]="{'width':'100%','height':'230px','overflow':'auto'}" multiple="multiple" checkbox="checkbox"
+              filter="filter" filterMode="startsWith" optionLabel="DisplayName">
+            </p-listbox>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer pt-1">
+      <button type="button" id="_IdSaveEditmymap" class="btn btn-primary mr-2" (click)="SaveEditmymap()">Save</button>      
+      <button type="button" class="btn btn-default pull-right" (click)="bsModalRef.hide()">Close</button>
+    </div>
+  </div>
+
+</div>

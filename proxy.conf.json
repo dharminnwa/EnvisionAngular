@@ -1,0 +1,10 @@
+{
+    "/WSEnvisionAngular.svc/*": {
+      "target": "http://localhost:25973",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    }
+
+    
+  }

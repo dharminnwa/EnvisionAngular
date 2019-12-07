@@ -1,0 +1,68 @@
+
+#SearchedContent{
+    height: 400px;
+    max-height: 400px;
+    border: 1px lightgray solid;
+    margin-top: 10px;
+    padding: 5px;
+    overflow-y: auto;
+}
+/deep/.myMaps-modal .modal-dialog .modal-content{
+    width:80%;
+    margin: auto;
+}
+@media screen and (max-width: 1000px) {
+    /deep/.myMaps-modal .modal-dialog .modal-content{
+        width:80% !important;
+        margin: auto;
+    }
+}
+
+.sharedMapImg {
+    height:70px;
+    margin-top: 10px; 
+    width:120px;    
+    //background: url(https://api.envisionmaps.com:8080/Images/preview/Natural_Gas_Service_Territories.jpg);
+    background: url(https://node.envisionmaps.net/Images/preview/Natural_Gas_Service_Territories.jpg);
+    background-size: cover;
+}
+.sharedMapData {
+    font-size: 12px;
+    margin: 0px 10px;
+    width: 90%;
+}
+.sharedMapData .title{
+    font-size: 13px;
+    padding-bottom: 5px;
+}
+.sharedMapData tr th{
+    padding-right: 10px;
+}
+
+.SearchedContentItem{
+    margin: 5px 0px;
+    padding: 0px 5px;
+    box-shadow: 0 3px 3px lightgrey;
+}
+
+#loading-image{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    z-index: 100;
+}
+
+.btn-primary{
+    background-color:#0054a0;
+    border-color:#0054a0;
+  }
+
+  .btn-primary:hover{
+    background-color:#1a81de;
+    border-color:#1a81de;
+  }
+
+  .btn-primary.active, .btn-primary:not(:disabled):not(.disabled):active, .btn-primary.active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled):active:hover, .btn-primary .show .dropdown-toggle.btn-primary{
+    background-color:#0054a0;
+    border-color:#0054a0;
+  }

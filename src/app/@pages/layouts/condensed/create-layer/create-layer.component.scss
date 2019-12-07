@@ -1,0 +1,79 @@
+.modal-header .custom-title{
+    font-size: 16px;
+    margin:0px;
+    font-weight: 500;
+}
+
+
+.btn-primary{
+    background-color:#0054a0;
+    border-color:#0054a0;
+  }
+
+  .btn-primary:hover{
+    background-color:#1a81de;
+    border-color:#1a81de;
+  }
+
+  .btn-primary.active, .btn-primary:not(:disabled):not(.disabled):active, .btn-primary.active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled):active:hover, .btn-primary .show .dropdown-toggle.btn-primary{
+    background-color:#0054a0;
+    border-color:#0054a0;
+  }
+
+#CreateLayerTabPane{
+    max-height: calc(100vh - 250px);
+    height: auto;
+    min-height: 500px;
+    overflow-y: auto;
+}
+
+@media screen and (max-width: 1600px) {
+    #CreateLayerTabPane{
+        max-height: calc(100vh - 150px);
+        height: auto;
+    } 
+}
+
+@media screen and (max-width: 1400px) {
+    #CreateLayerTabPane{
+        max-height: calc(100vh - 100px);
+        height: auto;
+    }
+}
+
+/deep/ #CreateLayerTabPane *.tab-wrapper .tab-content-wrapper{
+    padding-bottom: 5px !important;
+}
+
+
+/deep/ #CreateLayerTabPane .nav-tabs-fillup > li > a{
+    padding: 7px !important;
+}
+
+/deep/ #CreateLayerTabPane *.ui-picklist .checkbox{
+    margin: 0px !important;
+}
+
+/deep/ #CreateLayerTabPane .btn-primary{
+    background-color:#0054a0;
+    border-color:#0054a0;
+  }
+
+/deep/ #CreateLayerTabPane .btn-primary:hover{
+    background-color:#1a81de;
+    border-color:#1a81de;
+  }
+
+  
+/deep/ #CreateLayerTabPane .checkbox.check-success input[type=checkbox]:checked + label:before{
+    border-color:#053b8b!important;
+}
+
+/deep/#CreateLayerTabPane p-pickList .ui-picklist-listwrapper ul li{
+    line-height: 2px !important;
+}
+
+.tab-heading-text {
+    margin: -7px;
+    padding: 7px;
+}

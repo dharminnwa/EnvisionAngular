@@ -1,0 +1,139 @@
+/deep/ .card-close{
+    display: none !important;
+}
+
+// /deep/ #measureModal .card-group .card .card-header .card-title a{
+//     text-align: left;
+//     color: black !important;
+//     text-transform: capitalize;
+//     padding-left: 8px;
+//     margin-left: 5px;
+//     font-size: 12px;
+// }
+
+// // /deep/#measureModal .collapsePanel .active{
+// //     border: 1px solid lightgray;
+// // }
+// /deep/ #measureModal .collapsePanel .active .card-body{
+//     padding: 0px;
+// }
+// /deep/#measureModal .collapsePanel .active .card-body p{
+//     font-size: 12px;
+//     color: black;
+// }
+// /deep/#measureModal .collapsePanel .active .card-body ul li{
+//     font-size: 11.5px;
+//     color: black;
+// }
+
+// /deep/ #measureModal .card-group .card .card-header{
+//     background: rgb(240,240,240) !important;
+//     border: 1px solid lightgray;
+// }
+// /deep/ #measureModal .card-group .card .card-header .card-title a{
+//     background: rgb(240,240,240) !important;
+// }
+
+.card-header{
+    display: flex;
+    height: 26px;
+}
+
+/deep/ .content-wrapper {
+    padding: 5px;
+    border: 1px solid lightgrey;
+    margin-bottom: 3px;
+    p {
+        font-size: 12px;
+    }
+}
+
+/deep/ .draw-tools {
+    left: calc(100% - 320px);
+    min-height: calc(490px + 260px);
+}
+
+.draw-tool-link {
+    width: 30px;
+    height: 30px;
+    margin: 4px;
+    border: 1px solid #ddd;
+    font-size: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.draw-tool-link.active {
+    border: 1px solid #999;
+    background: #dbdbdb
+}
+
+.draw-tool-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    max-height: 192px;
+    overflow: auto;
+}
+
+.border-wrap {
+    border: 1px solid lightgray;
+    margin: -1px;
+}
+
+.draw-icon-img {
+    width: 15px;
+}
+
+.point-style-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.style-slider {
+    width: 130px;
+}
+
+.color-picker-wrap {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.percent-text {
+    width: 40px;
+    text-align: right;
+}
+
+.icon-preview-block {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.line-preview-block {
+    width: 25px;
+    margin-top: 7px;
+}
+
+.form-control{ 
+    border: 1px solid lightgray;
+    padding: 6px 12px;
+    min-height: 25px;
+}
+
+/deep/ .drawTools {
+    left: 20px;
+    top: 30px;
+}
+
+#draw-tools{
+    left:0px !important;
+    height: 100%;
+    min-height: 100% !important;
+}

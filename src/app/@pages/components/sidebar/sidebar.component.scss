@@ -1,0 +1,229 @@
+@import 'core.scss';
+// .sidebar-menu .ps__thumb-x{
+//     border-radius:0px !important;
+// }
+
+.scrollbar{
+    max-width: 210px; 
+    max-height:870px;
+}
+
+// img {
+//     vertical-align: top !important; 
+// }
+.node-content-wrapper-active, .node-content-wrapper.node-content-wrapper-active:hover, .node-content-wrapper-active .node-content-wrapper-focused{
+
+   background: none !important;
+}
+.tree-node{
+   .node-content-wrapper{
+       padding-left: 0px !important;
+       position: relative !important;
+       &:before{
+          position: absolute !important;
+          // background-image: url("#{$base-img-url}/vendor/tree-icons.gif");
+           background-image: none !important;
+           // background-repeat: no-repeat !important;
+           background-position: 0px -17px !important;
+           width: 21px !important;
+           height: 20px !important;
+           background-size: auto !important;
+           content: '' !important;
+           left: 4px !important;
+       }        
+   }
+   &.tree-node-leaf{
+       .node-content-wrapper{
+           padding-left: 0px !important;
+           position: relative !important;
+       &:before{
+            position: absolute !important;
+            background-image: none !important;
+            //    background-repeat: no-repeat !important;
+           background-position: 0px 0px !important;
+           width: 20px !important;
+           height: 81% !important;
+           background-size: auto !important;
+           content: '' !important;
+           left: 0 !important;
+       }
+       }
+   }
+
+}
+
+
+.treeCloseEvent {
+   height: 17px;
+   cursor: pointer;
+   margin-right: 10px;
+   margin-left: 5px;
+   margin-bottom: 3px;
+}
+
+#_treeroot tree-node-content, #_privatetreeroot tree-node-content, #_sharedtreeroot tree-node-content, #_temporaryLayerroot tree-node-content{
+    display:flex;
+}
+
+#_treeroot pre, #_privatetreeroot pre, #_sharedtreeroot pre, #_temporaryLayerroot pre{
+    margin: 0px;
+}
+
+#_treeroot pre span, #_privatetreeroot pre span, #_sharedtreeroot pre span, #_temporaryLayerroot pre span{
+ font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+@media only screen and (max-height: 768px) {
+    .scrollbar{
+        max-height:590px!important;
+    }
+}
+
+.no-padding{
+    padding-left: 10px !important;
+}
+a.ng-tns-c6-1.collapsed{
+    padding-bottom: 0px !important;
+    padding-top: 5px !important;
+}
+
+.page-sidebar {
+ width: 215px;
+}
+.page-sidebar .sidebar-overlay-slide{
+    width: 100% !important;
+    // background-color: #21252d !important;
+   // background: linear-gradient(0deg, rgba(34,78,195,1) 0%, rgba(45,185,253,1) 100%) !important;
+   background:linear-gradient(0deg,#00315d,#00315d)!important;
+    padding: 3px !important;
+}
+
+.sidebar-header{
+    display: none !important;
+}
+
+.collapseMenu .collapse .card-body{
+    padding: 5px;
+}
+.collapseMenu .active{
+    min-height: 450px;
+    max-height: 60vh !important;
+    max-width: 100%;
+    overflow : auto !important;
+    width:100%;
+    //background: #1b1f28;
+}
+
+.tree-node .node-content-wrapper {
+    padding-left: 5px !important;
+}
+
+
+.card-group .card .card-header{
+    background: lightgray !important;
+}
+
+.card-group .card .card-header .card-title  a{
+    background-color: lightgray;
+    text-align: center;
+    color: black !important;
+}
+
+.fs-16{
+    color: white;
+    font-weight: bold;
+    font-size:20px !important;
+}
+
+// ::-webkit-scrollbar {
+//     width: 5px;
+//     height: 5px;
+// }
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+#toggleMenuPin .fa-bars {
+    content: "\f0c9" !important;
+    color:white !important;
+    // transform: rotate(90deg);
+}
+#toggleMenuPin .fa-bars:before {
+    content: "\f0c9" !important;
+    color:white !important;
+    transform: rotate(0deg);
+}
+
+#toggleMenuPin { 
+    line-height: 20px;
+}
+
+#SidebarTree .collapseMenu .card-header{
+    // background:#2b303b !important;
+  //  background: #00315d !important;
+  background: #0054a0 !important;
+    color:white;
+}
+
+#SidebarTree .collapseMenu .card-title a{
+    // background: #2b303b;
+    //background: #00315d !important;
+    background: #0054a0 !important;
+    color: white !important;
+    float: left;
+    padding: 3px 0px 2px 10px !important;
+    font-size: 11px !important;
+}
+#SidebarTree .collapseMenu .card-title a:hover{
+    background: #2b303b;
+    color: white !important;
+}
+#SidebarTree .collapseMenu .active{
+    // background-color: #21252d  !important;
+    //background-color: #0079e6 !important;
+    background-color:#00a1ff1f !important
+}
+
+#SidebarTree .collapseMenu .collapse .card-body {
+    font-size:13px !important;
+}
+
+#SidebarTree .card-group .card .card-header .card-title > a:hover:after{
+    color: white !important;
+}
+#SidebarTree .card-group .card .card-header .card-title > a:hover{
+    color: white !important;
+}
+
+#SidebarTree .card-group .card.showIcon .card-header .card-title > a:after{
+    content: "\F104" !important;
+    transform: rotate(-90deg) !important;
+    font-size: 16px;
+    color: white;
+    margin-top: -3px;
+    display: block !important
+}
+#SidebarTree .card-group .card.showIcon .card-header .card-title > a.collapsed:after{
+    content: "\F104" !important;
+    transform: rotate(0deg) !important;
+    font-size: 16px;
+    color: lightgray;
+    margin-top: -3px;
+    display: block !important
+}
+
+#SidebarTree .card-group .card .card-header .card-title > a:after{
+    display: none;
+}
+#SidebarTree .card-group .card .card-header .card-title > a.collapsed:after{
+    display: none;
+}
+
+
+

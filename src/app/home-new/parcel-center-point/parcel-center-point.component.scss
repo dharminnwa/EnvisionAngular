@@ -1,0 +1,42 @@
+.bottom{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+.bottomContent {
+    padding: 0px;
+    text-align: right;
+    font-size: 12px !important;
+}
+// .btn-complete{
+//     background-color:#0e70b3;
+//     border-color:#0e70b3;
+// }
+#infoText{
+    font-size: 12px;
+    color:darkgreen;
+    bottom: 0;
+    position: absolute;
+}
+
+.btn-comp{
+    background-color:#0054a0 !important;
+    border-color:#0054a0 !important;
+    color: #ffffff !important;
+}
+.btn-comp:hover{
+    background-color: #1a81de !important;
+    color: #ffffff !important;
+    border-color: #1a81de !important;
+    cursor: pointer;
+}
+.btn-clear{
+    color: #5e5e5e !important;
+    background-color: #ececec !important;
+    border-color: #ececec !important;
+}
+.btn-clear:hover{
+    background-color: #ffffff !important;
+    border-color: #b9b9b9 !important;
+    color: #5e5e5e !important;
+}

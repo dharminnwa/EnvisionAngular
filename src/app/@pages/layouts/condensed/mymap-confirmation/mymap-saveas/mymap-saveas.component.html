@@ -1,0 +1,21 @@
+<div class="modal-header custom-header">
+    <h6 class="m-2 semi-bold">Save Map</h6>
+    <button type="button" id="btnMyMapSaveAsClose" class="close p-0 ClosePopupmodal" aria-label="Close"
+        (click)="CloseMyMapSaveAsModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body p-3">
+    <div class="row mt-3 mb-3">
+        <!-- <div class="col-md-3">
+            <p class="custom-content">Name your Map:</p>
+        </div> -->
+        <div class="col-md-9">
+            <input id="txtMapName" type="text" class="form-control" [(ngModel)]="mapNameText"
+                placeholder="Name your Map" />
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-complete custom-button" (click)="SaveMap()">Save</button>
+        </div>
+    </div>
+</div>

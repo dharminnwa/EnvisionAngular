@@ -1,0 +1,42 @@
+<div class="col-md-12 p-0">
+  <div class="form-group form-group-default">
+    <label>Latitude of selected point</label>
+    <input type="text" class="form-control" name="Latitude" [(ngModel)]="lat" />
+  </div>
+</div>
+
+<div class="col-md-12 p-0">
+  <div class="form-group form-group-default">
+    <label>Longitude of selected point</label>
+    <input type="text" class="form-control" name="Longitude" [(ngModel)]="lng" />
+  </div>
+</div>
+
+<div class="row m-0">
+  <div class="col-md-6 p-0">
+    <div class="form-group form-group-default">
+      <label>Distance</label>
+      <input type="number" class="form-control" name="distance" min="0" required [(ngModel)]="distance" #pointdistance="ngModel" (ngModelChange)="distanceChange($event)" />
+    </div>
+  </div>
+  <div class="col-md-6">
+    <select class="form-control btn" name="distance-type" [(ngModel)]="distanceType" (ngModelChange)="distanceTypeChange($event)">
+      <option value="ft">Feet(ft)</option>
+      <option value="mi">Miles(mi)</option>
+      <option value="m">Meters(m)</option>
+      <option value="km">Kilometers(km)</option>
+    </select>
+  </div>
+</div>
+<span style="color: red" *ngIf="!pointdistance.valid || !distance || distance < 0">Please Enter Valid Distance</span>
+
+<div class="row m-0 mt-2">
+  <div class="col-md-12 p-0 text-right">
+    <button type="button" class="btn btn-primary m-0" (click)="searchData()">Search</button>
+    <button type="button" class="btn btn-default m-0 m-l-2" (click)="ClearData()">Clear</button>
+  </div>
+  <div class="col-md-12 p-0 mt-2">
+    <b *ngIf="!errMsg">{{ msg }}</b>
+    <b *ngIf="errMsg" style="color: red">{{ errMsg }}</b>
+  </div>
+</div>

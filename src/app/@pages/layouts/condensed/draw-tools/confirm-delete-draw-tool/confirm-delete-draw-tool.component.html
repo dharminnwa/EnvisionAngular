@@ -1,0 +1,22 @@
+<div class="modal-header custom-header">
+  <h6 class="m-2 semi-bold">Confirm Delete</h6>
+  <button type="button" id="confirmDrawToolPopupClose" class="close pull-right p-2 ClosePopupmodal" aria-label="Close"
+    (click)="CloseModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body p-2" style="min-height:125px">
+
+  <div class="col-md-12 p-0">
+    <div class="form-group">
+      <label>Are you sure want to Delete this Draw Tools Layer?</label>
+    </div>
+  </div>
+
+  <div class="col-md-12 p-0 mt-3 text-right">
+    <button type="button" class="btn btn-primary m-0" (click)="DeleteDrawTool()">Delete</button>
+    <button type="button" class="btn btn-default m-0 m-l-2" (click)="CloseModal()">Cancel</button>
+  </div>
+
+</div>

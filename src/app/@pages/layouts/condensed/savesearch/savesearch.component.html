@@ -1,0 +1,13 @@
+<div class="modal-header custom-header">
+  <h6 class="m-2 semi-bold">Save {{ isParcelBufferSaveSearch? 'Layer': 'Search' }}</h6>
+  <button type="button" id="btnSavesearchClose" class="close p-0 ClosePopupmodal" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body p-2">
+  <div class="form-group form-group-default mb-0">
+    <label class="bold">{{ isParcelBufferSaveSearch? 'Layer name' : (LayerGroup + '(Layer name)') }} </label>
+    <input type="text" id="txtLayer" class="form-control" [value]="LayerName" [(ngModel)]="LayerName">
+  </div>
+  <button type="button" class="btn btn-primary pull-right m-2" (click)="SaveLayer()">Save</button>
+</div>

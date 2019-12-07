@@ -1,0 +1,397 @@
+﻿.PlantOperatorContent .table tr td {
+    border-bottom: 1px solid #ddd !important;
+}
+
+.PowerPlantUnitsContent .table tr td {
+    border-bottom: 1px solid #ddd !important;
+}
+
+.mCSB_container {
+    margin-right: 10px !important;
+}
+
+.mCustomScrollBox > .mCSB_scrollTools {
+    margin-right: -5px !important;
+}
+
+.scrollcontent {
+    width: 335px;
+    height: 100%;
+    overflow: auto;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#left .subnav {
+    margin-top: 0px !important;
+}
+
+#left, #left .span6 {
+    height: 100% !important;
+}
+
+    #left .span6 .tab-content {
+        height: calc(100% - 35px);
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+
+        #left .span6 .tab-content label {
+            cursor: default !important;
+        }
+
+        #left .span6 .tab-content.padding {
+            padding-right: 10px !important;
+            padding-left: 10px !important;
+            padding: 0px !important;
+        }
+
+        #left .span6 .tab-content.tab-content-inline {
+            height: calc(100% - 20px);
+        }
+
+        #left .span6 .tab-content .tab-pane {
+            height: 100%;
+        }
+
+.row-fluid .span12 {
+    width: 99.5% !important;
+}
+
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 20px;
+}
+
+* html .ui-autocomplete {
+    height: 100px;
+}
+
+.ui-autocomplete-loading {
+    background: url('../Images/ui-anim_basic_16x16.gif') no-repeat right center !important;
+}
+
+.loader {
+    position: absolute;
+    left: 10% !important;
+    top: 50px;
+    width: 74%;
+    /*height: 75%;*/
+    z-index: 9999;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+}
+
+    .loader img {
+        position: absolute;
+        margin-top: 25%;
+        left: 50%;
+    }
+
+.searchbtnClass {
+    background: none repeat scroll 0 0 #368EE0;
+    border: 0 none;
+    color: #FFFFFF;
+    float: right;
+    line-height: 19px;
+    margin: 2px 2px 0 0;
+    min-height: 24px;
+}
+
+.search-form > .search-pane > input {
+    width: 270px !important;
+}
+
+.table th {
+    padding: 2px !important;
+}
+
+.table tr td {
+    padding: 3px !important;
+}
+
+.nameLink {
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.TdAlign {
+    text-align: right;
+}
+
+.hideleft {
+    display: none !important;
+}
+
+.showleft {
+    display: block !important;
+}
+
+/*#CompanyProfileToggle {
+        cursor: pointer;
+    }*/
+
+#txtSearch {
+    width: 265px !important;
+}
+
+#ascrail2000 {
+    display: none !important;
+}
+
+.activeBookmark {
+    background: none repeat scroll 0 0 yellow;
+}
+
+.bootbox.modal.fade.in {
+    top: 40%;
+}
+
+.bootbox.modal.fade {
+    left: 40%;
+    width: 30%;
+    margin: 0% auto;
+}
+
+.bootbox .modal-body {
+    font-size: medium;
+    height: 50px;
+    max-height: 100px;
+}
+
+.favoriteMainDiv {
+    left: 27%; /*By Nikunj (Edited for US 701 #24-07-2015#)*/
+    width: 50%; /*By Nikunj (Edited for US 701 #24-07-2015#)*/
+    margin: 0% auto;
+}
+
+.favoriteBtn {
+    margin-right: 10px !important;
+    margin-top: inherit;
+    float: right;
+}
+
+.fcDetails {
+    margin-top: 5px;
+    min-width: 280px;
+    clear: both;
+}
+
+.fcLabel {
+    font-weight: bold;
+    vertical-align: middle;
+    float: left;
+    padding-top: 5px;
+    min-width: 100px;
+}
+
+.fcView {
+    float: right;
+    width: 12%;
+    min-width: 101px;
+    margin-bottom: 5px;
+}
+
+.fcRemove {
+    width: 10%;
+    margin-right: 5px;
+    float: right;
+    min-width: 70px;
+    margin-bottom: 5px;
+}
+
+#mainTabs li {
+    line-height: 30px;
+}
+
+.modalPlantOperator {
+    margin: 0px;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    min-height: 300px;
+    overflow: auto;
+}
+
+.data_power_plants_filters {
+    border: 1px solid #CBCBCB;
+    padding: 5px 5px 5px 5px;
+    margin-bottom: 20px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin-left: 3px !important;
+}
+
+/*--------------------*/
+
+.data_power_plants_filters {
+    border: 1px solid #CBCBCB;
+    padding: 5px 5px 5px 5px;
+    margin-bottom: 20px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin-left: 3px !important;
+}
+
+.ghub_data_form_row {
+    margin-left: 5px !important;
+}
+
+    .ghub_data_form_row label {
+        border: 1px solid #C5C5C5;
+        padding: 0 0 0 1px;
+        background-color: #368ee0;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        color: #fff;
+        cursor: default;
+        width: 100%;
+    }
+
+    .ghub_data_form_row select {
+        height: 116px;
+        font-size: 11px;
+        float: left;
+    }
+
+.ghub_filter_panel_row {
+    border: 1px solid #C5C5C5;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    margin: 5px;
+    padding-top: 5px;
+    margin-left: 5px !important;
+}
+
+    .ghub_filter_panel_row label {
+        display: inline !important;
+        margin-bottom: 0px;
+        cursor: default;
+    }
+
+    .ghub_filter_panel_row input[type="checkbox"] {
+        margin: 0px 0 0 !important;
+    }
+
+.tofrom_ghub_header {
+    border: 1px solid #C5C5C5;
+    background-color: #368ee0;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    width: 45px;
+    margin: 2px;
+    display: inline-block !important;
+    text-align: center;
+    color: #fff;
+}
+
+.tofrom_ghub_panel_row label {
+    display: inline-block !important;
+    cursor: default;
+}
+
+.tofrom_ghub_panel_row input[type="text"] {
+    width: 40px;
+    height: 20px;
+    font-size: 11px;
+    text-align: right;
+    cursor: default;
+}
+
+.PlantOperatorHeader {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.PlantOperatorSubHeader {
+    font-size: 18px;
+}
+
+.Contact_box {
+    border: 2px solid #566F8A;
+    border-radius: 2px;
+    padding: 10px;
+}
+
+.reg_bg {
+    height: 24px;
+    width: 302px;
+    margin-top: 10px;
+    float: left;
+    margin-bottom: 7px;
+}
+
+
+.autocomplete {
+    /*the container must be positioned relative:*/
+    position: relative;
+    display: inline-block;
+}
+
+input {
+    border: 1px solid transparent;
+    background-color: #f1f1f1;
+    padding: 10px;
+    font-size: 16px;
+}
+
+    input[type=text] {
+        background-color: #f1f1f1;
+        width: 100%;
+    }
+
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+    left: 0;
+    right: 0;
+    text-align: left;
+}
+
+    .autocomplete-items div {
+        padding: 10px;
+        cursor: pointer;
+        background-color: #fff;
+        border-bottom: 1px solid #d4d4d4;
+    }
+
+        .autocomplete-items div:hover {
+            /*when hovering an item:*/
+            background-color: #e9e9e9;
+        }
+
+.autocomplete-active {
+    /*when navigating through the items using the arrow keys:*/
+    background-color: DodgerBlue !important;
+    color: #ffffff;
+}
+
+.box-border {
+    border-color: #368ee0 !important;
+    margin-bottom: 20px;
+}
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding: 0px !important;
+}
+
+.btnModalClose {
+    padding: 5px 15px 0px 0px;
+    display: inline-block;
+    width: 100%;
+}

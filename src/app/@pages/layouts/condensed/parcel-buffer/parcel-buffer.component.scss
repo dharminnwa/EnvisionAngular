@@ -1,0 +1,21 @@
+/deep/.parcelBuffer .nav-tabs-fillup > li > a:after{
+    background:#0054a0!important;
+    border:1px solid #0054a0!important;
+  }
+  
+  /deep/.parcelBuffer .btn-primary.active, .btn-primary:not(:disabled):not(.disabled):active, .btn-primary.active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled):active:hover, .btn-primary .show .dropdown-toggle.btn-primary{
+    background-color:#0054a0;
+    border-color:#0054a0;
+  }
+
+  /deep/ .parcelBuffer .nav-tabs-fillup > li > a{
+    padding: 0 !important;
+  } 
+
+  /deep/ .parcelBuffer .nav-tabs-fillup > li > a > div{
+    padding: 10px !important;
+  } 
+
+  /deep/ .parcelBuffer { 
+    left: calc(100% - 320px);
+  }

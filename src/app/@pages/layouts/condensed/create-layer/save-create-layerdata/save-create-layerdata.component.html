@@ -1,0 +1,17 @@
+<div class="modal-header custom-header">
+  <h6 class="m-2 semi-bold">Save Pipeline Wizard</h6>
+  <button type="button" id="btnSavesearchClose" class="close p-0 ClosePopupmodal" aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="form-group mb-0">
+    <h5 class="semi-bold">Save Pipeline Wizard Results</h5>
+    <p>Name your new layer and click the Save button. Your new saved layer will be available under the My
+      Data Window. You can then edit the name, style and share the layer with others.
+    </p>
+    <input type="text" id="txtLayer" class="form-control" autofocus placeholder="Layer Name" [value]="LayerName" [(ngModel)]="LayerName">
+  </div>
+  <button type="button" class="btn btn-primary pull-right m-2" (click)="SaveLayer()">Save</button>
+</div>

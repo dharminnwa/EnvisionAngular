@@ -1,0 +1,15 @@
+<div class="modal-header p-0 custom-header">
+    <h6 class="m-2 semi-bold">Manage Users</h6>
+    <button type="button" id="btnUserdataClose" class="close p-0 ClosePopupmodal" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body custom-body">
+    <ag-grid-angular class="ag-theme-balham companies-grid" [rowData]="rowData" [columnDefs]="columnDefs"
+        [enableSorting]="true" [enableFilter]="true" [enableColResize]="true" [rowGroupPanelShow]="rowGroupPanelShow" [suppressDragLeaveHidesColumns]="true" [animateRows]="true" [groupMultiAutoColumn]="true">
+    </ag-grid-angular>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="OpenAddEditUserModal()">Add New User</button>
+    <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Close</button>
+</div>

@@ -1,0 +1,119 @@
+<div class="modal-header p-0 custom-header">
+    <h6 class="m-2 semi-bold">User</h6>
+    <button type="button" id="btnAddEditUserdataClose" class="close p-0 ClosePopupmodal" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body custom-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form id="horizontalForm" class="form-horizontal" role="form" autocomplete="off" #horizontalForm="ngForm">
+                    <div class="form-group row" [class.has-error]="HorizontalFormUserName.invalid && (HorizontalFormUserName.dirty || HorizontalFormUserName.touched)">
+                        <label for="fname" class="col-md-3 control-label">User Name (E-mail):</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="fname" placeholder="User Name" name="fname"
+                                [(ngModel)]="HorizontalUserName" #HorizontalFormUserName="ngModel" required>
+                            <!---->
+                            <div *ngIf="HorizontalFormUserName.invalid && (HorizontalFormUserName.dirty || HorizontalFormUserName.touched)">
+                                <label *ngIf="HorizontalFormUserName.errors.required" class="error">This field is
+                                    required.</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="password" class="col-md-3 control-label">Password:</label>
+                        <div class="col-md-9">
+                            <p class="hint-text small">
+                                Random Password will be sent in email.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group row" [class.has-error]="HorizontalFormDisplayName.invalid && (HorizontalFormDisplayName.dirty || HorizontalFormDisplayName.touched)">
+                        <label for="displayname" class="col-md-3 control-label">Display Name:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="displayname" placeholder="Display Name" name="displayname"
+                                [(ngModel)]="HorizontalDisplayName" #HorizontalFormDisplayName="ngModel" required>
+                            <div *ngIf="HorizontalFormDisplayName.invalid && (HorizontalFormDisplayName.dirty || HorizontalFormDisplayName.touched)">
+                                <label *ngIf="HorizontalFormDisplayName.errors.required" class="error">This field is
+                                    required.</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="password" class="col-md-3 control-label">Company:</label>
+                        <div class="col-md-9">
+                            <pg-select style="width: 100%;" [(ngModel)]="selectedOption" [PlaceHolder]="'Select Option'"
+                                name="company">
+                                <pg-option *ngFor="let option of companyOptions" [Label]="option.label" [Value]="option" [Disabled]="option.disabled">
+                                </pg-option>
+                            </pg-select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 control-label">Active User:</label>
+                        <div class="col-md-9">
+                            <div class="checkbox check-success  ">
+                                <input type="checkbox" value="1" id="chkActiveUser">
+                                <label for="chkActiveUser"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 control-label">Permissions:</label>
+                        <div class="col-md-9">
+                            <div class="checkbox check-success  ">
+                                <input type="checkbox" value="1" id="chkPermission1">
+                                <label for="chkPermission1">Envision</label>
+                            </div>
+                            <div class="checkbox check-success  ">
+                                <input type="checkbox" value="1" id="chkPermission2">
+                                <label for="chkPermission2">Export Grids and Images</label>
+                            </div>
+                            <div class="checkbox check-success  ">
+                                <input type="checkbox" value="1" id="chkPermission3">
+                                <label for="chkPermission3">Enable Upload Rights</label>
+                            </div>
+                            <div class="checkbox check-success  ">
+                                <input type="checkbox" value="1" id="chkPermission4">
+                                <label for="chkPermission4">Enable Shared Layers</label>
+                            </div>
+                            <div class="checkbox check-success  ">
+                                <input type="checkbox" value="1" disabled="disabled" id="chkPermission5">
+                                <label for="chkPermission5">Enable Group Rights</label>
+                            </div>
+                            <div class="checkbox check-success  ">
+                                <input type="checkbox" value="1" id="chkPermission6">
+                                <label for="chkPermission6">Read-Only Rights</label>
+                            </div>
+                            <div class="checkbox check-success  m-b-0">
+                                <input type="checkbox" value="1" id="chkPermission7">
+                                <label for="chkPermission7">Admin</label>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="checkbox check-success  ">
+                                        <input type="checkbox" value="1" disabled="disabled" id="chkPermission8">
+                                        <label for="chkPermission8">Parcel Buffer Tool</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="checkbox check-success">
+                                        <input type="checkbox" disabled="disabled" value="1" id="chkPermission9">
+                                        <label for="chkPermission9">Parcel Buffer Tool for company</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default change-Usernameemail" (click)="OpenUserNameModal()">Change Username/Email</button>
+    <button type="button" class="btn btn-primary">Delete</button>
+    <button type="button" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Close</button>
+</div>

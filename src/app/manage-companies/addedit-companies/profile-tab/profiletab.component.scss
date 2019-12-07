@@ -1,0 +1,37 @@
+.form-horizontal .form-group .control-label{
+    opacity:1!important;
+    font-weight:600;
+    color:#4a4a4a;
+    font-size:12px;
+  }  
+  
+  .form-horizontal .form-group:hover .control-label{
+    opacity:1!important;
+  }
+  
+  .form-control{
+    border:1px solid rgba(0, 0, 0, 0.4)!important;
+  }
+  
+  .has-error .form-control{
+    border-color:#f55753!important;
+  }
+  
+  .checkbox.check-success input[type=checkbox]:checked + label:before{
+    border-color:#0054a0!important;
+  }
+
+  .btn-primary{
+    background-color:#4285F4;
+    border-color:#4285F4;
+  }
+
+  .btn-primary:hover{
+    background-color:#5995f7;
+    border-color:#5995f7;
+  }
+
+  .btn-primary.active, .btn-primary:not(:disabled):not(.disabled):active, .btn-primary.active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled):active:hover, .btn-primary .show .dropdown-toggle.btn-primary{
+    background-color:#0761f5;
+    border-color:#0761f5;
+  }

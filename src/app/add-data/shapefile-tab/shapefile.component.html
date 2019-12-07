@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-md-12">
+        <p><small>When uploading shapefiles, be sure to include the .shp, the .shx, the .dbf
+                and the
+                .prj files.</small></p>
+    </div>
+</div>
+<div class="row m-t-10 m-b-20">
+    <div class="col-md-12">
+        <!-- <pg-upload Action="https://jsonplaceholder.typicode.com/posts/" Multiple="true" [FileList]="fileList2" ShowButton="true">
+                <button class="btn btn-success btn-cons">
+                    <i class="fa fa-upload m-r-10"></i><span>Upload</span>
+                </button>
+            </pg-upload> -->
+        <p-fileUpload name="shapeFiles[]" url="" customUpload="true" (uploadHandler)="onUpload($event)" multiple="multiple" accept=".shp,.shx,.dbf,.prj"
+            maxFileSize="500000000" withCredentials="true"><!--accept=".shp,.shx,.dbf,.prj"-->
+            <!-- <ng-template pTemplate="content">
+                <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                </ul>
+            </ng-template> -->
+        </p-fileUpload>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <p>ENvision data is properly viewed using the WGS 1984 Geographic Coordinate System,
+            Datum, and Spheroid; with no Projected Coordinate System. If your data is in
+            another format or coordinate system, it is not compatible with ENvision and must be
+            converted for accuracy. If you need assistance adjusting the projection of your
+            file, please contact MAPSearch support at help@mapsearch.com</p>
+        <p class="m-t-10">For performance reasons, there is a 500 MB file size limit for data
+            uploads.</p>
+    </div>
+</div>

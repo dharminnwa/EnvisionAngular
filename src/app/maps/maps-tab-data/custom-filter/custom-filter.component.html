@@ -1,0 +1,70 @@
+<form>
+  <div class="search-wrapper">
+    <input type="text" name="search-filter" [(ngModel)]="filterText" placeholder="Search.." />
+  </div>
+  <div class="checkbox check-complete select-all-checkbox">
+    <!-- <input type="checkbox" name="grid-select-all" [checked]="isSelectAll"
+        (change)="isSelectAll = !isSelectAll;onSelectAll()"><label>(Select All)</label> -->
+    <input type="checkbox" name="grid-select-all" id="grid-select-all" [checked]="isSelectAll"
+      (change)="isSelectAll = !isSelectAll;onSelectAll()"><label for="grid-select-all">(Select All)</label>
+  </div>
+  <hr style="margin: 5px;" />
+  <div class="checkbox-filter-wrapper" [scrollWindow]="false" infiniteScroll [infiniteScrollDistance]="0"
+    [infiniteScrollThrottle]="50" (scrolled)="onScroll()" *ngIf="!filterText">
+    <label *ngIf="isLodaing">Loading...</label>
+    <ng-container *ngIf="!isLodaing">
+      <div class="checkbox check-complete"
+        *ngFor="let item of distinctCheckboxList  | filterByName:filterText;let i = index">
+        <input type="checkbox" id="{{item.name}}{{i}}" name="{{item.name}}{{i}}" [checked]="item.value"
+          (change)="item.value = !item.value;onChangeCheckboxVal(item)">
+        <label for="{{item.name}}{{i}}">{{ item.name }}</label>
+      </div>
+    </ng-container>
+  </div>
+  <div class="checkbox-filter-wrapper" [scrollWindow]="false" infiniteScroll [infiniteScrollDistance]="0"
+    [infiniteScrollThrottle]="50" (scrolled)="onScroll()" *ngIf="filterText">
+    <label *ngIf="isLodaing">Loading...</label>
+    <ng-container *ngIf="!isLodaing">
+      <div class="checkbox check-complete"
+        *ngFor="let item of AlldistinctCheckboxList  | filterByName:filterText;let i = index">
+        <input type="checkbox" id="{{item.name}}{{i}}" name="{{item.name}}{{i}}" [checked]="item.value"
+          (change)="item.value = !item.value;onChangeCheckboxVal(item)">
+        <label for="{{item.name}}{{i}}">{{ item.name }}</label>
+      </div>
+    </ng-container>
+  </div>
+  <div class="text-filters">
+    <label>Show rows with value that</label>
+    <div class="form-group">
+      <select [(ngModel)]="filter1Option" name="grid-text-filter-option-1" class="form-control filter-select">
+        <ng-container *ngFor="let option of options">
+          <option [value]="option?.value">{{ option?.name }}</option>
+        </ng-container>
+      </select>
+    </div>
+    <div class="form-group">
+      <input type="text" name="grid-text-filter-1" [(ngModel)]="filter1Val" class="form-control filter-input">
+    </div>
+    <div class="form-group">
+      <select [(ngModel)]="bothFilterOption" name="grid-text-filter-option" class="form-control filter-select">
+        <ng-container *ngFor="let option of optionCompare">
+          <option [value]="option?.value">{{ option?.name }}</option>
+        </ng-container>
+      </select>
+    </div>
+    <div class="form-group">
+      <select [(ngModel)]="filter2Option" name="grid-text-filter-option-2" class="form-control filter-select">
+        <ng-container *ngFor="let option of options">
+          <option [value]="option?.value">{{ option?.name }}</option>
+        </ng-container>
+      </select>
+    </div>
+    <div class="form-group">
+      <input type="text" name="grid-text-filter-2" [(ngModel)]="filter2Val" class="form-control filter-input">
+    </div>
+    <div class="filter-btn-group">
+      <button class="btn btn-default btn-sm" id="clearButton">Clear Filters</button>
+      <button class="btn btn-complete btn-sm" (click)="filterClick()">Filter</button>
+    </div>
+  </div>
+</form>

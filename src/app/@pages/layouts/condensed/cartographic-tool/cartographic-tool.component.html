@@ -1,0 +1,58 @@
+<div class="modal-header custom-header">
+    <h6 class="m-2 semi-bold">Cartographic Tools</h6>
+    <button type="button" id="btnCartoClose" class="close p-0 ClosePopupmodal" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body p-2">
+    <div class="card card-transparent m-b-0" id="cartographicCard">
+        <div class="card-body" style="padding:10px">
+            <div class="row toolOption">
+                <div class="col-md-12">
+                    <div class="checkbox check-primary">
+                        <input type="checkbox" value="1" id="chkLatLong" checked (change)="CheckedLatLong($event)">
+                        <label for="chkLatLong">Latitude/Longitude</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row p-0 m-0">
+                        <div class="col-md-4 p-0 m-0 pl-1">
+                            <div class="checkbox check-primary">
+                                <input type="checkbox" value="1" id="chkElevation" [(ngModel)]="MapServiceService.SetElavationvalue.IsElavation">
+                                <label for="chkElevation">Elevation</label>
+                            </div>
+                        </div>
+                        <div class="col-md-8 p-0">
+                            <div class="radio radio-primary">
+                                <input type="radio" value="Feet" name="Unit" id="optFeet" aria-invalid="false" [(ngModel)]="MapServiceService.SetElavationvalue.Unitvalue">
+                                <label for="optFeet">Feet</label>
+                                <input type="radio" value="Meter" name="Unit" id="optMeter" [(ngModel)]="MapServiceService.SetElavationvalue.Unitvalue">
+                                <label for="optMeter">Meters</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="checkbox check-primary">
+                        <input type="checkbox" value="1" id="chkScale" checked (change)="CheckedScale($event)">
+                        <label for="chkScale">Scale Indicator</label>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="col-md-12 m-t-3">
+                    Scale Indicator Unit
+                    <div class="radio radio-primary">
+                        <input type="radio" checked="checked" value="Mi" [(ngModel)]="ScaleUnit" name="Scale" id="optMile" aria-invalid="false"
+                            (change)="switvhUnit()">
+                        <label for="optMile">Miles</label>
+                        <input type="radio" value="Km" name="Scale" id="optKm" [(ngModel)]="ScaleUnit" (change)="switvhUnit()">
+                        <label for="optKm">Kilometers</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button type="button" class="btn btn-md btn-default pull-right" (click)="bsModalRef.hide()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

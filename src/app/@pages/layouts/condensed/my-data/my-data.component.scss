@@ -1,0 +1,115 @@
+
+.DataSearchedContent{
+    border: 1px lightgray solid;
+    padding: 5px;
+    overflow-y: auto;
+}
+/deep/.myMaps-modal .modal-dialog .modal-content{
+    width:65%;
+    margin: auto;
+}
+@media screen and (max-width: 1000px) {
+    /deep/.myMaps-modal .modal-dialog .modal-content{
+        width:80% !important;
+        margin: auto;
+    }
+}
+
+/deep/.myData-modal .modal-dialog .modal-content *.btn{
+    font-size: 12px;
+}
+
+// MultiSelect Dropdown-------------------------------
+/deep/ .multiselect-dropdown{
+    margin-bottom: 5px;
+}
+/deep/ .dropdown-btn{
+    font-size: 14px !important;
+    //padding: 3px 10px !important;
+    margin-bottom:5px; 
+}
+
+/deep/ .multiselect-item-checkbox{
+    line-height: 10px !important;
+    font-size: 12px !important;
+}
+
+/deep/ .dropdown-list{
+    margin-top:0px !important;
+}
+// -------------------------------MultiSelect Dropdown
+
+.layerRow {
+    padding: 5px;
+    box-shadow: 0 3px 3px lightgrey;
+    margin: 5px 0px !important;
+}
+
+.loader {
+    position: absolute;
+    left: 10% !important;
+    top: 50px;
+    width: 74%;
+    /*height: 75%;*/
+    z-index: 9999;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+}
+
+    .loader img {
+        position: absolute;
+        margin-top: 15%;
+        left: 50%;
+    }
+
+    .btn-primary{
+        background-color:#0054a0 !important;
+        border-color:#0054a0 !important;
+      }
+    
+      .btn-primary:hover{
+        background-color:#1a81de;
+        border-color:#1a81de;
+      }
+    
+      .btn-primary.active, .btn-primary:not(:disabled):not(.disabled):active, .btn-primary.active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled):active:hover, .btn-primary .show .dropdown-toggle.btn-primary{
+        background-color:#0054a0 !important;
+        border-color:#0054a0 !important;
+      }
+
+
+   /deep/ #MyData .multiselect-dropdown .dropdown-btn{
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+
+    .mapSummary table tr{
+        vertical-align: baseline;
+    }
+
+    #SearchedContent .layerRow{
+        font-size: 12px;
+        color: rgb(17, 16, 16);
+    }
+
+
+#myDataSearchedContent{
+    height: calc(100vh - 500px);
+    max-height: calc(100vh - 500px);
+    overflow-y:auto;
+}
+
+@media screen and (max-width: 1600px) {
+    #myDataSearchedContent{
+        height: calc(100vh - 410px);
+        max-height: calc(100vh - 410px);
+    }
+}
+
+@media screen and (max-width: 1400px) and (min-width: 768px) {
+    #myDataSearchedContent{
+        height: calc(100vh - 410px);
+        max-height: calc(100vh - 410px);
+    }
+}

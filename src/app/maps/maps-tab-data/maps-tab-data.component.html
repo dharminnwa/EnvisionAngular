@@ -1,0 +1,15 @@
+<ag-grid-angular #agGridForKML *ngIf="KMLGridData?.length > 0 && KMLGridcolumns?.length > 0"
+  style="width: 100%; height: 100%;" id="kmlGrid" [rowData]="KMLGridData" class="ag-theme-balham ag-map-grid"
+  [columnDefs]="KMLGridcolumns" [floatingFilter]="false" [debug]="true" [enableServerSideFilter]="true"
+  [enableServerSideSorting]="true" [enableColResize]="true" [rowSelection]="rowSelection" [rowModelType]="rowModelType"
+  [rowDeselection]="true" [paginationPageSize]="paginationPageSize" [cacheOverflowSize]="cacheOverflowSize"
+  [maxConcurrentDatasourceRequests]="maxConcurrentDatasourceRequests"
+  [infiniteInitialRowCount]="infiniteInitialRowCount" [maxBlocksInCache]="maxBlocksInCache" [components]="components"
+  (gridReady)="OnKMLGridReady($event)"></ag-grid-angular>
+<ag-grid-angular #agGrid *ngIf="Gridcolumns?.length > 0" style="width: 100%; height: 100%;" id="myGrid" [rowData]="GridData" class="ag-theme-balham ag-map-grid"
+  [columnDefs]="Gridcolumns" [floatingFilter]="false" [debug]="true" [enableServerSideSorting]="true"  [frameworkComponents]="frameworkComponents"
+  [enableServerSideFilter]="true" [enableColResize]="true" [rowSelection]="rowSelection" [rowDeselection]="true"
+  [rowModelType]="rowModelType" [paginationPageSize]="paginationPageSize" [cacheOverflowSize]="cacheOverflowSize"
+  [maxConcurrentDatasourceRequests]="maxConcurrentDatasourceRequests" [getContextMenuItems]="getContextMenuItems"
+  [infiniteInitialRowCount]="infiniteInitialRowCount" [maxBlocksInCache]="maxBlocksInCache" [gridOptions]="gridOptions"
+  [getRowNodeId]="getRowNodeId" [components]="components" (gridReady)="onGridReady($event)"></ag-grid-angular>

@@ -1,0 +1,488 @@
+﻿/* ----- BreadCrumb Arrow CSS -----*/
+/* .breadcrumb-arrow { */
+    /*height: 36px;*/
+    /* padding: 0;
+    line-height: 36px;
+    list-style: none;
+    background-color: #e6e9ed;
+    overflow: hidden;
+}
+
+    .breadcrumb-arrow li:first-child a {
+        border-radius: 4px 0 0 4px;
+        -webkit-border-radius: 4px 0 0 4px;
+        -moz-border-radius: 4px 0 0 4px;
+    }
+
+    .breadcrumb-arrow li, .breadcrumb-arrow li a, .breadcrumb-arrow li span {
+        display: inline-block;
+        vertical-align: top;
+        opacity: 1;
+    }
+
+        .breadcrumb-arrow li:not(:first-child) {
+            margin-left: -5px;
+        }
+
+        .breadcrumb-arrow li + li:before {
+            padding: 0;
+            content: "";
+        }
+
+        .breadcrumb-arrow li span {
+            padding: 0 10px;
+        }
+
+        .breadcrumb-arrow li a, .breadcrumb-arrow li:not(:first-child) span {
+            height: 36px;
+            padding: 0 10px 0 25px;
+            line-height: 36px;
+        }
+
+        .breadcrumb-arrow li:first-child a {
+            padding: 0 10px;
+        }
+
+        .breadcrumb-arrow li a {
+            position: relative;
+            color: #fff;
+            text-decoration: none;
+            background-color: #3f51b5;
+            border: 1px solid #3f51b5;
+        }
+
+        .breadcrumb-arrow li:first-child a {
+            padding-left: 10px;
+        }
+
+        .breadcrumb-arrow li a:after, .breadcrumb-arrow li a:before {
+            position: absolute;
+            top: -1px;
+            width: 0;
+            height: 0;
+            content: '';
+            border-top: 18px solid transparent;
+            border-bottom: 18px solid transparent;
+        }
+
+        .breadcrumb-arrow li a:before {
+            right: -10px;
+            z-index: 3;
+            border-left-color: #3f51b5;
+            border-left-style: solid;
+            border-left-width: 11px;
+        }
+
+        .breadcrumb-arrow li a:after {
+            right: -11px;
+            z-index: 2;
+            border-left: 11px solid #2494be;
+        }
+
+        .breadcrumb-arrow li a:focus, .breadcrumb-arrow li a:hover {
+            background-color: #2b323a;
+            border: 1px solid #2b323a;
+        }
+
+            .breadcrumb-arrow li a:focus:before, .breadcrumb-arrow li a:hover:before {
+                border-left-color: #2b323a;
+            }
+
+        .breadcrumb-arrow li a:active {
+            background-color: #2494be;
+            border: 1px solid #2494be;
+        }
+
+            .breadcrumb-arrow li a:active:after, .breadcrumb-arrow li a:active:before {
+                border-left-color: #2494be;
+            }
+
+        .breadcrumb-arrow li span {
+            color: #434a54;
+        } */
+
+/*----- Side Manu -----*/
+/* .gui-expanded {
+    width: 300px;
+    display: table-cell;
+    overflow: visible;
+    background: #2b323a;
+}
+
+    .gui-expanded li ul {
+        display: table;
+    } */
+
+/*----- Filled Survey Answer -----*/
+/* .pnlQuestionAnswer {
+    overflow: auto;
+    max-height: 65vh;
+} */
+
+/* ===== For phones screen ===== */
+@media (max-width: 767px) {   
+
+        .breadcrumb-arrow > * li {
+            max-width: 60px;
+        }
+}
+/*----- Auto Complete Suggestion Dropdown max hight -----*/
+/* .ui-autocomplete {
+    max-height: 50vh; */
+    /*width: 500px;*/
+    /* overflow-y: hidden;  */
+    /* prevent horizontal scrollbar */
+    /* overflow-x: hidden;  */
+    /* add padding to account for vertical scrollbar */
+    /* z-index: 1000 !important; */
+/* } */
+
+/** Zoom Control*/
+
+#mapControl {
+    height: 35px;
+    width: 250px;
+    float: right;
+    right: 34px;
+    top: 10px;
+    position: absolute;
+    z-index: 99;
+}
+
+    #mapControl #pancontrol {
+        background: #898989;
+        border-radius: 50% 50% 50% 50%;
+        height: 30px;
+        width: 30px;
+        float: left;
+    }
+
+        #mapControl #pancontrol .PanIcon {
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 33%;
+            width: 33%;
+            cursor: pointer;
+        }
+
+        #mapControl #pancontrol #pantop {
+            background-image: url("../../../assets/img/br_up.png");
+            background-position: top center;
+            margin-left: 33%;
+            clear: both;
+        }
+
+        #mapControl #pancontrol #panright {
+            background-image: url("../../../assets/img/br_next.png");
+            background-position: center right;
+            float: right;
+        }
+
+        #mapControl #pancontrol #panbottom {
+            background-image: url("../../../assets/img/br_down.png");
+            background-position: bottom center;
+            clear: both;
+            margin-left: 33%;
+        }
+
+        #mapControl #pancontrol #panleft {
+            background-image: url("../../../assets/img/br_prev.png");
+            background-position: center left;
+            float: left;
+        }
+
+        #mapControl #pancontrol #mapzoom {
+            float: left;
+            font-size: 10px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            /* margin: -3px 0px 0px 0px; */
+        }
+
+        #mapzoom {
+            line-height: 1;
+        }
+
+        @media screen and (min-width: 1450px) {
+            #mapControl #pancontrol #mapzoom {
+                /* margin: -3px 0px 0px -1px; */
+            }
+          }
+
+    #mapControl #zoomControl {
+        float: right;
+        margin: 5px 0;
+    }
+
+        #mapControl #zoomControl #zoomOut {
+            background-image: url("../../../assets/img/minus1.png");
+            float: left;
+        }
+
+        #mapControl #zoomControl #zoomIn {
+            background-image: url("../../../assets/img/plus1.png");
+            float: right;
+        }
+
+        #mapControl #zoomControl .zoom {
+            height: 20px;
+            width: 20px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            cursor: pointer;
+            margin: 0 -6px;
+        }
+
+        #mapControl #zoomControl .slider-volume {
+            width: 150px;
+            margin: 0 25px !important;
+        }
+
+/* .ui-autocomplete {
+    width: 500px !important;
+    max-height: 300px !important;
+    overflow-y: auto !important;
+}
+
+.k-grid tr.k-state-selected .searchLocationsFilter {
+    color: black !important;
+}
+
+
+.ui-autocomplete-multiselect {
+    max-height: 100px !important;
+    overflow-y: auto !important;
+    width: auto !important;
+}
+
+.searchLocationsFilter {
+    width: auto !important;
+    padding-left: 5px !important;
+}
+
+#locationFilter.ui-autocomplete-input {
+    width: 260px !important;
+}
+
+
+element.style {
+    width: 182px;
+}
+
+.k-animation-container, .k-animation-container *, .k-animation-container :after, .k-block .k-header, .k-list-container, .k-widget, .k-widget *, .k-widget :before {
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+    border: 1px solid #003eff;
+    background: white !important;
+    font-weight: normal;
+    color: black !important;
+}
+
+.ui-icon-close {
+    cursor: pointer !important;
+}
+
+.ui-autocomplete-multiselect-item {
+    font-size: 10px !important;
+    background: #ccc !important;
+    margin: 2px !important;
+    padding-left: 5px !important;
+}
+
+.lblEms {
+    cursor: pointer !important;
+} */
+
+/** End*/
+
+/* @media screen and (max-width: 1024px) and (min-width: 769px) {
+    #btnExport {
+        margin-top: 5px !important;
+    }
+} */
+
+/* @media screen and (max-width: 550px) {
+    .StatePanel {
+        margin-top: 25px !important;
+    }
+} */
+
+/* .k-grid-content table, .k-grid-content-locked > table, .k-grid-footer table, .k-grid-header table {
+    touch-action: auto !important;
+} */
+
+/* .k-animation-container {
+    width: 510px !important;
+    max-height: 250px !important;
+    height: 240px !important;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important; */
+    /*overflow-x:auto !important;
+    overflow-y:auto !important;*/
+/* } */
+
+    /* .k-animation-container .k-filter-menu {
+        width: 480px !important; */
+        /*overflow:auto !important;*/
+        /*height: 150px !important;*/
+        /*overflow-x:auto !important;
+        overflow-y:auto !important;*/
+    /* } */
+
+/* .k-reset .k-multicheck-wrap {
+    height: 125px !important;
+} */
+
+/* .k-animation-container-show {
+    display: block !important;
+    overflow: visible !important;
+} */
+
+/* .k-filter-menu-show {
+    display: block !important;
+    top: 417px !important;
+} */
+
+/* @media (max-width: 768px) {
+    .hidden-xs {
+        display: block !important;
+    }
+} */
+
+
+/* #content {
+    padding-top: 0px;
+}
+
+    #content .section {
+        padding: 10px 24px;
+    }
+
+    #content .section-body {
+        margin-top: 0px;
+    }
+
+.userProfilePane {
+    top: 0px;
+    position: absolute;
+    right: 0px;
+    color: white;
+    padding: 0px;
+}
+
+.header-nav-profile .dropdown a {
+    min-width: 150px;
+}
+
+#btnExport {
+    color: white !important;
+}
+
+#SurveyTableDiv .k-grid-toolbar {
+    padding: 0px !important;
+}
+
+#HomeTableDiv .k-grid-toolbar {
+    padding: 0px !important;
+}
+
+#LogsTableDiv .k-grid-toolbar {
+    padding: 0px !important;
+}
+
+#SurveyTableDiv .ui-autocomplete-multiselect {
+    overflow-x: hidden;
+}
+
+.SiteInfo {
+    max-width: 470px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -25px;
+    font-style: italic;
+}
+
+@media screen and (max-width: 768px) {
+    .SiteInfo {
+        margin-top: -15px;
+    }
+}
+
+.changePasswordError {
+    color: red;
+}
+
+.modal-background {
+    background: rgba(0,0,0,0.5);
+}
+
+@media (max-width:768px) {
+    #toggleMenuBtn {
+        position: absolute;
+        z-index: 99;
+        top: -13px;
+        color: white;
+        display: block !important;
+    }
+}
+
+#menubar .text-primary {
+    color: #FFFFFF !important;
+}
+
+
+
+#LogsModal .modal-dialog {
+    width: 100%;
+}
+
+#LogsModal .modal-content {
+    width: 85vw;
+    margin: auto;
+}
+
+#LogsModal .modal-body .section-body {
+    margin-top: 10px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#frmLogs .form-group {
+    margin-bottom: 10px !important;
+    padding: 0px 5px;
+} */
+
+/*#LogsModal .k-animation-container {
+    width: 250px !important;
+    height: 260px !important;
+    overflow-y: hidden !important;
+}*/
+
+
+
+/* .selectedItem {
+    font-weight: bold !important;
+} */
+
+
+ul{
+list-style: none;
+
+}
+.k-state-focused,.k-textbox:focus{
+    -webkit-box-shadow:0 0 0 0px black!important;
+    box-shadow:0 0 0 0px black !important;
+}
+.k-state-selected{
+
+    background-color: #fafafa !important;
+    border-color: #fafafa !important;
+    color: black !important;
+}
+

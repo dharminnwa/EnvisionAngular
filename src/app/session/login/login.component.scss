@@ -1,0 +1,46 @@
+.login-wrapper .bg-caption .small a{
+    color:#000a92;
+}
+
+.login-wrapper .bg-caption .small a:hover{
+    text-decoration: underline;
+}
+
+.login-wrapper .bg-pic > img{
+    height: 150%;
+}
+
+.login-wrapper .login-container{
+    width: 100%;
+    float: none!important;
+    padding-top: 150px;
+}
+
+.login-container .bg-white{
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 496px;
+    border-radius:5px;
+}
+
+@media screen and (min-height: 800px) {
+    .login-wrapper .login-container{
+        padding-top: 280px;
+    }
+}
+
+.login-bottom-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.forget-password-link {
+    font-weight: 500;
+}
+
+.forget-password-link:hover {
+    text-decoration: underline;
+}

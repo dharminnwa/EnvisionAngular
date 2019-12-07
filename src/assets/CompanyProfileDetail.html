@@ -1,0 +1,546 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="headElement">
+    <title>Transmission Projects</title>
+    <link href="css/CompanyProfile/ProjectDataTest.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" type="text/css" href="css/chosen.css">
+    <link rel="stylesheet" type="text/css" href="css/icheck/all.css">
+    <link rel="stylesheet" type="text/css" href="css/icon.css">
+    <link rel="stylesheet" type="text/css" href="css/themes.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.ui.theme.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jsgrid.css">
+    <link rel="stylesheet" type="text/css" href="css/theme.css">
+    <link rel="stylesheet" type="text/css" href="css/CompanyProfile/ProjectDataTest.css">
+    <link rel="stylesheet" type="text/css" href="css/CompanyProfile/PowerPlantsTest.css">
+    <script src="JS/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="JS/jquery.browser.js"></script>
+    <!--<script type="text/javascript" src="JS/demonstration.min.js"></script>-->
+    <script type="text/javascript" src="JS/bootstrap.min.js"></script>
+    <script type="text/javascript" src="JS/jquery.icheck.min.js"></script>
+    <script type="text/javascript" src="JS/moment.js"></script>
+    <script type="text/javascript" src="JS/jsgrid.min.js"></script>
+    <script src="JS/CompanyProfile/Pagination.js"></script>
+    <script src="JS/UtilityLibs.js"></script>
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?v=3&amp;key=AIzaSyCdCw-UMwdjTOzXPaelRVOSSzvhpspTgCU&amp;sensor=false"></script>
+    <script type="text/javascript" src="JS/jquery.dataTables.min.js"></script>
+    <script src="JS/CompanyProfile/CompanyProfileDetail.js"></script>
+    <style>
+        #modal-CompanyData .tabs.tabs-inline.tabs-left>li.active>a {
+            background: #4285f4 !important;
+            color: #fff !important;
+            margin-right: -1px !important;
+        }
+
+        #modal-CompanyData .tabs.tabs-inline.tabs-left>li>a {
+            display: block !important;
+            padding: 10px 20px !important;
+            color: white !important;
+            background: black !important;
+            text-decoration: none !important;
+            border-top: 0px solid #fafafa !important;
+        }
+
+        #main .box.box-bordered .box-title {
+            border: 1px solid #CBCBCB !important;
+            /* border: 2.5px solid #ddd !important; */
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loader" id="mainProjDataloader"><img id="loading-image"
+            src="https://node.envisionmaps.net/Images/LayerLibraryLoader.gif" alt="Loading..." height="100"
+            width="100" /></div>
+    <!--<div id="CompanyProfile">
+    </div>-->
+    <!--<div class="modal-content">
+        <div class="modal-header" style="border-bottom: 0px;">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div id="modal-bodyProjects" class="modal-body" style=" max-height: none; ">
+        </div>
+    </div>
+    </div>-->
+    <!--<div id="modal-CompanyData" class="modal fade in modalProjectData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="height: 78%; top: 4%;display: none;left: 4%;width: 90%;">-->
+    <div id="modal-CompanyData" class="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false"
+        style="height: 100%; top: 4%;display: block;left: 4%;width: 100%;">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom: 0px;padding-bottom: 0px">
+                <div class="tabs-container" style=" width: 98.8%; ">
+                    <ul class="tabs tabs-inline tabs-left" style="background: black !important;">
+                        <li class="active" style=" float: left; ">
+                            <a href="#mainTab" id="1link" data-toggle="tab">Main</a>
+                        </li>
+                        <li style=" float: left;display:none;" id="li_CompanyOwenerandSubsidiariesSection">
+                            <a href="#" id="2link" data-toggle="tab">Owner/Subsidiaries</a>
+                        </li>
+                        <li style=" float: left;display:none;" id="li_Facilities">
+                            <a href="#" id="3link" data-toggle="tab">Facilities</a>
+                        </li>
+                        <li style=" float: left;display:none;" id="li_PipelineSystems">
+                            <a href="#" id="4link" data-toggle="tab">Pipeline Systems</a>
+                        </li>
+                        <li style=" float: left;display:none;" id="li_PowerPlants">
+                            <a href="#" id="5link" data-toggle="tab">Power Plants</a>
+                        </li>
+                        <li style=" float: left;display:none;" id="li_TransmissionProjects">
+                            <a href="#" id="6link" data-toggle="tab">Transmission Projects</a>
+                        </li>
+                        <li style=" float: left;display:none;" id="li_IndustryUpdates">
+                            <a href="#" id="7link" data-toggle="tab">Industry Updates</a>
+                        </li>
+                        <li style=" float: left;display:none; " id="li_Contacts">
+                            <a href="#" id="8link" data-toggle="tab">Contacts</a>
+                        </li>
+                        <li style=" float: left;display:none; " id="li_Documents">
+                            <a href="#" id="9link" data-toggle="tab">Documents</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="modal-bodyCompany" class="modal-body" style="padding-top:0px;overflow: auto;">
+                <div id="main" style="margin-left: 0px;">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="box box-bordered box-color">
+                                <div id="favoriteModal" class="modal favoriteMainDiv hide fade">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                                        </button>
+                                        <h4 id="myModalLabel" style="color: #16ABA9;">Favorite Companies</h4>
+                                    </div>
+                                    <div id="favModelBody" class="modal-body">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btnClose" data-dismiss="modal"
+                                            aria-hidden="true">Close</button>
+                                    </div>
+                                </div>
+                                <div class="box-content nopadding " id="companyprofilebox" style="width:100%">
+                                    <div class="tab-content padding tab-content-inline" id="box">
+                                        <div class="tab-pane active" id="mainTab" style="overflow-y: auto !important;">
+                                            <div class="accordion" id="accordion3">
+                                                <div class="accordion-group">
+                                                    <div class="accordion-heading"
+                                                        style="height: 36px; background-color: #f6f6f6 !important;">
+                                                        <span style="float: left;">
+                                                            <a class="accordion-toggle" data-toggle="collapse"
+                                                                data-parent="#accordion3" href="#collapseOne2"
+                                                                style=" display: none; ">Company
+                                                                Profile</a>
+                                                        </span><span style="float: right;"></span>
+                                                    </div>
+                                                    <div style="clear: both">
+                                                    </div>
+                                                    <div id="collapseOne2" class="accordion-body collapse in">
+                                                        <div class="accordion-inner" id="companymaintab">
+                                                            <div id="container">
+                                                                <h3>
+                                                                    <span id="companyName"></span>
+                                                                </h3>
+                                                                <table>
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th width="300" style="text-align: left;">
+                                                                                Physical
+                                                                                Address</th>
+                                                                            <th width="300" style="text-align: left;">
+                                                                                Mailing
+                                                                                Address</th>
+                                                                            <th width="300" style="text-align: left;">
+                                                                                Contact
+                                                                                Information</th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td id="tdPhysicalAddress" valign="top">
+                                                                                <span id="phyAdd1"
+                                                                                    style="clear: both; float: left;"></span><span
+                                                                                    id="phyAdd2"
+                                                                                    style="clear: both; float: left;"></span><span
+                                                                                    id="phyCity"
+                                                                                    style="clear: both; float: left;"></span><span
+                                                                                    id="phyState"
+                                                                                    style="clear: both; float: left;"></span><span
+                                                                                    id="phyZip"
+                                                                                    style="clear: both; float: left;"></span><span
+                                                                                    id="phyCountry"
+                                                                                    style="clear: both; float: left;"></span>
+                                                                            </td>
+                                                                            <td id="tdMailingAddress" valign="top"><span
+                                                                                    id="mailAdd1"
+                                                                                    style="clear: both; float: left;"></span><span
+                                                                                    id="mailAdd2"
+                                                                                    style="clear: both; float: left;"></span><span
+                                                                                    id="mailCity"
+                                                                                    style="clear: both; float: left;"></span><span
+                                                                                    id="mailState"
+                                                                                    style="clear: both; float: left;"></span><span
+                                                                                    id="mailZip"
+                                                                                    style="clear: both; float: left;"></span><span
+                                                                                    id="mailCountry"
+                                                                                    style="clear: both; float: left;"></span>
+                                                                            </td>
+                                                                            <td valign="top">Contact Name : <span
+                                                                                    id="contactname"></span><br>Phone
+                                                                                : <span id="phone"></span><br>Fax :
+                                                                                <span id="fax"></span><br>Email : <span
+                                                                                    id="email"></span><br>Web : <a
+                                                                                    id="companyWebUrl" href="#"
+                                                                                    target="_blank"><span
+                                                                                        id="web"></span></a><br></td>
+                                                                        </tr>
+                                                                    </thead>
+                                                                </table>
+                                                                <table>
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="text-align: left;">Company
+                                                                                Details</th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TdAlign">Business Lines</td>
+                                                                            <td>:&nbsp;&nbsp;<span
+                                                                                    id="businessLine"></span></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TdAlign">Commodities</td>
+                                                                            <td>:&nbsp;&nbsp;<span
+                                                                                    id="commodities"></span></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TdAlign">Entities</td>
+                                                                            <td>:&nbsp;&nbsp;<span id="entities"></span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TdAlign">Entity Type</td>
+                                                                            <td>:&nbsp;&nbsp;<span
+                                                                                    id="entityType"></span></td>
+                                                                        </tr>
+                                                                    </thead>
+                                                                </table>
+                                                            </div>
+                                                            <div id="companycompownertab" style="display:none">
+                                                                <h4>
+                                                                    Owner/Subsidiaries
+                                                                </h4>
+                                                                <div id="CompanyOwnerSection" style="display:none">
+                                                                    <h6>Company Owner :</h6>
+                                                                    <table width="100%" cellpadding="0" cellspacing="0"
+                                                                        class="table table-hover table-nomargin"
+                                                                        id="ownerTable">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th width="39%">Company Name</th>
+                                                                                <th>Percentage</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                    </table>
+                                                                    <div class="row-fluid">
+                                                                        <div class="span12">
+                                                                            <div id="companyOwnerAccordion"
+                                                                                class="accordion accordion-widget">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="CompanySubsidiariesSection"
+                                                                    style="display:none">
+                                                                    <h6>Subsidiaries :</h6>
+                                                                    <table width="100%" cellpadding="0" cellspacing="0"
+                                                                        class="table table-hover table-nomargin"
+                                                                        id="operatorTable">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th width="39%">Name</th>
+                                                                                <th>Percentage</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                    </table>
+                                                                    <div class="row-fluid">
+                                                                        <div class="span12">
+                                                                            <div id="companyOperatorAccordion"
+                                                                                class="accordion accordion-widget">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div id="companyfacownertab" style="display:none">
+                                                                <h4>Facilities</h4>
+                                                                <div id="FacilitiesOwnedSection" style="display:none">
+                                                                    <h6>Owned :</h6>
+                                                                    <table width="100%" cellpadding="0" cellspacing="0"
+                                                                        class="table table-hover table-nomargin"
+                                                                        id="facilityOwner">
+                                                                        <thead style="background-color: black">
+                                                                            <tr>
+                                                                                <th width="39%">Name</th>
+                                                                                <th>Percentage</th>
+                                                                                <th width="30%">Facility Type</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                    </table>
+                                                                    <div class="row-fluid">
+                                                                        <div class="span12">
+                                                                            <div id="facilityOwnerAccordion"
+                                                                                class="accordion accordion-widget">
+                                                                            </div>
+                                                                            <div id="map_canvas_plus"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="FacilitiesOperatorSection"
+                                                                    style="display:none">
+                                                                    <h6>Operated :</h6>
+                                                                    <table class="table table-hover table-nomargin"
+                                                                        id="facilityOperator">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th width="39%">Name</th>
+                                                                                <th></th>
+                                                                                <th width="30%">Facility Type</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                    </table>
+                                                                    <div class="row-fluid">
+                                                                        <div class="span12">
+                                                                            <div id="facilityOperatorAccordion"
+                                                                                class="accordion accordion-widget">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div id="companysysownertab" style="display:none">
+                                                                <h4>Pipeline Systems</h4>
+                                                                <div id="PipelineSystemsOwnedSection"
+                                                                    style="display:none">
+                                                                    <h6>Owned :</h6>
+                                                                    <table class="table table-hover table-nomargin"
+                                                                        id="systemOwner">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th width="40%">Name</th>
+                                                                                <th width="30%">Percentage</th>
+                                                                                <th width="30%">Commodity</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                    </table>
+                                                                    <div class="row-fluid">
+                                                                        <div class="span12">
+                                                                            <div id="systemOwnerAccordion"
+                                                                                class="accordion accordion-widget">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div id="PipelineSystemsOperatedSection"
+                                                                    style="display:none">
+                                                                    <h6>Operated :</h6>
+                                                                    <table class="table table-hover table-nomargin"
+                                                                        id="systemOperator">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th width="40%">Name</th>
+                                                                                <th width="30%">
+                                                                                </th>
+                                                                                <th width="30%">Commodity</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                    </table>
+                                                                    <div class="row-fluid">
+                                                                        <div class="span12">
+                                                                            <div id="systemOperatorAccordion"
+                                                                                class="accordion accordion-widget">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div id="companypowerownertab" style="display:none">
+                                                                <h4>Power Plants</h4>
+                                                                <div id="PowerPlantsOwnedSection" style="display:none">
+                                                                    <h6>Owned :</h6>
+                                                                    <table class="table table-hover table-nomargin"
+                                                                        id="powerOwner">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th width="39%">Name</th>
+                                                                                <th>Percentage</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                    </table>
+                                                                    <div class="row-fluid">
+                                                                        <div class="span12">
+                                                                            <div id="powerOwnerAccordion"
+                                                                                class="accordion accordion-widget">
+                                                                            </div>
+                                                                            <div id="map_canvas_plus"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="PowerPlantsOperatedSection"
+                                                                    style="display:none">
+                                                                    <h6>Operated :</h6>
+                                                                    <table class="table table-hover table-nomargin"
+                                                                        id="powerOperator">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Name</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                    </table>
+                                                                    <div class="row-fluid">
+                                                                        <div class="span12">
+                                                                            <div id="powerOperatorAccordion"
+                                                                                class="accordion accordion-widget">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div id="companytransmissiontab" style="display:none">
+                                                                <h4>Transmission Projects</h4>
+                                                                <div id="TransmissionProjectsOwnedSection"
+                                                                    style="display:none">
+                                                                    <h6>Owned :</h6>
+                                                                    <table class="table table-hover table-nomargin"
+                                                                        id="transOwner">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th width="220">Name</th>
+                                                                                <th width="300">Percentage</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                    </table>
+                                                                    <div class="row-fluid">
+                                                                        <div class="span12">
+                                                                            <div id="transmissionAccordion"
+                                                                                class="accordion accordion-widget">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="TransmissionProjectsOperatedSection"
+                                                                    style="display:none">
+                                                                    <h6>Operated :</h6>
+                                                                    <table class="table table-hover table-nomargin"
+                                                                        id="transOperator">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Name</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                    </table>
+                                                                    <div class="row-fluid">
+                                                                        <div class="span12">
+                                                                            <div id="transmissionOperatorAccordion"
+                                                                                class="accordion accordion-widget">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div id="companyindustrytab" style="display:none">
+                                                                <h4>Industry Updates</h4>
+                                                                <table class="table table-hover table-nomargin"
+                                                                    id="idustryOwner">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Name</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                </table>
+                                                                <div class="row-fluid">
+                                                                    <div class="span12">
+                                                                        <div id="industryAccordion"
+                                                                            class="accordion accordion-widget"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div id="companycontacttab" style="display:none">
+                                                                <h4>Contacts</h4>
+                                                                <table width="100%" cellpadding="0" cellspacing="0"
+                                                                    class="table table-hover table-nomargin"
+                                                                    id="contactTable">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th width="30%">Name</th>
+                                                                            <th width="35%">Department</th>
+                                                                            <th width="30%">Title</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                </table>
+                                                                <div class="row-fluid">
+                                                                    <div class="span12">
+                                                                        <div id="contactsAccordion"
+                                                                            class="accordion accordion-widget"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div id="companyDocumentTab" style="display:none">
+                                                                <h4>Documents</h4>
+                                                                <table class="table table-hover table-nomargin"
+                                                                    id="companyDocs">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Name</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                </table>
+                                                                <div class="row-fluid">
+                                                                    <div class="span12">
+                                                                        <div id="documentAccordion"
+                                                                            class="accordion accordion-widget"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

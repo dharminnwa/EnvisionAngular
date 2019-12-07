@@ -1,0 +1,114 @@
+<div class="card card-transparent intelligence" style="background-color: #fafafa !important">
+    <pg-tabset tabAnimation="slide-left" Type="fillup" extraTabContentClass="changebgcolor p-0"
+        style="height: auto;background-color: #fafafa !important">
+        <pg-tab *ngIf="AuthServices.ShowCompanyIntelligenceUIBasedOnRole()">
+            <ng-template #TabHeading>
+                <!-- <span class="tablespanfont">Company Intelligence</span> -->
+                <div class="font-montserrat bold all-caps TabHadingFont" style="color: white !important">Company
+                    Intelligence</div>
+            </ng-template>
+
+            <!-- <div class="container-fluid p-0 pl-3 pr-2">
+                <div class="card card-default m-t-20">
+                    <div class="card-body">
+                        <div class="invoice">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="row m-0 p-0">
+                <div class="col-lg-12">
+                    <app-company-intelligence></app-company-intelligence>
+                </div>
+            </div>
+        </pg-tab>
+        <pg-tab *ngIf="AuthServices.ShowPipelineActivityUIBasedOnRole()">
+            <ng-template #TabHeading>
+                <!-- <span class="tablespanfont">Pipeline Activity Projects</span> -->
+                <div class="font-montserrat bold all-caps TabHadingFont" style="color: white !important">Pipeline
+                    Activity Projects</div>
+            </ng-template>
+            <!-- <div class="container-fluid p-0 pl-3 pr-2">
+                <div class="card card-default m-t-20">
+                    <div class="card-body">
+                        <div class="invoice">
+                            <app-pipeline-activity-projects></app-pipeline-activity-projects>
+                        </div>
+                    </div>
+                </div>
+
+            </div> -->
+            <div class="row m-0 p-0">
+                <div class="col-lg-12">
+                    <app-pipeline-activity-projects></app-pipeline-activity-projects>
+                </div>
+            </div>
+        </pg-tab>
+        <pg-tab *ngIf="AuthServices.ShowTransmissionUIBasedOnRole()">
+            <ng-template #TabHeading>
+                <!-- <span class="tablespanfont">Transmission Projects</span> -->
+                <div class="font-montserrat bold all-caps TabHadingFont" style="color: white !important">Transmission
+                    Projects</div>
+            </ng-template>
+            <div class="row m-0 p-0">
+                <div class="col-lg-12">
+                    <app-transmission-projects></app-transmission-projects>
+                </div>
+            </div>
+            <!-- <div class="container-fluid p-0 pl-3 pr-2">
+                <div class="card card-default m-t-20">
+                    <div class="card-body">
+                        <div class="invoice">
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div> -->
+        </pg-tab>
+        <pg-tab *ngIf="AuthServices.ShowPowerPlantsUIBasedOnRole()">
+            <ng-template #TabHeading>
+                <!-- <span class="tablespanfont">Power Plants</span> -->
+                <div class="font-montserrat bold all-caps TabHadingFont" style="color: white !important">Power Plants
+                </div>
+            </ng-template>
+            <div class="row m-0 p-0">
+                <div class="col-lg-12">
+                    <app-power-plants></app-power-plants>
+                </div>
+            </div>
+            <!-- <div class="container-fluid p-0 pl-3 pr-2">
+                <div class="card card-default m-t-20">
+                    <div class="card-body">
+                        <div class="invoice">
+                            <app-power-plants></app-power-plants>
+                        </div>
+                    </div>
+                </div>
+
+            </div> -->
+        </pg-tab>
+        <pg-tab *ngIf="AuthServices.ShowGeneratingUnitUIBasedOnRole()">
+            <ng-template #TabHeading>
+                <!-- <span class="tablespanfont">Generating Units</span> -->
+                <div class="font-montserrat bold all-caps TabHadingFont" style="color: white !important">Generating
+                    Units</div>
+            </ng-template>
+            <div class="row m-0 p-0">
+                <div class="col-lg-12">
+                    <app-generating-units></app-generating-units>
+                </div>
+            </div>
+            <!-- <div class="container-fluid p-0 pl-3 pr-2">
+                <div class="card card-default m-t-20">
+                    <div class="card-body">
+                        <div class="invoice">
+                            <app-generating-units></app-generating-units>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </pg-tab>
+    </pg-tabset>
+</div>

@@ -1,0 +1,52 @@
+<div class="modal-header p-0 custom-header">
+    <h6 class="m-2 semi-bold">Upload</h6>
+    <button type="button" id="btnAddDataclose" class="close p-0 ClosePopupmodal" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body p-2">
+    <div class="card card-transparent add-data m-b-0">
+        <pg-tabset tabAnimation="slide-left" Type="fillup" extraTabContentClass="bg-white">
+            <pg-tab>
+                <ng-template #TabHeading>
+                    <span class="tab-title">Shapefiles</span>
+                </ng-template>
+                <div class="row column-seperation">
+                    <div class="col-md-12">
+                        <shapefile-tab></shapefile-tab>
+                    </div>
+                </div>
+            </pg-tab>
+            <pg-tab>
+                <ng-template #TabHeading>
+                    <span class="tab-title">KMLs</span>
+                </ng-template>
+                <div class="row">
+                    <div class="col-md-12">
+                        <kml-tab></kml-tab>
+                    </div>
+                </div>
+            </pg-tab>
+            <pg-tab>
+                <ng-template #TabHeading>
+                    <span class="tab-title">Locations</span>
+                </ng-template>
+                <div class="row">
+                    <div class="col-md-12">
+                        <location-tab></location-tab>
+                    </div>
+                </div>
+            </pg-tab>
+            <!-- <pg-tab>
+                <ng-template #TabHeading>
+                    <span>Images</span>
+                </ng-template>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <image-tab></image-tab>
+                    </div>
+                </div>
+            </pg-tab> -->
+        </pg-tabset>
+    </div>
+</div>

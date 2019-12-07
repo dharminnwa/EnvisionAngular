@@ -1,0 +1,482 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<nav class="navbar navbar-default no-padding full-width no-margin" role="navigation" style="text-align:right">
+  <div class="full-width p-r-10 p-l-10">
+    <button id="btnAdd" class="btn btn-sm pull-left" (click)="openWidgetModal()">
+      <i class="fa fa-plus"></i>
+    </button>
+  </div>
+</nav>
+
+<ul class="nav nav-tabs" style="background-color: #dfe9f5;color:black">
+  <li class="active">
+    <a href="#homeTab" data-toggle="tab" style="padding: 5px 10px">Home</a>
+  </li>
+</ul>
+
+<div class="tab-content" id="tabContent">
+  <div class="row tab-pane active" id="homeTab">
+
+    <span class="panel panel-default col-md-9" *ngIf="IsOpen" id="restoredPanel">
+      <div class="panel-heading">
+        {{restoredPanel.Title}}
+        <i class="fa fa-window-minimize" (click)="ResizePanel($event)"></i>
+      </div>
+      <div class="panel-body"> {{restoredPanel.Title}} Content ...</div>
+    </span>
+
+    <div id="draggablePanelList" [class]="PanelContainerClass">
+      <span [class]="panelClass">
+        <div class="panel-heading">
+          Asset Lookup
+          <i class="fa fa-window-restore" (click)="ResizePanel($event)"></i>
+        </div>
+        <div class="panel-body">
+          <ul class="nav nav-tabs" style="background-color: #dfe9f5;color:black">
+            <li class="active">
+              <a href="#FacilitiesTab" data-toggle="tab">Facilities</a>
+            </li>
+            <li>
+              <a href="#PipeLines" data-toggle="tab">PipeLines</a>
+            </li>
+            <li>
+              <a href="#Powerplants" data-toggle="tab">Powerplants</a>
+            </li>
+            <li>
+              <a href="#Substations" data-toggle="tab">Substations</a>
+            </li>
+            <li>
+              <a href="#Transmission" data-toggle="tab">Transmission </a>
+            </li>
+          </ul>
+
+          <div class="tab-content" id="tabContent1">
+
+            <div class="row tab-pane active" id="FacilitiesTab">
+              <b>Facilities</b>
+              <div class="row">
+                <div class="col-md-6 pr-0">
+                  <p>By owner , Operator or Facility Name</p>
+                </div>
+                <div class="col-md-6 pull-left">
+                  <input type="text" style="width: 70%;">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4 form-group text-right p-0 m-0"><label>Facility Type</label></div>
+                <div class="col-md-8">
+                  <div class="form-group mb-2">
+                    <pg-select style="width: 100%;" [Mode]="'multiple'" [PlaceHolder]="'Select'" [(ngModel)]="selectedMultipleFacilities"
+                      [NotFoundContent]="'Not found'">
+                      <pg-option *ngFor="let Facilities of searchFacilitiesOptions" [Label]="Facilities.label" [Value]="Facilities.value"
+                        [Disabled]="Facilities.disabled">
+                      </pg-option>
+                    </pg-select>
+                    <!-- <ng-multiselect-dropdown [placeholder]="'custom placeholder'" [data]="dropdownList" [(ngModel)]="selectedItems"
+                      [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                    </ng-multiselect-dropdown> -->
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4 form-group text-right p-0 m-0"><label>Commodities</label></div>
+                <div class="col-md-8">
+                  <div class="form-group mb-2">
+                    <pg-select style="width: 100%;" [Mode]="'multiple'" [PlaceHolder]="'Select'" [(ngModel)]="selectedMultipleCommodities"
+                      [NotFoundContent]="'Not found'">
+                      <pg-option *ngFor="let Commodities of searchCommoditiesOptions" [Label]="Commodities.label"
+                        [Value]="Commodities.value" [Disabled]="Commodities.disabled">
+                      </pg-option>
+                    </pg-select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4 form-group text-right p-0 m-0"><label>States</label></div>
+                <div class="col-md-8">
+                  <div class="form-group mb-2">
+                    <pg-select style="width: 100%;" [Mode]="'multiple'" [PlaceHolder]="'Select'" [(ngModel)]="selectedMultipleStates"
+                      [NotFoundContent]="'Not found'">
+                      <pg-option *ngFor="let States of searchStatesOptions" [Label]="States.label" [Value]="States.value"
+                        [Disabled]="States.disabled">
+                      </pg-option>
+                    </pg-select>
+
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="btn-group btnDropdown">
+                <button type="button" class="btn btn-default btnName">Facilities</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split" ngbDropdownToggle></button>
+                  <div class="dropdown-menu" ngbDropdownMenu>
+                    <button class="dropdown-item"><input type="checkbox" /> One</button>
+                    <button class="dropdown-item"><input type="checkbox" /> Two</button>
+                  </div>
+                </div>
+              </div> -->
+              <!-- <br />
+              <div class="btn-group btnDropdown">                
+                <button type="button" class="btn btn-default btnName">Commodities</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split" ngbDropdownToggle></button>
+                  <div class="dropdown-menu dropContent" ngbDropdownMenu>
+                    <button class="dropdown-item">One</button>
+                    <button class="dropdown-item">Two</button>
+                  </div>
+                </div>
+              </div> -->
+              <!-- <br /> -->
+              <!-- <div class="btn-group btnDropdown">
+                <button type="button" class="btn btn-default btnName">States</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split" ngbDropdownToggle></button>
+                  <div class="dropdown-menu dropContent" ngbDropdownMenu>
+                    <button class="dropdown-item">One</button>
+                    <button class="dropdown-item">Two</button>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+
+            <div class="row tab-pane" id="PipeLines">
+              <b>PipeLines</b>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>By owner, Operator, or System Name</p>
+                </div>
+                <div class="col-md-6">
+                  <input type="text" style="width: 200px;">
+                </div>
+              </div>
+
+              <div class="chkGroup">
+                <input type="checkbox" value="Transmission" ngbButtonLabel>&nbsp; Transmission
+                <br />
+                <input type="checkbox" value="Gathering">&nbsp; Gathering
+                <br />
+                <input type="checkbox" value="Local">&nbsp; Local Distribution
+                <br />
+                <!-- <div class="checkbox">
+                        <label><input type="checkbox" value="Transmission">Transmission</label>
+                      </div>     -->
+              </div>
+              <div class="btn-group btnDropdown">
+                <button type="button" class="btn btn-default btnName">Commodities</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split" ngbDropdownToggle></button>
+                  <div class="dropdown-menu" ngbDropdownMenu>
+                    <button class="dropdown-item"><input type="checkbox" /> One</button>
+                    <button class="dropdown-item"><input type="checkbox" /> Two</button>
+                  </div>
+                </div>
+              </div>
+
+              <br />
+              <div class="btn-group btnDropdown">
+                <button type="button" class="btn btn-default btnName">Statuses</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split" ngbDropdownToggle></button>
+                  <div class="dropdown-menu dropContent" ngbDropdownMenu>
+                    <button class="dropdown-item">One</button>
+                    <button class="dropdown-item">Two</button>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div class="btn-group btnDropdown">
+                <button type="button" class="btn btn-default btnName">States</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split" ngbDropdownToggle></button>
+                  <div class="dropdown-menu dropContent" ngbDropdownMenu>
+                    <button class="dropdown-item">One</button>
+                    <button class="dropdown-item">Two</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row tab-pane" id="Powerplants">
+              <b>Power Plants</b>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>By owner, Operator or Power Plant Name</p>
+                </div>
+                <div class="col-md-6">
+                  <input type="text" style="width: 200px;">
+                </div>
+              </div>
+
+              <div class="btn-group btnDropdown">
+                <button type="button" class="btn btn-default btnName">Fuel Types</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split" ngbDropdownToggle></button>
+                  <div class="dropdown-menu" ngbDropdownMenu>
+                    <button class="dropdown-item"><input type="checkbox" /> One</button>
+                    <button class="dropdown-item"><input type="checkbox" /> Two</button>
+                  </div>
+                </div>
+              </div>
+
+              <br />
+              <div class="btn-group btnDropdown">
+                <button type="button" class="btn btn-default btnName">Prime Mover</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split" ngbDropdownToggle></button>
+                  <div class="dropdown-menu dropContent" ngbDropdownMenu>
+                    <button class="dropdown-item">One</button>
+                    <button class="dropdown-item">Two</button>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div class="btn-group btnDropdown">
+                <button type="button" class="btn btn-default btnName">States</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split" ngbDropdownToggle></button>
+                  <div class="dropdown-menu dropContent" ngbDropdownMenu>
+                    <button class="dropdown-item">One</button>
+                    <button class="dropdown-item">Two</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row tab-pane" id="Substations">
+              <b>Substation</b>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>By owner, Operator, or Substation Name</p>
+                </div>
+                <div class="col-md-6">
+                  <input type="text" style="width: 200px;">
+                </div>
+              </div>
+
+              <div class="btn-group btnDropdown">
+                <button type="button" class="btn btn-default btnName">Status</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split" ngbDropdownToggle></button>
+                  <div class="dropdown-menu" ngbDropdownMenu>
+                    <button class="dropdown-item"><input type="checkbox" /> One</button>
+                    <button class="dropdown-item"><input type="checkbox" /> Two</button>
+                  </div>
+                </div>
+              </div>
+
+              <br />
+              <div class="btn-group btnDropdown">
+                <button type="button" class="btn btn-default btnName">Type</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split" ngbDropdownToggle></button>
+                  <div class="dropdown-menu dropContent" ngbDropdownMenu>
+                    <button class="dropdown-item">One</button>
+                    <button class="dropdown-item">Two</button>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div class="btn-group btnDropdown">
+                <button type="button" class="btn btn-default btnName">States</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split" ngbDropdownToggle></button>
+                  <div class="dropdown-menu dropContent" ngbDropdownMenu>
+                    <button class="dropdown-item">One</button>
+                    <button class="dropdown-item">Two</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row tab-pane" id="Transmission">
+              <b>Transmission Lines</b>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>By owner, Operator</p>
+                </div>
+                <div class="col-md-6">
+                  <input type="text" style="width: 200px;">
+                </div>
+              </div>
+
+              <div class="btn-group btnDropdown">
+                <button type="button" class="btn btn-default btnName">Status</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split" ngbDropdownToggle></button>
+                  <div class="dropdown-menu" ngbDropdownMenu>
+                    <button class="dropdown-item"><input type="checkbox" /> One</button>
+                    <button class="dropdown-item"><input type="checkbox" /> Two</button>
+                  </div>
+                </div>
+              </div>
+
+              <br />
+              <div class="btn-group btnDropdown">
+                <button type="button" class="btn btn-default btnName">Voltage</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split" ngbDropdownToggle></button>
+                  <div class="dropdown-menu dropContent" ngbDropdownMenu>
+                    <button class="dropdown-item">One</button>
+                    <button class="dropdown-item">Two</button>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div class="btn-group btnDropdown">
+                <button type="button" class="btn btn-default btnName">States</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split" ngbDropdownToggle></button>
+                  <div class="dropdown-menu dropContent" ngbDropdownMenu>
+                    <button class="dropdown-item">One</button>
+                    <button class="dropdown-item">Two</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bottomContent">
+            <div class="row">
+              <div class="col-md-6 m-0">
+                <button id="btnSearch" type="button" class="btn btn-default" (click)="SearchAssest()">Search Assets</button>
+              </div>
+              <div class="col-md-6 m-0 text-left">
+                <button id="btnfilter" type="button" class="btn btn-default">Clear<br /> filters</button>
+              </div>
+            </div>
+            View Results &nbsp;&nbsp;
+            <input type="radio" name="res">In Grid
+            &nbsp;&nbsp;
+            <input type="radio" name="res" checked>In Map
+          </div>
+        </div>
+      </span>
+
+      <span [class]="panelClass">
+        <div class="panel-heading">
+          Parcel Centerpoint Lookup
+          <i class="fa fa-window-restore" (click)="ResizePanel($event)"></i>
+        </div>
+        <div class="panel-body">Parcel Centerpoint Lookup Content ...</div>
+      </span>
+
+      <span [class]="panelClass">
+        <div class="panel-heading">
+          Well Lookup
+          <i class="fa fa-window-restore" (click)="ResizePanel($event)"></i>
+        </div>
+        <div class="panel-body">
+          <ul class="nav nav-tabs" style="background-color: #cce4ff">
+            <li class="active">
+              <a href="#OilGas" data-toggle="tab">Oil/Gas</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="tabContent1">
+            <div class="row tab-pane active" id="OilGas">
+              <b>Oil & Gas Wells</b>
+              <br />
+              <div class="btn-group btnDropdown">
+                <button type="button" class="btn btn-default btnName">States</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split" ngbDropdownToggle></button>
+                  <div class="dropdown-menu dropContent" ngbDropdownMenu>
+                    <button class="dropdown-item">One</button>
+                    <button class="dropdown-item">Two</button>
+                  </div>
+                </div>
+              </div>
+
+              <br /><br />
+              <div class="row">
+                <div class="col-xs-7">
+                  <p>Search by API, Well, Operator or Lease Name</p>
+                </div>
+                <div class="col-xs-5">
+                  <input type="text" style="width: 150px;">
+                </div>
+              </div>
+              <div class="btn-group btnDropdown">
+                <button type="button" class="btn btn-default btnName">Status</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split" ngbDropdownToggle></button>
+                  <div class="dropdown-menu" ngbDropdownMenu>
+                    <button class="dropdown-item"><input type="checkbox" /> One</button>
+                    <button class="dropdown-item"><input type="checkbox" /> Two</button>
+                  </div>
+                </div>
+              </div>
+
+              <br />
+              <div class="btn-group btnDropdown">
+                <button type="button" class="btn btn-default btnName">Voltage</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split" ngbDropdownToggle></button>
+                  <div class="dropdown-menu dropContent" ngbDropdownMenu>
+                    <button class="dropdown-item">One</button>
+                    <button class="dropdown-item">Two</button>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div class="btn-group btnDropdown">
+                <button type="button" class="btn btn-default btnName">States</button>
+                <div class="btn-group btnSign" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn btn-default dropdown-toggle-split disabled" ngbDropdownToggle></button>
+                  <div class="dropdown-menu dropContent" ngbDropdownMenu>
+                    <button class="dropdown-item">One</button>
+                    <button class="dropdown-item">Two</button>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+          <div class="bottomContent">
+            <button id="btnSearch" type="button" class="btn btn-default">Search Assets</button>
+            <button id="btnfilter" type="button" class="btn btn-default">Clear<br /> filters</button>
+            <br /><br />
+            View Results &nbsp;&nbsp;
+            <input type="radio" name="res">In Grid
+            &nbsp;&nbsp;
+            <input type="radio" name="res" checked>In Map
+          </div>
+
+        </div>
+      </span>
+
+      <span [class]="panelClass">
+        <div class="panel-heading">
+          Transmission Project Report
+          <i class="fa fa-window-restore" (click)="ResizePanel($event)"></i>
+        </div>
+        <div class="panel-body">Transmission Project Report Content ...</div>
+      </span>
+
+      <span [class]="panelClass">
+        <div class="panel-heading">
+          Pipeline Activity Reports
+          <i class="fa fa-window-restore" (click)="ResizePanel($event)"></i>
+        </div>
+        <div class="panel-body"> Pipeline Activity Reports Content ...</div>
+      </span>
+
+      <span [class]="panelClass">
+        <div class="panel-heading">
+          ENvision 101
+          <i class="fa fa-window-restore" (click)="ResizePanel($event)"></i>
+        </div>
+        <div class="panel-body"> ENvision 101 Content ...</div>
+      </span>
+
+      <!-- <span [class]="panelClass" *ngFor="let item of panelArray;index as i" [attr.data-index]="i">
+          <div class="panel-heading">
+            {{item.Title}}
+            <i class="fa fa-window-restore" (click)="ResizePanel($event)"></i>
+          </div>
+          <div class="panel-body">{{item.Title}} Content ...</div>
+        </span> -->
+    </div>
+  </div>
+</div>

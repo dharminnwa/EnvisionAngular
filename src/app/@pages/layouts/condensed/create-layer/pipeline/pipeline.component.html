@@ -1,0 +1,117 @@
+<div *ngIf="PipelineLoader==true" class="loader" id="LayerLibraryLoader"
+  style="position: absolute;top: 50%;z-index: 10;left: 40%;">
+  <img id="loading-image" [src]="ImageURLPath + 'LayerLibraryLoader.gif'" alt="Loading..." height="20" width="100"><br>
+</div>
+<h6 class="m-1 semi-bold">Color Pipeline by Owner, Operator, System or Commodity</h6>
+<app-checkbox-picklist [sourceList]="sourceCommodities" [listName]="'Commodities'" [isTargetSelectAll]="false"
+  (OnChangeList)="OnChangeCommoditiesList($event)"></app-checkbox-picklist>
+
+
+<div class="card card-transparent add-data mb-0 pb-0">
+  <pg-tabset tabAnimation="slide-left" Type="fillup" extraTabContentClass="bg-white" id="pipelineTabPane">
+    <pg-tab>
+      <ng-template #TabHeading>
+        <div class='tab-heading-text' (click)="setPipelineActiveTab('Owner')">Owner</div>
+      </ng-template>
+      <ng-container *ngIf="ActivePipelineTab == 'Owner'">
+        <div class="row column-seperation">
+          <div class="col-md-12 p-0">
+            <app-checkbox-picklist [sourceList]="sourceOwner" [isLazyLoad]="true" [isFilterable]="true"
+              [listName]="'Owners'" [singularName]="'Owner'" (OnChangeList)="OnChangeOwnersList($event)">
+            </app-checkbox-picklist>
+          </div>
+        </div>
+        <div class="row m-0">
+          <div class="col-md-7 p-0">
+            <div class="radio radio-primary">
+              <b>Color by</b>
+              <input type="radio" [(ngModel)]="ColorByOwner" value="Owner" name="OwnerColor" id="optOwner"
+                aria-invalid="false">
+              <label for="optOwner">Owner</label>
+              <input type="radio" [(ngModel)]="ColorByOwner" value="Commodity" name="OwnerColor" id="optCommodity1">
+              <label for="optCommodity1">Commodity</label>
+            </div>
+          </div>
+          <div class="col-md-5 p-0 text-right">
+            <button type="button" class="btn btn-primary"
+              [disabled]="targetCommodities.length==0 || targetOwner.length==0 || targetOwner.length > 25"
+              (click)="CreateLayerForPipelineOwner()">Create
+              Layer</button>
+            <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+          </div>
+        </div>
+      </ng-container>
+    </pg-tab>
+
+    <pg-tab>
+      <ng-template #TabHeading>
+        <div class='tab-heading-text' (click)="setPipelineActiveTab('Operator')">Operator</div>
+      </ng-template>
+      <ng-container *ngIf="ActivePipelineTab == 'Operator'">
+
+        <div class="row column-seperation">
+          <div class="col-md-12 p-0">
+            <app-checkbox-picklist [sourceList]="sourceOperator" [isLazyLoad]="true" [isFilterable]="true"
+              [listName]="'Operators'" [singularName]="'Operator'" (OnChangeList)="OnChangeOperatorList($event)">
+            </app-checkbox-picklist>
+          </div>
+        </div>
+        <div class="row m-0">
+          <div class="col-md-7 p-0">
+            <div class="radio radio-primary">
+              <b>Color by</b>
+              <input type="radio" [(ngModel)]="ColorByOperator" value="Operator" name="OperatorColor" id="optOperator"
+                aria-invalid="false">
+              <label for="optOperator">Operator</label>
+              <input type="radio" [(ngModel)]="ColorByOperator" value="Commodity" name="OperatorColor"
+                id="optCommodity2">
+              <label for="optCommodity2">Commodity</label>
+            </div>
+          </div>
+          <div class="col-md-5 p-0 text-right">
+            <button type="button" class="btn btn-primary"
+              [disabled]="targetCommodities.length==0 || targetOperator.length==0 || targetOperator.length > 25"
+              (click)="CreateLayerForPipelineOperator()">Create
+              Layer</button>
+            <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+          </div>
+        </div>
+      </ng-container>
+    </pg-tab>
+
+    <pg-tab>
+      <ng-template #TabHeading>
+        <div class='tab-heading-text' (click)="setPipelineActiveTab('System')">System</div>
+      </ng-template>
+      <ng-container *ngIf="ActivePipelineTab == 'System'">
+        <div class="row column-seperation">
+          <div class="col-md-12 p-0">
+            <app-checkbox-picklist [sourceList]="sourceSystem" [isLazyLoad]="true" [isFilterable]="true"
+              [listName]="'Systems'" [singularName]="'System'" (OnChangeList)="OnChangeSystemList($event)">
+            </app-checkbox-picklist>
+          </div>
+        </div>
+        <div class="row m-0">
+          <div class="col-md-7 p-0">
+            <div class="radio radio-primary">
+              <b>Color by</b>
+              <input type="radio" [(ngModel)]="ColorBySystem" value="System" name="SystemColor" id="optSystem"
+                aria-invalid="false">
+              <label for="optSystem">System</label>
+              <input type="radio" [(ngModel)]="ColorBySystem" value="Commodity" name="SystemColor" id="optCommodity3">
+              <label for="optCommodity3">Commodity</label>
+            </div>
+          </div>
+          <div class="col-md-5 p-0 text-right">
+            <button type="button" class="btn btn-primary"
+              [disabled]="targetCommodities.length==0 || targetSystem.length==0 || targetSystem.length > 25"
+              (click)="CreateLayerForPipelineSystem()">Create
+              Layer</button>
+            <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+          </div>
+        </div>
+      </ng-container>
+    </pg-tab>
+
+  </pg-tabset>
+</div>

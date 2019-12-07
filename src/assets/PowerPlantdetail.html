@@ -1,0 +1,90 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="headElement">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Power Plant </title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/jquery.ui.theme.css" />
+    <link rel="stylesheet" href="css/jquery.ui.theme.css" />
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/demos.css" />
+    <link rel="stylesheet" href="css/jsgrid.css" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/chosen.css" />
+    <link rel="stylesheet" href="css/icheck/all.css" />
+    <link rel="stylesheet" href="css/icon.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/CompanyProfile/PowerPlants.css" />
+    <link href="css/CompanyProfile/PowerPlantsTest.css" rel="stylesheet" />
+    <script src="JS/jquery-1.9.1.js"></script>
+    <script src="JS/jsgrid.min.js"></script>
+    <script src="JS/moment.js"></script>
+    <script src="JS/chosen.jquery.min.js"></script>
+    <script src="JS/jquery.icheck.min.js"></script>
+    <script src="JS/bootstrap.min.js"></script>
+    <script src="JS/jquery.ui.core.min.js"></script>
+    <script src="JS/jquery-ui.js"></script>
+    <script src="JS/CompanyProfile/Pagination.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=2&amp;key=AIzaSyCdCw-UMwdjTOzXPaelRVOSSzvhpspTgCU&amp;sensor=false"></script>
+    <script src="JS/UtilityLibs.js"></script>
+    <script src="JS/infobox.js"></script>
+    <script src="JS/CompanyProfile/ContextMenu.js"></script>
+    <script src="JS/CompanyProfile/googleMapHelper.js"></script>
+    <script src="JS/CompanyProfile/PowerPlantdetail.js"></script>
+    <style>
+         ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loader" id="powerPlantsTestLoader">
+        <img id="loading-image" src="https://node.envisionmaps.net/Images/LayerLibraryLoader.gif" alt="Loading..." height="100"
+            width="100" /><br />
+    </div>
+    <div id="modal-PowerPlantPopup_Test" class="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true" style="display: block;">
+        <div class="modal-content">
+            <div id="modal-bodyPowerPlantPopup_Test" class="modal-body" style="overflow-y: visible;max-height: 0px;">
+                <div class="row-fluid">
+                    <span class="PlantOperatorHeader" id="PlantOperatorHeaderName"></span>
+                </div> <br />
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="span4" id="span6_1">
+                        </div>
+                        <div class="span4" id="span6_2">
+                        </div>
+                        <div class="span4" id="span6_3">
+                            <div class="reg_bg" style="height: 350px; width: 100%">
+                                <div id="Test_map_canvas" style="width: 100%; height: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="TestLoadTable"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

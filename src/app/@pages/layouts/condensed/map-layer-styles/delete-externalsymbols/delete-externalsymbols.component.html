@@ -1,0 +1,26 @@
+<div class="modal-header custom-header">
+  <h6 class="m-2 semi-bold">Icon delete Confirmation</h6>
+  <button type="button" id="btndeleteExIconClose" class="close p-0 ClosePopupmodal" aria-label="Close" (click)="BsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body p-0 pt-4 pb-4">
+  <p> Do You really want to delete the selected icon?</p>
+</div>
+<div class="modal-footer p-2">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-6">
+            <button type="button" class="btn btn-primary" (click)="deleteIcon()">Ok</button>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-light" (click)="BsModalRef.hide()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

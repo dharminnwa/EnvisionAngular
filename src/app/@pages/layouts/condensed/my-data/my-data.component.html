@@ -1,0 +1,109 @@
+<div class="modal-body p-1 m-0">
+  <div class="card card-transparent m-0" id="myDataCard">
+    <div class="card-header p-0 m-0 modalTitle" *ngIf="hideSomePart" hidden>My Data</div>
+    <div class="card-body p-2">
+      <div class="row">
+        <div class="col-md-5 col-sm-10 col-xs-8">
+          <input type="text" class="search-box form-control" placeholder="Search Data" [(ngModel)]="MydataSearchtext"
+            (keyup.enter)="SearchData()" />
+          <button *ngIf="MydataSearchtext" type="button" (click)="ResetDataLayer()" class="close" aria-label="Close"
+            style="top:5px">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="col-md-1 col-sm-2 col-xs-4 p-l-0">
+          <button class="btn btn-sm btn-complete" type="button" (click)="SearchData()"><i
+              class="fa fa-search"></i></button>
+        </div>
+        <div class="col-md-6 col-sm-12 col-xs-12" *ngIf="hideSomePart">
+          <div class="row m-0">
+            <div class="col-md-7 p-r-0 p-l-0">
+              <ng-multiselect-dropdown class="btnMulty" [placeholder]="'File Type'" [data]="fileType"
+                [(ngModel)]="selectedfileType" (onSelect)="onItemSelectChange($event)"
+                (onDeSelect)="onItemSelectChange($event)" [settings]="dropdownSettings">
+              </ng-multiselect-dropdown>
+            </div>
+            <div class="col-md-5">
+              <button type="button" id="btnMyDataClear" class="btn btn-default pl-2" (click)="ResetDataLayer()">Clear
+                Filter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-md-12  pr-0 pl-3 m-0">
+          <span><b>{{totalCount}}</b> Results Found&nbsp;&nbsp;(Displaying&nbsp;&nbsp;<b>{{DisplayingCount}}</b>)</span>
+        </div>
+      </div> -->
+      <div class="row m-t-10">
+        <div class="col-md-12">
+          <span><b>{{ ActivePrivateLayersLibrary[0].TotalCount}}</b> Results
+            Found&nbsp;&nbsp;(Displaying&nbsp;&nbsp;<b>{{ActivePrivateLayersLibrary[0].DisplayingCount}}</b>)</span>
+          <div id="myDataSearchedContent" class="col-md-12 DataSearchedContent">
+            <!--<div class="container">-->
+            <div *ngIf="LayerLoader==true" class="loader" id="LayerLibraryLoader"> <img id="loading-image"
+                [src]="ImageURLPath + 'LayerLibraryLoader.gif'" alt="Loading..." height="20" width="100"><br>
+            </div>
+            <div *ngIf="ActivePrivateLayersLibrary.length>0">
+              <div *ngFor='let EnergyLayerLibrary of ActivePrivateLayersLibrary[0].LayerLibrary'>
+                <div class="row layerRow" id="{{EnergyLayerLibrary.DataSetID}}layerRow">
+                  <!-- <div *ngIf="EnergyLayerLibrary.PreviewImage" class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pl-0 pr-0">
+                      <img src="{{EnergyLayerLibrary.PreviewImage}}" class="img-thumbnail" style="width:100%;height: 100px !important;" />
+                    </div>
+                    <div *ngIf="!EnergyLayerLibrary.PreviewImage" class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pl-0 pr-0">
+                      <img [src]="ImageURLPath + 'publicMaps.png'"  class="img-thumbnail" style="width:100%; height: 100px !important;" />
+                    </div> -->
+                  <div class="mapSummary col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <table class="table-responsive">
+                      <tr>
+                        <th>Name</th>
+                        <th><span class="lblSummary">: {{EnergyLayerLibrary.DataSetName}}</span></th>
+                      </tr>
+                      <tr *ngIf="EnergyLayerLibrary?.Description">
+                        <th>Description</th>
+                        <td>: {{EnergyLayerLibrary.Description }}</td>
+                      </tr>
+                      <tr *ngIf="!EnergyLayerLibrary.LayerType">
+                        <th>Type</th>
+                        <td>: Energy Layer</td>
+                      </tr>
+                      <tr *ngIf="EnergyLayerLibrary.LayerType;">
+                        <th>Type</th>
+                        <td>: {{EnergyLayerLibrary.LayerType}}</td>
+                      </tr>
+                      <tr>
+                        <th>Source</th>
+                        <td>: {{EnergyLayerLibrary.UploaderDisplayName}}&nbsp;-&nbsp;{{EnergyLayerLibrary.ModifiedDate
+                          |
+                          date:'MM/dd/yyyy h:mm:ss a'}}
+                        </td>
+                      </tr>
+                    </table>
+                    <div class="col-lg-12 p-0 text-right">
+                      <button type="button" class="btn btn-xs btn-light" id="{{EnergyLayerLibrary.DataSetID}}Delete"
+                        (click)="DeleteClick(EnergyLayerLibrary.DataSetID,ActivePrivateLayersLibrary[0].CategoryID)"
+                        title="Delete">{{EnergyLayerLibrary.Delete}}</button>
+                      <button type="button" class="btn btn-xs btn-light" id="{{EnergyLayerLibrary.DataSetID}}Edit"
+                        (click)="OpenEditMyDataModal(EnergyLayerLibrary.DataSetID)"
+                        title="Edit">{{EnergyLayerLibrary.Edit}}</button>
+                      <button type="button" class="btn btn-xs btn-primary AddToMap"
+                        id="{{EnergyLayerLibrary.DataSetID}}AddToMap"
+                        (click)="AddtomapClick(EnergyLayerLibrary.DataSetID,ActivePrivateLayersLibrary[0].CategoryID)"
+                        title="Add to Map">{{EnergyLayerLibrary.Addtomap}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--</div>-->
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-right" *ngIf="hideSomePart">
+      <button type="button" class="btn btn-primary m-r-10" (click)="OpenAddDataModal()">Upload New Layer</button>
+    </div>
+  </div>
+</div>

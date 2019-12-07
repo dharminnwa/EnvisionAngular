@@ -1,0 +1,298 @@
+<div class="modal-header custom-header">
+  <h6 class="m-2 semi-bold">Draw Tools</h6>
+  <button type="button" id="parcelBufferClose" class="close pull-right p-2 ClosePopupmodal" aria-label="Close"
+    (click)="OpenConfirmModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body p-2" style="min-height:250px">
+  <div class="m-0">
+    <div class="col-md-12 p-0 DrawTools">
+      <p class="mb-0"><b>Select draw mode</b></p>
+      <div class="draw-tool-wrap">
+        <a class="draw-tool-link" (click)="SetDrawingTool(0)"
+          [ngClass]="{'active': activeDrawtool == 0}" title="Select Tool"><i class="fa fa-hand-pointer-o"></i></a>
+        <ng-container *ngIf="!editItem">
+          <a class="draw-tool-link" (click)="SetDrawingTool(1)" [ngClass]="{'active': activeDrawtool == 1}"
+            title="Point"><i class="fa fa-map-marker"></i></a>
+          <a class="draw-tool-link" (click)="SetDrawingTool(2)" [ngClass]="{'active': activeDrawtool == 2}"
+            title="Line"><i class="fa fa-minus"></i></a>
+          <a class="draw-tool-link" (click)="SetDrawingTool(3)" [ngClass]="{'active': activeDrawtool == 3}"
+            title="Polyline">
+            <img src="/assets/img/draw-tool/line.svg" class="draw-icon-img">
+          </a>
+          <a class="draw-tool-link" (click)="SetDrawingTool(4)" [ngClass]="{'active': activeDrawtool == 4}"
+            title="Freehand polyline">
+            <i class="fa fa-lastfm"></i></a>
+          <a class="draw-tool-link" (click)="SetDrawingTool(5)" [ngClass]="{'active': activeDrawtool == 5}"
+            title="Triangle"><i class="fa fa-caret-up"></i></a>
+          <a class="draw-tool-link" (click)="SetDrawingTool(6)" [ngClass]="{'active': activeDrawtool == 6}"
+            title="Extent"><i class="fa fa-square"></i></a>
+          <a class="draw-tool-link" (click)="SetDrawingTool(7)" [ngClass]="{'active': activeDrawtool == 7}"
+            title="Circle"><i class="fa fa-circle"></i></a>
+          <a class="draw-tool-link" (click)="SetDrawingTool(8)" [ngClass]="{'active': activeDrawtool == 8}"
+            title="Polygon">
+            <img src="/assets/img/draw-tool/polygon.svg" class="draw-icon-img"></a>
+          <a class="draw-tool-link" (click)="SetDrawingTool(9)" [ngClass]="{'active': activeDrawtool == 9}"
+            title="Freehand Polygon">
+            <i class="fa fa-cloud"></i>
+          </a>
+          <a class="draw-tool-link" (click)="SetDrawingTool(10)" [ngClass]="{'active': activeDrawtool == 10}"
+            title="Text"><i class="fa fa-font"></i></a>
+          <a class="draw-tool-link" (click)="SetDrawingTool(11)" [ngClass]="{'active': activeDrawtool == 11}"
+            title="Text"><i class="fa fa-arrow-left"></i></a>
+          <a class="draw-tool-link" (click)="SetDrawingTool(12)" [ngClass]="{'active': activeDrawtool == 12}"
+            title="Text"><i class="fa fa-arrow-right"></i></a>
+          <a class="draw-tool-link" (click)="SetDrawingTool(13)" [ngClass]="{'active': activeDrawtool == 13}"
+            title="Text"><i class="fa fa-arrow-up"></i></a>
+          <a class="draw-tool-link" (click)="SetDrawingTool(14)" [ngClass]="{'active': activeDrawtool == 14}"
+            title="Text"><i class="fa fa-arrow-down"></i></a>    
+        </ng-container>
+        <ng-container *ngIf="editItem">
+          <a *ngIf="activeDrawtool == 1" class="draw-tool-link active" title="Point"><i class="fa fa-map-marker"></i></a>
+          <a *ngIf="activeDrawtool == 2" class="draw-tool-link active" title="Line"><i class="fa fa-minus"></i></a>
+          <a *ngIf="activeDrawtool == 3" class="draw-tool-link active" title="Point"><img src="/assets/img/draw-tool/line.svg" class="draw-icon-img"></a>
+          <a *ngIf="activeDrawtool == 4" class="draw-tool-link active" title="Point"><i class="fa fa-lastfm"></i></a>
+          <a *ngIf="activeDrawtool == 5" class="draw-tool-link active" title="Point"><i class="fa fa-caret-up"></i> </a>
+          <a *ngIf="activeDrawtool == 6" class="draw-tool-link active" title="Extent"><i class="fa fa-square"></i></a>
+          <a *ngIf="activeDrawtool == 7" class="draw-tool-link active" title="Extent"><i class="fa fa-circle"></i></a>
+          <a *ngIf="activeDrawtool == 8" class="draw-tool-link active" title="Extent"><img src="/assets/img/draw-tool/polygon.svg" class="draw-icon-img"></a>
+          <a *ngIf="activeDrawtool == 9" class="draw-tool-link active" title="Extent"><i class="fa fa-cloud"></i></a>
+          <a *ngIf="activeDrawtool == 10" class="draw-tool-link active" title="Text"><i class="fa fa-font"></i></a>
+          <a *ngIf="activeDrawtool == 11" class="draw-tool-link active" title="Left"><i class="fa fa-arrow-left"></i></a>
+          <a *ngIf="activeDrawtool == 12" class="draw-tool-link active" title="Right"><i class="fa fa-arrow-right"></i></a>
+          <a *ngIf="activeDrawtool == 13" class="draw-tool-link active" title="Up"><i class="fa fa-arrow-up"></i></a>
+          <a *ngIf="activeDrawtool == 14" class="draw-tool-link active" title="Down"><i class="fa fa-arrow-down"></i></a>
+        </ng-container>
+      </div>
+    </div>
+    <ng-container *ngIf="activeDrawtool == 1">
+      <div class="icon-preview-block mt-2">
+        <p><b>Preview</b></p>
+        <img *ngIf="selectedIcon" class="Icon mt-1 ml-2" alt="preview-icon" [src]="selectedIcon" />
+      </div>
+      <p class="mb-0"><b>Select Symbol</b></p>
+      <div class="draw-tool-wrap border-wrap">
+        <a *ngFor='let imgicon of IconList;let i = index;' (click)="SelectIcon(i)" class="draw-tool-link"
+          [ngClass]="{'active': imgicon == selectedIcon}">
+          <div class="layerIconPreview"> <span>
+              <img class="Icon" alt="" [src]="imgicon" />
+            </span>
+          </div>
+        </a>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="activeDrawtool == 8">
+      <div class="icon-preview-block mt-2">
+        <p><b>Preview</b></p>
+        <img *ngIf="PolygonselectedIcon" class="Icon mt-1 ml-2" alt="preview-icon" [src]="PolygonselectedIcon" />
+      </div>
+      <p class="mb-0"><b>Select Symbol</b></p>
+      <div class="draw-tool-wrap border-wrap">
+        <a *ngFor='let imgicon of polygonStyleIcon;let i = index;' (click)="SelectPolygonIcon(i,imgicon)"
+          class="draw-tool-link" [ngClass]="{'active': imgicon.Icon == PolygonselectedIcon}">
+          <div class="layerIconPreview"> <span>
+              <img class="Icon" alt="" [src]="imgicon.Icon" />
+            </span>
+          </div>
+        </a>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="activeDrawtool == 9">
+      <div class="icon-preview-block mt-2">
+        <p><b>Preview</b></p>
+        <img *ngIf="FreehandPolygonselectedIcon" class="Icon mt-1 ml-2" alt="preview-icon"
+          [src]="FreehandPolygonselectedIcon" />
+      </div>
+      <!-- <p class="mb-0"><b>Select Symbol</b></p>
+      <div class="draw-tool-wrap border-wrap">
+        <a *ngFor='let imgicon of freehandpolygonStyleIcon;let i = index;'
+          (click)="SelectFreehandpolygonIcon(i,imgicon)" class="draw-tool-link"
+          [ngClass]="{'active': imgicon.Icon == FreehandPolygonselectedIcon}">
+          <div class="layerIconPreview"> <span>
+              <img class="Icon" alt="" [src]="imgicon.Icon" />
+            </span>
+          </div>
+        </a>
+      </div> -->
+    </ng-container>
+    <ng-container *ngIf="activeDrawtool == 2 || activeDrawtool == 3 || activeDrawtool == 4">
+      <div class="icon-preview-block mt-2">
+        <p><b>Preview</b></p>
+        <div class="line-preview-block ml-2"
+          [ngStyle]="{'height': LayerStyleVisibleList.Thickness / 10 + 'px', 'background-color': LayerStyleVisibleList.Color, 'opacity': 1 - (LayerStyleVisibleList.Transparency / 100) }">
+        </div>
+      </div>
+      <!-- <p class="mb-0"><b>Select Symbol</b></p>
+      <div class="draw-tool-wrap border-wrap">
+        <a *ngFor='let imgicon of freehandpolylineStyleIcon;let i = index;' (click)="SelectlineIcon(i,imgicon)"
+          class="draw-tool-link" [ngClass]="{'active': imgicon.Icon == FreehandPolyLineselectedIcon}">
+          <div class="layerIconPreview"> <span>
+              <div class="line-preview-block"
+                [ngStyle]="{'height': imgicon.Thickness / 10 + 'px', 'background-color': '#' + imgicon.Color, 'opacity': 1 - (imgicon.Transparency / 100) }">
+              </div>
+            </span>
+          </div>
+        </a>
+      </div> -->
+    </ng-container>
+    <ng-container *ngIf="activeDrawtool == 5">
+      <div class="icon-preview-block mt-2">
+        <p><b>Preview</b></p>
+        <img *ngIf="TriangleselectedIcon" class="Icon mt-1 ml-2" alt="preview-icon" [src]="TriangleselectedIcon" />
+      </div>
+      <!-- <p class="mb-0"><b>Select Symbol</b></p>
+      <div class="draw-tool-wrap border-wrap">
+        <a *ngFor='let imgicon of triangleStyleIcon;let i = index;' (click)="SelectTriangleIcon(i,imgicon)"
+          class="draw-tool-link" [ngClass]="{'active': imgicon.Icon == TriangleselectedIcon}">
+          <div class="layerIconPreview"> <span>
+              <img class="Icon" alt="" [src]="imgicon.Icon" />
+            </span>
+          </div>
+        </a>
+      </div> -->
+    </ng-container>
+    <ng-container *ngIf="activeDrawtool == 6">
+      <div class="icon-preview-block mt-2">
+        <p><b>Preview</b></p>
+        <img *ngIf="RectangleselectedIcon" class="Icon ml-2 mt-1" alt="" [src]="RectangleselectedIcon" />
+      </div>
+      <!-- <p class="mb-0"><b>Select Symbol</b></p>
+      <div class="draw-tool-wrap border-wrap">
+        <a *ngFor='let imgicon of rectangleStyleIcon;let i = index;' (click)="SelectRectangleIcon(i,imgicon)"
+          class="draw-tool-link" [ngClass]="{'active': imgicon.Icon == RectangleselectedIcon}">
+          <img class="Icon" alt="" [src]="imgicon.Icon" />
+        </a>
+      </div> -->
+    </ng-container>
+    <ng-container *ngIf="activeDrawtool == 7">
+      <div class="icon-preview-block mt-2">
+        <p><b>Preview</b></p>
+        <img *ngIf="CircleselectedIcon" class="Icon ml-2 mt-1" alt="" [src]="CircleselectedIcon" />
+      </div>
+      <!-- <p class="mb-0"><b>Select Symbol</b></p>
+      <div class="draw-tool-wrap border-wrap">
+        <a *ngFor='let imgicon of circleStyleIcon;let i = index;' (click)="SelectCircleIcon(i,imgicon)"
+          class="draw-tool-link" [ngClass]="{'active': imgicon.Icon == CircleselectedIcon}">
+          <img class="Icon" alt="" [src]="imgicon.Icon" />
+        </a>
+      </div> -->
+    </ng-container>
+    <ng-container *ngIf="activeDrawtool == 10">
+      <div class="icon-preview-block mt-2">
+        <p><b>Preview</b></p>
+        <span class="ml-2" [ngStyle]="{'font-size':LayerStyleVisibleList.labelSize ,'color': LayerStyleVisibleList.Color, 'opacity': 1 - (LayerStyleVisibleList.Transparency / 100) }">{{ textlabel }}</span>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="activeDrawtool == 11">
+      <div class="icon-preview-block mt-2">
+        <p><b>Preview</b></p>
+        <img *ngIf="LeftarrowselectedIcon" class="Icon mt-1 ml-2" alt="preview-icon" [src]="LeftarrowselectedIcon" />
+      </div>
+    </ng-container>
+    <ng-container *ngIf="activeDrawtool == 12">
+      <div class="icon-preview-block mt-2">
+        <p><b>Preview</b></p>
+        <img *ngIf="RighttarrowselectedIcon" class="Icon mt-1 ml-2" alt="preview-icon" [src]="RighttarrowselectedIcon" />
+      </div>
+    </ng-container>
+    <ng-container *ngIf="activeDrawtool == 13">
+      <div class="icon-preview-block mt-2">
+        <p><b>Preview</b></p>
+        <img *ngIf="UparrowselectedIcon" class="Icon mt-1 ml-2" alt="preview-icon" [src]="UparrowselectedIcon" />
+      </div>
+    </ng-container>
+    <ng-container *ngIf="activeDrawtool == 14">
+      <div class="icon-preview-block mt-2">
+        <p><b>Preview</b></p>
+        <img *ngIf="DownarrowselectedIcon" class="Icon mt-1 ml-2" alt="preview-icon" [src]="DownarrowselectedIcon" />
+      </div>
+    </ng-container>
+  </div>
+
+  <ng-container>
+    <div class="point-style-wrap mb-2 mt-2" *ngIf="activeDrawtool">
+      <div class="color-picker-wrap"
+        *ngIf="activeDrawtool != 2 && activeDrawtool != 4 && activeDrawtool != 3 && activeDrawtool != 10">
+        <div>
+          Border :
+        </div>
+        <div>
+          <input style="width:0px;padding: 0px;margin: 0px;border: none;" id="FillBorderlayer"
+            class="colorPicker evo-cp0" />
+        </div>
+      </div>
+      <div class="color-picker-wrap">
+        <div>
+          Color :
+        </div>
+        <div>
+          <input style="width:0px;padding: 0px;margin: 0px;border: none;" id="Fillcolorlayer"
+            class="colorPicker evo-cp0" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="point-style-wrap mb-2" *ngIf="activeDrawtool == 10">
+      <div>
+        <span>Label :</span>
+      </div>
+      <div>
+        <input type="text" class="form-control" name="label-text" placeholder="Label Text" [(ngModel)]="textlabel"
+          (ngModelChange)="setLabelOptions()" />
+      </div>
+    </div>
+
+    <div *ngIf="activeDrawtool == 1 || activeDrawtool == 10" class="point-style-wrap mb-2">
+      <div>
+        <span>Size :</span>
+      </div>
+      <div class="style-slider">
+        <pg-slider [(ngModel)]="LayerStyleVisibleList.Size" [DefaultValue]="0" [Min]="0" [Max]="100"
+          [Color]="'complete'" [Step]="5" (OnAfterChange)="LayerStyleChange()"></pg-slider>
+      </div>
+      <div class="percent-text">
+        {{LayerStyleVisibleList.Size}}<span> %</span>
+      </div>
+    </div>
+
+    <div class="point-style-wrap mb-2" *ngIf="activeDrawtool && activeDrawtool != 10">
+      <div>
+        <span>Thickness :</span>
+      </div>
+      <div class="style-slider">
+        <pg-slider [(ngModel)]="LayerStyleVisibleList.Thickness" [DefaultValue]="0" [Min]="0" [Max]="100"
+          [Color]="'complete'" [Step]="5" (OnAfterChange)="LayerStyleChange()"></pg-slider>
+      </div>
+      <div class="percent-text">
+        {{LayerStyleVisibleList.Thickness}}<span> %</span>
+      </div>
+    </div>
+
+    <div class="point-style-wrap" *ngIf="activeDrawtool">
+      <div>
+        <span>Transparency :</span>
+      </div>
+      <div class="style-slider">
+        <pg-slider [(ngModel)]="LayerStyleVisibleList.Transparency" [DefaultValue]="0" [Min]="0" [Max]="100"
+          [Color]="'complete'" [Step]="5" (OnAfterChange)="LayerStyleChange()"></pg-slider>
+
+      </div>
+      <div class="percent-text">
+        {{LayerStyleVisibleList.Transparency}}<span> %</span>
+      </div>
+    </div>
+    <div class="text-right mt-2"
+      *ngIf="!isEditDrawTool && drawingToolService.AllDrawingLayerList.getValue().length > 0">
+      <button (click)="UndoPoint()" class="btn btn-default">Undo</button>
+      <button (click)="ClearPoints()" class="btn btn-default ml-2">Clear</button>
+      <button (click)="SaveTools()" class="btn btn-primary ml-2">Save</button>
+    </div>
+    <span *ngIf="!textlabel && activeDrawtool == 10" class="text-danger"><b>TextLabel Is Required</b></span>
+    <div class="text-right mt-2" *ngIf="isEditDrawTool && (drawingToolService.AllEditedLayerList.getValue().length > 0 || drawingToolService.AllDrawingLayerList.getValue().length > 0)">
+      <button *ngIf="editItem" (click)="DeleteSelectedTool()" class="btn btn-default ml-2">Delete Item</button>
+      <button (click)="UpdateTools()" class="btn btn-primary ml-2">Update Layer</button>
+    </div>
+  </ng-container>

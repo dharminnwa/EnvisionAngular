@@ -1,0 +1,76 @@
+<div class="col-md-12">
+    <form id="horizontalForm" class="form-horizontal" role="form" autocomplete="off" #horizontalForm="ngForm">
+        <div class="form-group row" [class.has-error]="HorizontalFormFName.invalid && (HorizontalFormFName.dirty || HorizontalFormFName.touched)">
+            <label for="fname" class="col-md-3 control-label">Name:</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="fname" placeholder="Name" name="fname" [(ngModel)]="HorizontalFName"
+                    #HorizontalFormFName="ngModel" required>
+                <!---->
+                <div *ngIf="HorizontalFormFName.invalid && (HorizontalFormFName.dirty || HorizontalFormFName.touched)">
+                    <label *ngIf="HorizontalFormFName.errors.required" class="error">This field is required.</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Permissions:</label>
+            <div class="col-md-9">
+                <div class="checkbox check-success  ">
+                    <input type="checkbox" value="1" id="chkPermission1">
+                    <label for="chkPermission1">Envision</label>
+                </div>
+                <div class="checkbox check-success  ">
+                    <input type="checkbox" value="1" id="chkPermission2">
+                    <label for="chkPermission2">Export Grids and Images</label>
+                </div>
+                <div class="checkbox check-success  ">
+                    <input type="checkbox" value="1" id="chkPermission3">
+                    <label for="chkPermission3">Enable Upload Rights</label>
+                </div>
+                <div class="checkbox check-success  ">
+                    <input type="checkbox" value="1" id="chkPermission4">
+                    <label for="chkPermission4">Enable Shared Layers</label>
+                </div>
+                <div class="checkbox check-success  ">
+                    <input type="checkbox" value="1" id="chkPermission5">
+                    <label for="chkPermission5">Pipeline Wizard</label>
+                </div>
+                <div class="checkbox check-success  ">
+                    <input type="checkbox" value="1" id="chkPermission6">
+                    <label for="chkPermission6">Rail Wizard</label>
+                </div>
+                <div class="checkbox check-success  ">
+                    <input type="checkbox" value="1" id="chkPermission7">
+                    <label for="chkPermission7">Site Selection Wizard</label>
+                </div>
+                <p class="hint-text small">
+                    These checkboxes control which rights can be assigned by the Company Admin to Users.<br />
+                    User's effective permissions can be set in User Management window.
+                </p>
+            </div>
+        </div>
+        <div class="form-group row" [class.has-error]="HorizontalFormUserLimit.invalid && (HorizontalFormUserLimit.dirty || HorizontalFormUserLimit.touched)">
+            <label class="col-md-3 control-label">Active User Limit:</label>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" name="work" [(ngModel)]="HorizontalUserLimit"
+                            #HorizontalFormUserLimit="ngModel" required>
+                        <!---->
+                        <div *ngIf="HorizontalFormUserLimit.invalid && (HorizontalFormUserLimit.dirty || HorizontalFormUserLimit.touched)">
+                            <label *ngIf="HorizontalFormUserLimit.errors.required" class="error">This field is
+                                required.</label>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="hint-text small">Leave it empty to disable the limitation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="pull-right p-t-10">
+        <button type="button" class="btn btn-primary">Delete</button>
+        <button type="button" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Cancel</button>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="modal-header custom-header">
+  <span class="m-1 bold">Legend</span>
+  <button type="button" id="btnRevGeoClose" class="close p-0 ClosePopupmodal" aria-label="Close"
+    (click)="CloseShowLegend()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row" *ngFor="let lg of legendList">
+
+    <div *ngIf="lg.IconUrl.includes('EnvisionAngularUsersIcon')== true" class="col-md-12">
+      <img src="{{lg.IconUrl}}" style="width: 20px;" />
+      <span>{{lg.layerDisplayName?(lg.layerDisplayName):(lg.Name)}}</span>
+    </div>
+
+    <div *ngIf="lg.IconUrl.includes('EnvisionAngularUsersIcon')== false" class="col-md-12">
+      <img src="{{lg.IconUrl}}" />
+      <span>{{lg.layerDisplayName?(lg.layerDisplayName):(lg.Name)}}</span>
+    </div>
+  </div>
+  <div class="row" *ngFor="let lg of pvtLegendList">
+    <div *ngIf="lg.IconUrl.includes('EnvisionAngularUsersIcon')== true" class="col-md-12">
+      <img src="{{lg.IconUrl}}" style="width: 20px;" />
+      <span>{{lg.layerDisplayName?(lg.layerDisplayName):(lg.Name)}}</span>
+    </div>
+    <div *ngIf="lg.IconUrl.includes('EnvisionAngularUsersIcon')== false" class="col-md-12">
+      <img src="{{lg.IconUrl}}" />
+      <span>{{lg.layerDisplayName?(lg.layerDisplayName):(lg.Name)}}</span>
+    </div>
+  </div>
+  <div class="row" *ngFor="let lg of srdLegendList">
+    <div *ngIf="lg.IconUrl.includes('EnvisionAngularUsersIcon')== true" class="col-md-12">
+      <img src="{{lg.IconUrl}}" style="width: 20px;" />
+      <span>{{lg.layerDisplayName?(lg.layerDisplayName):(lg.Name)}}</span>
+    </div>
+    <div *ngIf="lg.IconUrl.includes('EnvisionAngularUsersIcon')== false" class="col-md-12">
+      <img src="{{lg.IconUrl}}" />
+      <span>{{lg.layerDisplayName?(lg.layerDisplayName):(lg.Name)}}</span>
+    </div>
+  </div>
+  <div class="row" *ngFor="let lg of tempLegendList">
+    <div *ngIf="lg.IconUrl.includes('EnvisionAngularUsersIcon')== true" class="col-md-12">
+      <img src="{{lg.IconUrl}}" style="width: 20px;" />
+      <span>{{lg.layerDisplayName?(lg.layerDisplayName):(lg.Name)}}</span>
+    </div>
+    <div *ngIf="lg.IconUrl.includes('EnvisionAngularUsersIcon')== false" class="col-md-12">
+      <img src="{{lg.IconUrl}}" />
+      <span>{{lg.layerDisplayName?(lg.layerDisplayName):(lg.Name)}}</span>
+    </div>
+  </div>
+</div>

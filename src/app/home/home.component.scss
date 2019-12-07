@@ -1,0 +1,222 @@
+#btnAdd{
+    border: 1px white solid;background:transparent;
+    padding: 2px 5px;
+    float: right !important;
+}
+#btnAdd .fa{
+    font-size: 16px;
+    color: white !important;
+}
+
+
+.sortable-placeholder {
+    margin-left: 0 !important;
+    border: 1px solid #ccc;
+    background-color: yellow;
+    -webkit-box-shadow: 0px 0px 10px #888;
+    -moz-box-shadow: 0px 0px 10px #888;
+    box-shadow: 0px 0px 10px #888;
+}
+
+
+#draggablePanelList .panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    -webkit-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+    font-size: 12px;
+}
+
+.panel-default {
+    border-color: transparent !important;
+}
+
+.panel-default>.panel-heading {
+    background-image: linear-gradient(to bottom,#f5f5f5 0,#dfe9f5 100%) !important;
+    background-repeat: repeat-x !important;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border: 1px rgb(119, 171, 192) solid !important;
+    border-bottom: none !important;
+    padding: 5px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.panel-default .panel-body{
+    min-height:45vh;
+    max-height:45vh;
+    overflow: auto;
+    border: 0.5px rgb(119, 171, 192) solid;
+    border-top: none;
+    -webkit-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+}
+
+.panel-heading .fa{
+    float: right;
+    cursor: pointer;
+}
+
+
+#tabContent{
+    max-height: 84vh;
+    overflow: auto;
+}
+#restoredPanel{
+    min-height: 150vh;
+    -webkit-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+}
+#restoredPanel .panel-body{
+    min-height: 205vh;
+    -webkit-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+}
+
+#draggablePanelList .col-md-4{
+    padding: 2px 5px ;
+}
+#draggablePanelList .panel .panel-heading{
+    cursor:move;
+}
+
+
+.modal-backdrop{
+    opacity:0.5 !important ;
+}
+.modal .close{
+    right: 0px;
+    top: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+.modal-header{
+    padding: 5px !important;
+}
+
+.dropup .dropdown-menu {
+    transform: none!important;
+}
+.modal-body{
+    min-height: 250px;
+}
+.btnWidget .dropdown-menu {
+    transform: translateY(120px) !important;
+    min-width: 600px !important;
+    width: 600px !important;
+    font-size:11px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+.btnWidget .dropdown-menu li{
+    min-height:150px;
+    height:150px;
+    max-height:150px;
+    cursor: pointer;
+}
+
+.btnWidget .dropdown-menu li .dropdown-item {
+    font-size: 11px;
+    white-space: normal;
+    padding: 10px 5px 5px 5px;
+}
+.btnWidget .dropdown-menu li .dropdown-item:hover {
+    background: #cce4ff;
+}
+
+.dropdown-item .card {
+    font-size:8px;
+    height: 100%;
+    width:100%;
+}
+
+.btnWidget , .btn-group .dropdown-toggle{
+    width:100% !important;
+    padding: 5px 0px;
+}
+.btnWidget .dropdown-toggle{
+    width:100% !important;
+    font-size:12px;
+}
+.btnWidget .dropdown-toggle .card{
+    margin-bottom: 0px;
+}
+.card .card-body{
+    padding: 15px;
+    min-height: 100px;
+}
+
+#draggablePanelList .panel-default .panel-body{
+    padding: 5px;
+    overflow: hidden;
+}
+#draggablePanelList .panel-default .panel-body p{
+    font-size: 12px;
+}
+.panel-body ul li a {
+    padding:3px;
+    text-transform: none;
+    color: black !important;
+}
+.nav li a {
+    padding: 5px;
+}
+
+.btn{
+    padding: 2px !important;
+}
+.nav-tabs>li.active{
+    color: black;
+}
+
+.btnDropdown ,.chkGroup{
+    margin-top:5px;
+    margin-left:30px;
+    width: 120px;
+}    
+.btnDropdown .btnName{
+    width:80%;
+}
+.btnDropdown .btnSign{
+    width:20%;
+}
+
+.tab-content,.btnName,.dropdown-toggle-split , .dropdown-menu{
+    font-size: 12px !important;
+}
+
+.dropdown-menu > .dropdown-item:first-child{
+    padding-top: 0px;
+}
+
+.dropdown-menu > .dropdown-item{
+    padding: 0px 10px;
+    line-height: 20px;
+}
+
+.btn-default{
+    font-size: 12px !important;
+    background-image: linear-gradient(#fff, #dfdddd) !important;
+    border: solid 0.5px gray;
+}
+#btnSearch {
+    padding: 8px 15px !important;
+}
+.bottomContent {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    text-align: right
+}
+#btnfilter {
+    font-size: 10px !important;
+    padding: 2px;
+}
+
+.radioPad{
+    margin-left: 17px !important;
+}

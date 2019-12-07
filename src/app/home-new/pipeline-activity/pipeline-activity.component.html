@@ -1,0 +1,18 @@
+<pgcard Refresh="false">
+  <ng-template #CardTitle>Pipeline Activity Report</ng-template>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-transparent">
+        <!-- <div class="cardheader"> -->
+        <h6 class="widgetLabel">Most Recent Pipeline Activity Report (PAR)</h6>
+        <!-- </div> -->
+        <div class="cardContent">
+          <div class="row" *ngFor="let item of plActivities;">
+            <img src="../assets/img/PDF.png" class="imgFile">
+            <a href="{{item.link}}" target="_blank">{{item.title}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</pgcard>

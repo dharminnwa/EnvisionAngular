@@ -1,0 +1,67 @@
+<div class="modal-header custom-header">
+  <h6 class="m-2 semi-bold">Map Image Preview</h6>
+  <button type="button" id="btnSaveLocClose" class="close p-0 ClosePopupmodal" aria-label="Close"
+    (click)="closeModel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body p-3">
+  <div class="row">
+    <div class="col-md-12 m-0 p-4">
+      <div *ngIf="PipelineLoader==true" class="loader" id="LayerLibraryLoader"
+        style="position: absolute;top: 50%;z-index: 10;left: 40%;">
+        <img id="loading-image" [src]="ImageURLPath + 'LayerLibraryLoader.gif'" alt="Loading..." height="20"
+          width="100"><br>
+      </div>
+      <!-- <div *ngIf="ImageSRc"> -->
+      <img id="imgPreview" [src]="ImageURLPath + 'publicMaps.png'" class="img-thumbnail"
+        style="width:100%; height: 100% !important;display: none " />
+      <!-- </div> -->
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-12 pl-4 pr-4">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <input type="text" id="txtFilename" class="form-control" placeholder="File Name" [(ngModel)]="SaveFileName">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <pg-select style="width: 100%;" [(ngModel)]="selectedImageOption" [PlaceHolder]="'Select Option'"
+            name="company">
+            <pg-option *ngFor="let option of ImageOptions" [Label]="option.label" [Value]="option"
+              [Disabled]="option.disabled">
+            </pg-option>
+          </pg-select>
+
+          <!-- <select id="dropdownImageformatselect" class="form-control SelectProperty" style="width:100%;font-size: 11.5px;">
+            <option selected value="png">PNG Files (*.png)</option>
+            <option value="jpg">JPG Files (*.jpg)</option>
+            <option value="bmp">BMP Files (*.bmp)</option>
+            <option value="pdf">PDF Files (*.pdf)</option>
+          </select> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-6">
+          <!-- <span >Pixels (width x height): 1598 x 706</span> -->
+        </div>
+        <div class="col-md-6">
+          <div class="pull-right">
+            <button type="button" class="btn btn-sm btn-primary" id="_btnSaveFile" (click)="SaveFile()"
+              disabled=true>Save</button>
+            <button type="button" class="btn btn-sm btn-primary" hidden>Open in Editor</button>
+            <button type="button" class="btn btn-sm btn-default" (click)="closeModel()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

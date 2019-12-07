@@ -1,0 +1,32 @@
+<div class="modal-header p-0 custom-header">
+    <h4 class="modal-title pl-1 custom-title">Change username/email</h4>
+    <button type="button" id="btnChangeUsernameClose" class="close p-0 ClosePopupmodal" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body custom-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form id="horizontalForm" class="form-horizontal" role="form" autocomplete="off" #horizontalForm="ngForm">
+                    <div class="form-group row" [class.has-error]="HorizontalFormUserName.invalid && (HorizontalFormUserName.dirty || HorizontalFormUserName.touched)">
+                        <!-- <label for="fname" class="col-md-3 control-label">User Name (E-mail):</label> -->
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" id="fname" placeholder="User Name/E-mail" name="fname"
+                                [(ngModel)]="HorizontalUserName" #HorizontalFormUserName="ngModel" required>
+                            <!---->
+                            <div *ngIf="HorizontalFormUserName.invalid && (HorizontalFormUserName.dirty || HorizontalFormUserName.touched)">
+                                <label *ngIf="HorizontalFormUserName.errors.required" class="error">This field is
+                                    required.</label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Close</button>
+</div>

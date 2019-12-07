@@ -1,0 +1,29 @@
+.modal-header {
+    background-color: white;
+    z-index: 999;
+}
+/deep/ #LegendModal{
+    /deep/ .modal-content{
+        height: 140px;
+        display: flow-root;
+    }
+
+    /deep/ .ui-resizable-e {
+        right: 0;
+    }
+
+    /deep/ .ui-resizable-s {
+        bottom: 0;
+    }
+
+    /deep/ .ui-resizable-se {
+        right: 0px;
+        bottom: 0px;
+    }
+}
+
+.modal-body { 
+    padding-bottom: 10px;
+    overflow: auto;
+    height: calc(100% - 30px);
+}

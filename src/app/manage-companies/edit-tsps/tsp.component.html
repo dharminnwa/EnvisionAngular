@@ -1,0 +1,54 @@
+<div class="modal-header p-0 custom-header">
+    <h4 class="modal-title pl-1 custom-title">Edit TSPs</h4>
+    <button type="button" id="btnEditTspClose" class="close p-0 ClosePopupmodal" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body container">
+    <div class="row m-t-20">
+        <div class="col-md-6">
+            <div class="picklist-firstlist-Header">
+                <div class="pick-list-custom-title">Available TSPs</div>
+                <div class="checkbox check-success">
+                    <input type="checkbox" id="chkFirstListSelectAll" (change)="SourceListSelectAllChange($event)"
+                        [(ngModel)]="isSourceListSelectAll">
+                    <label for=chkFirstListSelectAll>Select All</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="picklist-secondlist-Header">
+                <div class="pick-list-custom-title">Company has access to these TSPs</div>
+                <div class="checkbox check-success">
+                    <input type="checkbox" id="chkSecondListSelectAll" (change)="TargetListSelectAllChange($event)"
+                        [(ngModel)]="isTargetListSelectAll">
+                    <label for=chkSecondListSelectAll>Select All</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row m-t-20">
+        <div class="col-md-12">
+            <p-pickList [source]="sourceCars" [target]="targetCars" [responsive]="true" [sourceStyle]="{'height':'300px'}"
+                (onMoveToTarget)="OnMoveToTarget($event)" (onMoveToSource)="OnMoveToSource($event)"
+                [targetStyle]="{'height':'300px'}">
+                <ng-template let-car pTemplate="item">
+                    <!--(onTargetSelect)="OnTargetSelect($event)" (onSourceSelect)="OnSourceSelect($event)"-->
+                    <div class="ui-helper-clearfix">
+                        <div class="checkbox check-success  ">
+                            <input type="checkbox" id={{car.id}}listvalue [checked]=car.isChecked (change)="checked(car,car.isChecked)">
+                            <!--(change)="checked(car,car.isChecked)"-->
+                            <label for={{car.id}}listvalue>{{car.name}}</label>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-pickList>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="pull-right p-t-10">
+        <button type="button" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Cancel</button>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+<div class="login-wrapper ">
+	<!-- START Login Background Pic Wrapper-->
+	<div class="bg-pic">
+		<!-- START Background Pic-->
+		<!-- <img src="assets/img/envision/login-bg.png" pgRetina src1x="assets/img/envision/login-bg.png"
+		 src2x="assets/img/envision/login-bg.png" alt="ENvision" class="lazy"> -->
+		<!-- END Background Pic-->
+		<!-- START Background Caption-->
+		<div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
+			<h2 class="semi-bold text-white">
+				ENvision</h2>
+
+			<p class="small">
+				© {{currentYear}} Endeavor Business Media, LLC.<br /> All rights reserved. 800.823.MAPS | <a
+					href="mailto:help@mapsearch.com">help@mapsearch.com</a>
+			</p>
+		</div>
+		<!-- END Background Caption-->
+	</div>
+	<!-- END Login Background Pic Wrapper-->
+	<!-- START Login Right Container-->
+	<div class="login-container">
+		<div class="p-l-50 p-r-50 p-t-50 p-b-50 sm-p-l-15 sm-p-r-15 sm-p-t-15 bg-white">
+			<!-- START Login Form -->
+			<form role="form" #loginForm="ngForm" (submit)="UserLogIn()">
+				<!-- START Form Control-->
+				<div>
+					<label *ngIf="Invalid" class="error">{{errorMsg}}</label>
+				</div>
+				<div pgFormGroupDefault class="form-group form-group-default"
+					[class.has-error]="loginUserName.invalid && (loginUserName.dirty || loginUserName.touched)">
+					<label>UserName</label>
+					<input type="text" id="userName" name="userName" [(ngModel)]="userName" #loginUserName="ngModel"
+						required class="form-control">
+				</div>
+				<div *ngIf="loginUserName.invalid && (loginUserName.dirty || loginUserName.touched)">
+					<label *ngIf="loginUserName.errors.required" class="error">UserName is required.</label>
+				</div>
+				<!-- END Form Control-->
+				<!-- START Form Control-->
+				<div pgFormGroupDefault class="form-group form-group-default"
+					[class.has-error]="loginPassword.invalid && (loginPassword.dirty || loginPassword.touched)">
+					<label>Password</label>
+					<input type="password" class="form-control" id="password" name="password" [(ngModel)]="password"
+						#loginPassword="ngModel" required>
+				</div>
+				<div *ngIf="loginPassword.invalid && (loginPassword.dirty || loginPassword.touched)">
+					<label *ngIf="loginPassword.errors.required" class="error">Password is required.</label>
+				</div>
+				<!-- START Form Control-->
+				<div class="row">
+					<div class="col-md-6 no-padding sm-p-l-10">
+						<div class="checkbox  check-primary">
+							<input type="checkbox" id="rememberMe" name="rememberMe" [(ngModel)]="KeepmeLogin">
+							<label for="rememberMe">Remember Me</label>
+						</div>
+					</div>
+					<!-- <div class="col-md-6 d-flex align-items-center justify-content-end">
+						<a href="javascript:void(0)" class="text-info small">Help? Contact Support</a>
+					</div> -->
+				</div>
+				<!-- END Form Control-->
+				<!-- [class.disabled]="" -->
+				<div class="login-bottom-wrap">
+					<button class="btn btn-primary btn-cons" type="submit" [disabled]="loginForm.invalid">SIGN
+						IN</button>
+					<a href="http://energymapit.com/en/Authentication/ForgotPassword.aspx" target="_blank"
+						class="forget-password-link">Forgot Password</a>
+				</div>
+			</form>
+			<!--END Login Form-->
+			<div class="pull-bottom sm-pull-bottom">
+				<div class="m-b-30 p-r-80 sm-m-t-20 sm-p-r-15 sm-p-b-20 clearfix">
+					<div class="col-sm-3 col-md-2 no-padding">
+						<!-- <img alt="" class="m-t-5" pgRetina src1x="assets/img/demo/pages_icon.png"
+						     src2x="assets/img/demo/pages_icon_2x.png" height="60"
+						     src="assets/img/demo/pages_icon.png" width="60"> -->
+					</div>
+					<div class="col-sm-9 no-padding m-t-10">
+						<!-- <p>
+							<small>
+							
+							</small>
+						</p> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Login Right Container-->
+</div>

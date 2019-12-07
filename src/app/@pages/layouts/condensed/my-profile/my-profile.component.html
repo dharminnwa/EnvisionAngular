@@ -1,0 +1,119 @@
+<div class="modal-header custom-header">
+  <h6 class="m-2 semi-bold">User Profile</h6>
+  <button type="button" id="btnCartoClose" class="close p-0 ClosePopupmodal" aria-label="Close"
+    (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body p-0" style="border-top:0.5px solid lightgray">
+  <div class="card card-transparent p-0 pt-2 Myprofile">
+    <pg-tabset tabAnimation="slide-left" Type="fillup" extraTabContentClass="bg-white p-0">
+      <pg-tab>
+        <ng-template #TabHeading>
+          <div id="tabUserDetails" class="font-montserrat bold all-caps TabHadingFont">User Details
+          </div>
+        </ng-template>
+        <div class="col-md-12">
+          <div class="row p-3">
+            <div class="col-md-3 text-right">
+              <span class="align-middle"> User Name :</span>
+            </div>
+            <div class="col-md-6 p-0">
+              <input type="text" [(ngModel)]="UserName" style="color: gray;" id="txtMyprofileUserName"
+                class="form-control" placeholder="User Name" disabled></div>
+          </div>
+          <div class="row p-3">
+            <div class="col-md-3 text-right">
+              <span class="align-middle">Display Name :</span>
+            </div>
+            <div class="col-md-6 p-0">
+              <input type="text" [(ngModel)]="DisplayName" style="color: gray;" id="txtMyprofileDisplayName"
+                class="form-control" placeholder="Display Name" disabled>
+            </div>
+          </div>
+          <div class="row p-3">
+            <div class="col-md-3 text-right">
+              <span class="align-middle">E-Mail Address :</span>
+            </div>
+            <div class="col-md-6 p-0">
+              <input type="text" [(ngModel)]="EmailAddress" style="color: gray;" id="txtMyprofileEMailAddress"
+                class="form-control" placeholder="E-Mail Address" disabled></div>
+          </div>
+        </div>
+        <div class="modal-footer" style="border-top:0.5px solid lightgray">
+          <div class="row pt-3">
+            <div class="col-md-12 text-right">
+              <button type="button" class="btn btn-default" (click)="close()">Close</button>
+            </div>
+          </div>
+        </div>
+      </pg-tab>
+      <pg-tab>
+        <ng-template #TabHeading>
+          <div id="tabMapsettings" class="font-montserrat bold all-caps TabHadingFont">Map Settings
+          </div>
+        </ng-template>
+        <div class="col-md-12">
+          <app-basemap [hideSomePart]="false"></app-basemap>
+        </div>
+        <div class="modal-footer" style="border-top:0.5px solid lightgray">
+          <div class="row pt-3">
+            <div class="col-md-12 text-right">
+              <button type="button" class="btn btn-primary" (click)="Saveclick(TabEnum.Mapsettings)">Save</button>
+              <button type="button" class="btn btn-default" (click)="close()">Close</button>
+            </div>
+          </div>
+        </div>
+      </pg-tab>
+      <pg-tab>
+        <ng-template #TabHeading>
+          <div id="tabChangepassword" class="font-montserrat bold all-caps TabHadingFont">Change
+            Password</div>
+        </ng-template>
+        <div class="col-md-12">
+          <div class="row p-3">
+            <div class="col-md-4 text-right">
+              <span class="align-middle"> Old Password :</span>
+            </div>
+            <div class="col-md-6 p-0">
+              <input type="password" [(ngModel)]="OldPassword" style="color: gray;" id="txtMyprooldpassword"
+                class="form-control" placeholder="Old Password" maxlength="50"></div>
+          </div>
+          <div class="row p-3">
+            <div class="col-md-4 text-right">
+              <span class="align-middle">New Password :</span>
+            </div>
+            <div class="col-md-6 p-0">
+              <input type="password" [(ngModel)]="NewPassword" style="color: gray;" id="txtMyprofileNewPassword"
+                class="form-control" placeholder="New Password" maxlength="50">
+            </div>
+          </div>
+          <div class="row p-3">
+            <div class="col-md-4 text-right">
+              <span class="align-middle">Confirm New Password :</span>
+            </div>
+            <div class="col-md-6 p-0">
+              <input type="password" [(ngModel)]="ConfirmNewPassword" style="color: gray;"
+                id="txtMyprofileConfirmNewPassword" class="form-control" placeholder="Confirm New Password"
+                maxlength="50"></div>
+          </div>
+        </div>
+        <div style="color:red;text-align: center;">{{ValidationError}}</div>
+        <div style="color: green;text-align:center;">{{IsChangepwdSuccessfulmsg}}</div>
+        <div class="modal-footer" style="border-top:0.5px solid lightgray">
+          <div class="row pt-3">
+            <diV class="col-md-8 p-0 m-0  text-left">
+              {{ChangePwdnote}}
+            </diV>
+            <div class="col-md-4">
+              <button type="button" class="btn btn-primary"
+                [disabled]="(!(OldPassword && ConfirmNewPassword && NewPassword) || !(NewPassword === ConfirmNewPassword))"
+                (click)="Saveclick(TabEnum.ChangePassword)">Save</button>
+              <button type="button" class="btn btn-default" (click)="close()">Close</button>
+            </div>
+          </div>
+        </div>
+      </pg-tab>
+    </pg-tabset>
+  </div>
+</div>

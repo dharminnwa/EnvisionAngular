@@ -1,0 +1,108 @@
+<div class="modal-header p-1 clearfix text-left">
+  <h6 class="m-2 semi-bold">Site Selection Wizard</h6>
+  <button type="button" id="siteSelectionClose" class="close pull-right p-2 ClosePopupmodal" aria-label="Close"
+    (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <button type="button" class="close pull-right p-2 ClosePopupmodal" style="right: 58px;" aria-label="Close"
+    (click)="ToggleMinimize()">
+    <span *ngIf="!isMinimizedTool" aria-hidden="true">&minus;</span>
+    <span *ngIf="isMinimizedTool" aria-hidden="true">+</span>
+  </button>
+</div>
+
+<div *ngIf="!isMinimizedTool" class="modal-body p-2" style="min-height:250px">
+  <form [formGroup]="siteSelectionForm">
+    <div class="row m-0">
+      <div class="col-md-6 p-1">
+        <ng-multiselect-dropdown id="ddState" formControlName="ddlState" [placeholder]="'State'" [data]="States"
+          [(ngModel)]="selectedState" [settings]="ddSettingsSingle" (onSelect)="onStateChange()"
+          (onDeSelect)="onStateChange()">
+        </ng-multiselect-dropdown>
+      </div>
+
+      <div class="col-md-6 p-1">
+        <ng-multiselect-dropdown id="ddSiteCounty" formControlName="ddlCounty" [placeholder]="'County'"
+          [data]="Counties" [(ngModel)]="selectedCounty" [settings]="ddSettingsSingle"
+          (onSelect)="onCountryChange(false)" (onDeSelect)="onCountryChange(false)" [disabled]="isDisabledSiteCounty">
+        </ng-multiselect-dropdown>
+      </div>
+
+      <div class="col-md-6 p-1">
+        <div class="form-group form-group-default">
+          <label>Size of property (acres) </label>
+          <input type="text" [(ngModel)]="sizeOfPropertyFrom" formControlName="txtSizeOfPropertyFrom"
+            style="width:100px" /> to <input type="text" style="width:100px" [(ngModel)]="sizeOfPropertyTo"
+            formControlName="txtSizeOfPropertyTo" />
+          <div *ngIf="siteSelection.txtSizeOfPropertyFrom.touched && siteSelection.txtSizeOfPropertyFrom.errors"
+            class="invalid-feedback">
+            <div *ngIf="siteSelection.txtSizeOfPropertyFrom.errors.required">Size of property from is required.
+            </div>
+            <div *ngIf="siteSelection.txtSizeOfPropertyFrom.errors.pattern">Size of property from accept numbers and
+              decimals only.
+            </div>
+          </div>
+          <div *ngIf="siteSelection.txtSizeOfPropertyTo.touched && siteSelection.txtSizeOfPropertyTo.errors"
+            class="invalid-feedback">
+            <div *ngIf="siteSelection.txtSizeOfPropertyTo.errors.required">Size of property to is required.
+            </div>
+            <div *ngIf="siteSelection.txtSizeOfPropertyTo.errors.pattern">Size of property to accept numbers and
+              decimals only.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 p-1">
+        <ng-multiselect-dropdown id="ddSiteProperty" formControlName="ddlProperty" [placeholder]="'Property Type'"
+          [data]="PropertyTypes" [(ngModel)]="selectedProperties" [settings]="ddSettingsMulty"
+          (onSelect)="onPropertyChange()" (onDeSelect)="onPropertyChange()" (onSelectAll)="onPropertyAllChange($event)"
+          (onDeSelectAll)="onPropertyAllChange($event)" [disabled]="isDisabledSiteProperty">
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+  </form>
+  <div class="col-md-12 p-1">
+    <div class="form-group form-group-default">
+      <div class="layers-wrap">
+        <div class="checkbox check-success">
+          <input type="checkbox" id="transmission" class="checkbox-input" [checked]="isTransmissonLines"
+            (change)="chkTransmissionChange()">
+          <label for="transmission">Distance to transmission Lines(miles)</label>
+        </div>
+        <select class="miles-select ml-3" [(ngModel)]="transmissionMiles" name="transmission-kv">
+          <option *ngFor="let option of milesOptions" [ngValue]="option">{{ option }}</option>
+        </select>
+      </div>
+      <div class="ml-4">
+        <div *ngFor="let line of chkTransmissionLines" class="checkbox check-success">
+          <input type="checkbox" id="{{line.value}}" class="checkbox-input" [checked]="line.isChecked"
+            (change)="chkChildOptChange(line)">
+          <label for="{{line.value}}" class="checkbox-label">
+            {{line.name}}</label> </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 p-1">
+    <div class="form-group form-group-default">
+      <div class="layers-wrap">
+        <div class="checkbox check-success">
+          <input type="checkbox" id="substation" class="checkbox-input" [checked]="isSubstations"
+            (change)="isSubstations = !isSubstations">
+          <label for="substation">Distance to Substations(miles)</label>
+        </div>
+        <select class="miles-select ml-3" [(ngModel)]="substationMiles" name="substations-miles">
+          <option *ngFor="let option of milesOptions" [ngValue]="option">{{ option }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 p-1">
+    <div *ngIf="msgPointLayerCount"><b>{{msgPointLayerCount}}</b></div>
+    <div *ngIf="msgBoundriesLayerCount"><b>{{msgBoundriesLayerCount}}</b></div>
+  </div>
+  <div class="col-md-12 p-1 text-right">
+    <button type="button" class="btn btn-primary" [disabled]="DisableSearch()" (click)="CreateLayer()">Search</button>
+    <button type="button" class="btn btn-default" (click)="ClearToolsData()">Clear</button>
+  </div>
+</div>

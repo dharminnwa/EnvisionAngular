@@ -1,0 +1,798 @@
+<!-- WRAP LAYOUT IF BOXED -->
+<div class="container" *ngIf="_boxed; else basicLayoutBlock">
+    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+</div>
+<ng-template #basicLayoutBlock>
+    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+</ng-template>
+
+<!-- YOUR LAYOUT CONTENT GOES INSIDE HERE -->
+<ng-template #contentTpl>
+
+    <!-- PAGE SIDEBAR -->
+    <pg-sidebar id="SidebarTree" [ngClass]="router?.url?.includes('maps')?'d-block':'d-none'">
+        <ng-template #sideBarHeader>
+            <div class="sidebar-header-controls" style="margin-left: 100px">
+                <!-- <button type="button" class="btn btn-link d-lg-inline-block d-xlg-inline-block d-md-inline-block d-sm-none d-none"
+                    data-toggle-pin="sidebar" (click)="toggleMenuPin()" id="toggleMenuPin"><i class="fa fa-bars"></i>
+                </button> -->
+            </div>
+        </ng-template>
+
+        <ng-template #menuItems>
+            <!-- <pg-menu-items [Items]="menuLinks">
+			</pg-menu-items> -->
+            <div>
+                <!-- <div style="position: relative; overflow: hidden; height: 400px; width: 400px;">Test Test</div> -->
+                <tree-root id="_treeroot" #tree [nodes]="nodes" [options]="options" (select)="onSelect($event)"
+                    (deselect)="onDeselect($event)">
+                    <ng-template #treeNodeTemplate let-node let-index="index">
+                        <input *ngIf="!node.data.children" class="CheckboxStatus"
+                            id="{{node.data.Id}}LoadlayerinTreeData" (change)="checked(node, !node.data.IsChecked)"
+                            type="checkbox" [indeterminate]="node.data.indeterminate" [checked]=!node.data.IsChecked
+                            style="margin-right: 5px;margin-top: 3px">
+                        <!-- <img *ngIf="!node.data.children" class="ImagStatus" src={{node.data.IconUrl}} width="20" height="20" (click)="Onimgclick(node.data.Id)">&nbsp;&nbsp;&nbsp; -->
+                        <!-- <div *ngIf="!node.data.children &&  node.data.IconUrl.includes('http://energymapit.com/en/Handlers/IconImage.ashx')== false"
+                            class="ImagStatus" (click)="Onimgclick(node.data.Id,node.data,node)" role="presentation"
+                            [ngStyle]="{'background-image': 'url(' + node.data.IconUrl + ')','background-position': 'center center', 'background-size': 'auto', 'background-repeat': 'no-repeat', 'line-height': '32px', 'width': '32px'}"></div> -->
+                        <div
+                            *ngIf="!node.data.children &&  (node.data.IconUrl.includes('http://energymapit.com/en/Handlers/IconImage.ashx')== false && node.data.IconUrl.includes(ImageURLPath)== false)">
+                            <div class="ImagStatus" role="presentation">
+                                <img class="mr-2" id="{{node.data.Id}}defaultIcon"
+                                    (click)="Onimgclick(node.data.Id,node.data,node)" alt="" src="{{node.data.IconUrl}}"
+                                    style=" margin-right: 5px; " />
+                            </div>
+                        </div>
+                        <div
+                            *ngIf="!node.data.children &&  node.data.IconUrl.includes('http://energymapit.com/en/Handlers/IconImage.ashx')== true">
+                            <div class="ImagStatus" role="presentation">
+                                <img lass="mr-2" id="{{node.data.Id}}TreeCostomelayerIconImage"
+                                    (click)="Onimgclick(node.data.Id,node.data,node)" alt="" src="{{node.data.IconUrl}}"
+                                    [ngStyle]="{'width':'30px','Opacity': '1','filter':'alpha(opacity=100)','margin-right':'5px'}" />
+                            </div>
+                        </div>
+                        <div *ngIf="!node.data.children &&  node.data.IconUrl.includes(ImageURLPath)== true">
+                            <div class="ImagStatus" role="presentation">
+                                <img class="mr-2" id="{{node.data.Id}}TreeCostomelayerIconImage"
+                                    (click)="Onimgclick(node.data.Id,node.data,node)" alt="" src="{{node.data.IconUrl}}"
+                                    [ngStyle]="{'width':'30px','Opacity': '1','filter':'alpha(opacity=100)','margin-right':'5px'}" />
+                            </div>
+                        </div>
+                        <pre><span style="line-height:20px;vertical-align:top;color: white"  (click)="Onimgclick(node.data.Id,node.data,node)">{{ node.data.Name }}</span></pre>
+                        &nbsp;
+                        <div *ngIf="node.data.activeCount!=undefined">
+                            <pre><span style="line-height:20px;color: white">({{ node.data.activeCount }})</span></pre>
+                        </div>
+                        <img *ngIf="!node.data.children" class="ImgCloseStatus" id="{{node.data.Id}}RemoveTreeData"
+                            class="treeCloseEvent" [src]="ImageURLPath + 'close.png'"
+                            (click)="Onimgcloseclick(node, node.data.IsChecked,node.data.Id)">
+
+                    </ng-template>
+                </tree-root>
+            </div>
+
+        </ng-template>
+        <ng-template #privateMenuItems>
+            <!-- <pg-menu-items [Items]="menuLinks">
+			</pg-menu-items> -->
+            <div>
+                <!-- <div style="position: relative; overflow: hidden; height: 400px; width: 400px;">Test Test</div> -->
+                <tree-root id="_privatetreeroot" #privatetree [nodes]="privateNodes" [options]="options"
+                    (select)="onSelect($event)" (deselect)="onDeselect($event)">
+                    <ng-template #treeNodeTemplate let-privatenode let-index="index">
+                        <input *ngIf="!privatenode.data.children" class="privateCheckboxStatus"
+                            id="{{privatenode.data.Id}}LoadlayerinPrivateTreeData" type="checkbox"
+                            [indeterminate]="privatenode.data.indeterminate" [checked]=!privatenode.data.IsChecked
+                            style="margin-right: 5px;margin-top: 3px">
+                        <!-- <img *ngIf="!node.data.children" class="ImagStatus" src={{node.data.IconUrl}} width="20" height="20" (click)="Onimgclick(node.data.Id)">&nbsp;&nbsp;&nbsp; -->
+                        <!-- <div *ngIf="!privatenode.data.children" class="ImagStatus" (click)="Onimgclick(privatenode.data.Id)"
+                            role="presentation" [ngStyle]="{'background-image': 'url(' + privatenode.data.IconUrl + ')','background-position': 'center center', 'background-size': 'auto', 'background-repeat': 'no-repeat', 'line-height': '32px', 'width': '32px'}"></div> -->
+                        <div
+                            *ngIf="!privatenode.data.children &&  (privatenode.data.IconUrl.includes('http://energymapit.com/en/Handlers/IconImage.ashx')== false && privatenode.data.IconUrl.includes(ImageURLPath)== false)">
+                            <div class="ImagStatus" role="presentation">
+                                <img class="mr-2" id="{{privatenode.data.Id}}defaultIcon"
+                                    (click)="OnPrivateLayerimgclick(privatenode.data.Id,privatenode.data,privatenode)"
+                                    alt="" src="{{privatenode.data.IconUrl}}" style=" margin-right: 5px; " />
+                            </div>
+                        </div>
+                        <div
+                            *ngIf="!privatenode.data.children &&  privatenode.data.IconUrl.includes('http://energymapit.com/en/Handlers/IconImage.ashx')== true">
+                            <div class="ImagStatus" role="presentation">
+                                <img lass="mr-2" id="{{privatenode.data.Id}}TreeCostomelayerIconImage"
+                                    (click)="OnPrivateLayerimgclick(privatenode.data.Id,privatenode.data,privatenode)"
+                                    alt="" src="{{privatenode.data.IconUrl}}"
+                                    [ngStyle]="{'width':'30px','Opacity': '1','filter':'alpha(opacity=100)','margin-right':'5px'}" />
+                            </div>
+                        </div>
+                        <div
+                            *ngIf="!privatenode.data.children &&  privatenode.data.IconUrl.includes(ImageURLPath)== true">
+                            <div class="ImagStatus" role="presentation">
+                                <img class="mr-2" id="{{privatenode.data.Id}}TreeCostomelayerIconImage"
+                                    (click)="OnPrivateLayerimgclick(privatenode.data.Id,privatenode.data,privatenode)"
+                                    alt="" src="{{privatenode.data.IconUrl}}"
+                                    [ngStyle]="{'width':'30px','Opacity': '1','filter':'alpha(opacity=100)','margin-right':'5px'}" />
+                            </div>
+                        </div>
+                        <pre><span style="line-height:20px;vertical-align:top;color: white" (click)="OnPrivateLayerimgclick(privatenode.data.Id,privatenode.data,privatenode)">{{ privatenode.data.Name }}</span></pre>
+                        &nbsp;
+                        <pre><span [ngClass]="hideActiveCountForKml(privatenode.data)" style="line-height:20px;vertical-align:top;color: white">({{ privatenode.data.activeCount }})</span></pre>
+                        &nbsp;
+                        <img *ngIf="!privatenode.data.children" class="ImgCloseStatus"
+                            id="{{privatenode.data.Id}}RemoveTreeData" class="treeCloseEvent"
+                            [src]="ImageURLPath + 'close.png'"
+                            (click)="OnimgPrivatecloseclick(privatenode, privatenode.data.IsChecked,privatenode.data.Id)">
+                    </ng-template>
+                </tree-root>
+            </div>
+
+        </ng-template>
+        <ng-template #sharedMenuItems>
+            <div>
+                <tree-root id="_sharedtreeroot" #sharedtree [nodes]="sharedNodes" [options]="options"
+                    (select)="onSelect($event)" (deselect)="onDeselect($event)">
+                    <ng-template #treeNodeTemplate let-sharednode let-index="index">
+                        <input *ngIf="!sharednode.data.children" class="sharedCheckboxStatus"
+                            id="{{sharednode.data.Id}}LoadlayerinSharedTreeData" type="checkbox"
+                            [indeterminate]="sharednode.data.indeterminate" [checked]=!sharednode.data.IsChecked
+                            style="margin-right: 5px;margin-top: 3px">
+                        <div
+                            *ngIf="!sharednode.data.children &&  (sharednode.data.IconUrl.includes('http://energymapit.com/en/Handlers/IconImage.ashx')== false && sharednode.data.IconUrl.includes(ImageURLPath)== false)">
+                            <div class="ImagStatus" role="presentation">
+                                <img class="mr-2" id="{{sharednode.data.Id}}defaultIcon"
+                                    (click)="OnSharedLayerimgclick(sharednode.data.Id,sharednode.data,sharednode)"
+                                    alt="" src="{{sharednode.data.IconUrl}}" style=" margin-right: 5px; " />
+                            </div>
+                        </div>
+                        <div
+                            *ngIf="!sharednode.data.children &&  sharednode.data.IconUrl.includes('http://energymapit.com/en/Handlers/IconImage.ashx')== true">
+                            <div class="ImagStatus" role="presentation">
+                                <img lass="mr-2" id="{{sharednode.data.Id}}TreeCostomelayerIconImage"
+                                    (click)="OnSharedLayerimgclick(sharednode.data.Id,sharednode.data,sharednode)"
+                                    alt="" src="{{sharednode.data.IconUrl}}"
+                                    [ngStyle]="{'width':'30px','Opacity': '1','filter':'alpha(opacity=100)','margin-right':'5px'}" />
+                            </div>
+                        </div>
+                        <div
+                            *ngIf="!sharednode.data.children &&  sharednode.data.IconUrl.includes(ImageURLPath)== true">
+                            <div class="ImagStatus" role="presentation">
+                                <img class="mr-2" id="{{sharednode.data.Id}}TreeCostomelayerIconImage"
+                                    (click)="OnSharedLayerimgclick(sharednode.data.Id,sharednode.data,sharednode)"
+                                    alt="" src="{{sharednode.data.IconUrl}}"
+                                    [ngStyle]="{'width':'30px','Opacity': '1','filter':'alpha(opacity=100)','margin-right':'5px'}" />
+                            </div>
+                        </div>
+                        <pre><span style="line-height:20px;vertical-align:top;color: white" (click)="OnSharedLayerimgclick(sharednode.data.Id,sharednode.data,sharednode)">{{ sharednode.data.Name }}</span></pre>
+                        &nbsp;
+                        <pre><span [ngClass]="hideActiveCountForKml(sharednode.data)" style="line-height:20px;vertical-align:top;color: white">({{ sharednode.data.activeCount }})</span></pre>
+                        &nbsp;
+                        <img *ngIf="!sharednode.data.children" class="ImgCloseStatus"
+                            id="{{sharednode.data.Id}}RemoveTreeData" class="treeCloseEvent"
+                            [src]="ImageURLPath + 'close.png'"
+                            (click)="OnimgSharedCloseClick(sharednode, sharednode.data.IsChecked,sharednode.data.Id)">
+                    </ng-template>
+                </tree-root>
+            </div>
+
+        </ng-template>
+        <ng-template #temporaryLayerItems>
+            <!-- <div style="position: relative; overflow: hidden; height: 400px; width: 400px;">Test Test</div> -->
+            <tree-root id="_temporaryLayerroot" #temporaryLayertree [nodes]="temporaryLayerNodes" [options]="options"
+                (select)="onSelect($event)" (deselect)="onDeselect($event)">
+                <ng-template #treeNodeTemplate let-temporarynode let-index="index">
+                    <input *ngIf="!temporarynode.data.children" class="temporaryLayerCheckboxStatus"
+                        id="{{temporarynode.data.Id}}LoadlayerintemporaryTreeData" type="checkbox"
+                        [indeterminate]="temporarynode.data.indeterminate" [checked]=!temporarynode.data.IsChecked
+                        style="margin-right: 5px;margin-top: 3px">
+                    <div *ngIf="!temporarynode.data.children" class="ImagStatus" role="presentation"
+                        [ngStyle]="{'background-image': 'url(' + temporarynode.data.IconUrl + ')','background-position': 'center center', 'background-size': 'auto', 'background-repeat': 'no-repeat', 'line-height': '32px', 'width': '32px'}">
+                    </div>
+                    <pre><span style="color: white">{{ temporarynode.data.Name }}</span></pre>
+                    <pre
+                        *ngIf="temporarynode.data.activeCount!=undefined"><span style="line-height:20px;vertical-align:top;color: white">({{ temporarynode.data.activeCount }})</span></pre>
+                    &nbsp;
+                    <i *ngIf="temporarynode.data.isSave != false" class="fa fa-save saveIcon"
+                        (click)="SaveTemporaryLayer(temporarynode,temporarynode.data.Id)"></i>
+                    <img *ngIf="!temporarynode.data.children" class="ImgCloseStatus"
+                        id="{{temporarynode.data.Id}}RemovetemporaryTreeData" class="treeCloseEvent"
+                        [src]="ImageURLPath + 'close.png'"
+                        (click)="Ontemporaryimgcloseclick(temporarynode, temporarynode.data.IsChecked,temporarynode.data.Id)">
+                </ng-template>
+            </tree-root>
+            <!-- <tree-root id="_temporaryLayerroot" #temporaryLayertree [nodes]="temporaryLayerNodes" [options]="options"
+                (select)="onSelect($event)" (deselect)="onDeselect($event)">
+                <ng-template #temporaryNodeTemplate let-node let-index="index">
+                    <input *ngIf="!node.data.children" class="temporaryLayerCheckboxStatus" id="{{node.data.Id}}LoadlayerinTreeData"
+                        (change)="Temporarychecked(node, !node.data.IsChecked)" type="checkbox" [indeterminate]="node.data.indeterminate"
+                        [checked]=!node.data.IsChecked style="margin-right: 5px;margin-top: 3px">
+                    <div *ngIf="!node.data.children" class="ImagStatus" role="presentation" [ngStyle]="{'background-image': 'url(' + node.data.IconUrl + ')','background-position': 'center center', 'background-size': 'auto', 'background-repeat': 'no-repeat', 'line-height': '32px', 'width': '32px'}"></div>
+                    <pre><span style="line-height:20px;vertical-align:top;color: white" >{{ node.data.Name }}</span></pre>&nbsp;
+                    <div *ngIf="node.data.activeCount!=undefined">
+                        <pre><span style="line-height:20px;color: white">({{ node.data.activeCount }})</span></pre>
+                    </div>
+                    <img *ngIf="!node.data.children" class="ImgCloseStatus" id="{{node.data.Id}}RemoveTreeData" class="treeCloseEvent"
+                       [src]="ImageURLPath + 'close.png'" (click)="Ontemporaryimgcloseclick(node, node.data.IsChecked,node.data.Id)">
+
+                </ng-template>
+            </tree-root> -->
+        </ng-template>
+        <ng-template #drawToolItems>
+            <h4 *ngIf="drawToolsNodes.length > 0" class="tree-heading-text">My Draw Tools</h4>
+            <div class="draw-tool-tree-item" *ngFor="let item of drawToolsNodes">
+                <input class="drawToolsCheckboxStatus" id="{{item.EditableLayerID}}LoadlayerinDrawToolData"
+                    type="checkbox" (change)="item.isChecked = !item.isChecked; DrawToolsCheckedChange(item)"
+                    [checked]="item.isChecked" [disabled]="item.EditableLayerID == editDrawToolId"
+                    style="margin-right: 5px;margin-top: 3px">
+                <pre><span style="color: white"> {{ item.Name }}</span></pre>
+                <ng-container *ngIf="MapServiceService.isDrawToolsOpened.getValue() == false">
+                    <i class="fa fa-pencil saveIcon" title="Edit"
+                        style="font-size: 15px; margin-left: 6px;cursor: pointer;"
+                        (click)="EditDrawTool(item.EditableLayerID)"></i>
+                    <i class="fa fa-trash-o saveIcon" title="Delete"
+                        style="font-size: 15px; margin-left: 6px;cursor: pointer;"
+                        (click)="DeleteDrawTool(item.EditableLayerID)"></i>
+                </ng-container>
+            </div>
+            <h4 *ngIf="sharedDrawToolsNodes?.length > 0" class="tree-heading-text">Shared Draw Tools</h4>
+            <div class="draw-tool-tree-item" *ngFor="let item of sharedDrawToolsNodes; let i = index">
+                <input class="drawToolsCheckboxStatus" id="{{item.EditableLayerID}}LoadlayerinDrawToolData"
+                    type="checkbox" (change)="item.isChecked = !item.isChecked; DrawToolsCheckedChange(item)"
+                    [checked]="item.isChecked" [disabled]="item.EditableLayerID == editDrawToolId"
+                    style="margin-right: 5px;margin-top: 3px">
+                <pre><span style="color: white"> {{ item.Name }}</span></pre>
+                <ng-container *ngIf="MapServiceService.isDrawToolsOpened.getValue() == false">
+                    <i class="fa fa-pencil saveIcon" title="Edit"
+                        style="font-size: 15px; margin-left: 6px;cursor: pointer;"
+                        (click)="EditDrawTool(item.EditableLayerID)"></i>
+                    <i class="fa fa-trash-o saveIcon" title="Delete"
+                        style="font-size: 15px; margin-left: 6px;cursor: pointer;"
+                        (click)="DeleteSharedDrawTool(item.EditableLayerID, i)"></i>
+                </ng-container>
+            </div>
+            <div class="text-center">
+                <a class="draw-create-layer-btn m-0 mt-3" style="background: #fff !important;"
+                    (click)="OpenDrawTools()">Create Layer</a>
+            </div>
+        </ng-template>
+    </pg-sidebar>
+    <!-- PAGE CONTAINER -->
+    <page-container>
+        <div class="header ">
+            <!---->
+            <a class="btn-link toggle-sidebar d-lg-none pg pg-menu ng-star-inserted" href="javascript:void(0);"
+                (click)="toggleMobileSidebar()"></a>
+            <div class="ng-star-inserted">
+                <!---->
+                <div class="brand inline">
+                    ENvision
+                    <!-- <img alt="logo" height="22" pgretina="" src="assets/img/envision/logo_2x.png" src1x="assets/img/envision/logo_2x.png"
+                        src2x="assets/img/envision/logo_2x.png" width="78"> -->
+                </div>
+
+            </div>
+            <div class="">
+                <!-- START EMAIL MOBILE TOGGLE -->
+                <a href="javascript:void(0);" class="toggle-secondary-sidebar" (click)="toggleSecondarySideBar()"
+                    *ngIf="_layoutOption === 'email'">Inbox
+                    <span class="text-info">(12)</span>
+                    <span class="caret"></span>
+                </a>
+                <!-- END EMAIL MOBILE TOGGLE -->
+
+                <div class="brand inline" [class.d-none]="_layoutOption === 'email'">
+                    <!-- <img src="assets/img/logo.png" alt="logo" pgRetina src1x="assets/img/logo.png" src2x="assets/img/logo_2x.png" width="78" height="22"> -->
+                </div>
+                <!-- START NOTIFICATION LIST -->
+
+            </div>
+            <div class="d-flex align-items-center">
+                <!-- START User Info-->
+                <div class="pull-left p-r-10 fs-14 font-heading d-lg-block d-none">
+
+                </div>
+
+                <!-- <button class="topMenu d-flex align-items-center" type="button" id="HomeNew" (click)="Redirect('home-new')">
+                    <span class="p-r-10" style="color: white;">HomeNew</span>
+                </button> -->
+                <button class="topMenu d-flex align-items-center" type="button" id="Home"
+                    (click)="Redirect('home-new')">
+                    <span class="p-r-10" style="color: white;"><i class="fa fa-home" aria-hidden="true"></i> Home</span>
+                </button>
+                <button class="topMenu d-flex align-items-center" type="button" id="Map" (click)="Redirect('maps')">
+                    <span class="p-r-10" style="color: white;"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                        Map</span>
+                </button>
+                <!--<button class="topMenu d-flex align-items-center" type="button" id="Grid">
+                    <span class="p-r-10" style="color: white;">Grid</span>
+                </button>-->
+                <button class="topMenu d-flex align-items-center" type="button" id="intelligence"
+                    (click)="Redirect('intelligence')" *ngIf="AuthServices.ShowCompanyIntelligenceUIBasedOnRole()">
+                    <span class="p-r-10" style="color: white;"><i class="fa fa-info" aria-hidden="true"></i>
+                        Intelligence</span>
+                </button>
+
+                <div (mouseover)="profiledropdownToggleEvent($event)" (click)="profiledropdownToggleEvent($event)"
+                    class="dropdown pull-right d-lg-block d-none" dropdown>
+                    <button class="profile-dropdown-toggle d-flex align-items-center" type="button" dropdownToggle
+                        id="profileDropdown">
+                        <span class="p-r-10" style="color: white;" id="_UserName">{{_UserName}}</span>
+                        <span class="thumbnail-wrapper d32 circular inline">
+                            <img src="assets/img/profiles/user.jpg" alt="" pgRetina src1x="assets/img/profiles/user.jpg"
+                                src2x="assets/img/profiles/user.jpg" width="32" height="32">
+                        </span>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="javascript:void(0)" class="clearfix bg-master-lighter dropdown-item hide">
+                            <span class="title" (click)="OpenCompanyModal()">Manage Companies
+                            </span>
+                        </a>
+                        <a href="javascript:void(0)" class="clearfix bg-master-lighter dropdown-item hide">
+                            <span class="title" (click)="OpenUserModal()">Manage Users
+                            </span>
+                        </a>
+                        <a href="javascript:void(0)" class="clearfix bg-master-lighter dropdown-item title-effect"
+                            (click)="OpenMyProfile()">
+                            <span class="title">My Profile
+                            </span>
+                        </a>
+                        <a href="javascript:void(0)" class="clearfix bg-master-lighter dropdown-item title-effect"
+                            (click)="Logout()">
+                            <span class="logout">Logout
+                                <span class="pull-right">
+                                    <i class="fs-13 pg pg-power"></i>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- <div class="dropdown-menu dropdown-menu-right profile-dropdown" *dropdownMenu role="menu">
+                        <a href="javascript:void(0)" class="clearfix bg-master-lighter dropdown-item">
+                            <span class="pull-left logout" (click)="Logout()">Logout
+                                <span class="pull-right">
+                                    <i class="fs-13 pg pg-power"></i>
+                                </span>
+                            </span>
+                        </a>
+                    </div> -->
+                </div>
+                <!-- END User Info-->
+                <!-- <a href="javascript:void(0)" class="header-icon pg pg-alt_menu btn-link m-l-10 sm-no-margin d-inline-block"
+                    (click)="openQuickView($event)"></a> -->
+            </div>
+
+            <!---->
+        </div>
+        <div class="page-content-wrapper {{_pageContainerClass}}">
+            <!-- START PAGE CONTENT -->
+            <div class="content {{_contentClass}}">
+
+                <nav class="navbar navbar-default no-padding full-width no-margin" role="navigation"
+                    [ngClass]="router?.url?.includes('maps')?'d-block':'d-none'" style="top:0px !important">
+                    <div class="full-width p-r-10 p-l-10">
+
+                        <div class="col-lg-12 container-fixed-lg ng-star-inserted">
+                            <!---->
+                            <div class="navbar-collapse ng-star-inserted " id="sub-nav">
+
+                                <div class="row m-0">
+                                    <div class="col-md-6 p-0" style="display: inherit;">
+                                        <button type="button"
+                                            class="btn btn-link d-lg-inline-block d-xlg-inline-block d-md-inline-block d-sm-none d-none"
+                                            data-toggle-pin="sidebar" (click)="toggleMenuPin('sidebar')"
+                                            id="toggleMenuPin">
+                                            <i class="fa fa-bars" id="pin"></i>
+                                            <i class="fa fa-angle-double-left hide" id="pinclose"></i>
+                                        </button>
+                                        <div class="map-title-block">
+                                            <h3 *ngIf="!isEditMapTitle" class="map-title-text"
+                                                style="white-space:nowrap;overflow: hidden;text-overflow: ellipsis;"
+                                                (click)="ToggleMapTitle()">
+                                                {{ mapTitle == ''? 'Untitled Map': mapTitle }}</h3>
+                                            <form class="map-title-form" *ngIf="isEditMapTitle">
+                                                <input type="text" name="map-title" class="map-title-input"
+                                                    [(ngModel)]="mapTitle" #mapTitleText="ngModel" autofocus="true"
+                                                    placeholder="Map Title" (keyup.enter)="SaveMap()" />
+
+                                                <!-- <button class="btn btn-primary save-map-title-btn" type="submit"
+                                                    (click)="SaveMap()">Save</button> -->
+
+                                                <i [style.opacity]="mapTitle.trim() == ''? 0 : 1" class="fa fa-check btn-xs map-title-save" aria-hidden="true"
+                                                    (click)="SaveMap()"></i>
+                                                <i class="fa fa-times btn-xs map-title-close" aria-hidden="true"
+                                                    (click)="blankmaptitle()"></i>
+                                            </form>
+                                        </div>
+
+                                        <div class="input-group" id="globalSearchGroup">
+                                            <div class="search-wrapper">
+                                                <button id="btnGlobalSearch" class="btn btn-sm btn-default pt-1 pb-1"
+                                                    type="button" (click)="GlobalSearch()">
+                                                    <i class="pg pg-search"></i>
+                                                </button>
+                                                <input id="txtGlobalSearch" [(ngModel)]="searchText"
+                                                    (keyup.enter)="GlobalSearch()" type="text" placeholder="Search Data"
+                                                    class="pl-1">
+                                                <a class="search-close" *ngIf="searchText"
+                                                    (click)="ClearGlobalSearch()">
+                                                    <img src="assets/img/close.svg" height="12" width="12" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 p-0">
+                                        <!-- <button (click)="OpenDrawTools()" style="float: left;">Draw Tools</button> -->
+                                        <ul class="navbar-nav d-flex flex-row justify-content-sm-end" id="SubMenuList">
+                                            <li class="nav-item dropdown menuList">
+                                                <a class="dropdown-toggle p-r-10 p-t-5 p-b-5 p-l-10">
+                                                    Maps
+                                                </a>
+                                                <div class="dropdown-content" id="MapMenus">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            Maps
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="row subMenu">
+                                                                <div class="col-md-5 col-xs-12">
+                                                                    <img class="imgMenu"
+                                                                        [src]="ImageURLPath + '01)AngularEnvision%20Images/Menu%20Images/BlankMaps.png'" />
+                                                                </div>
+                                                                <div class="col-md-7 col-xs-12">
+                                                                    <a id="blankMapLink" href="javascript:void(0)"
+                                                                        (click)="BlankMap()">Blank
+                                                                        Map</a>
+                                                                    <p>Create a blank Map</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row subMenu">
+                                                                <div class="col-md-5 col-xs-12">
+                                                                    <img class="imgMenu"
+                                                                        [src]="ImageURLPath + '01)AngularEnvision%20Images/Menu%20Images/PrivateMaps.png'" />
+
+                                                                </div>
+                                                                <div class="col-md-7 col-xs-12">
+                                                                    <a href="javascript:void(0)"
+                                                                        (click)="OpenMyMaps()">My
+                                                                        Maps</a>
+                                                                    <p>View maps you created</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row subMenu"
+                                                                *ngIf="AuthServices.ShowSharedRightsUIBaedOnRole()">
+                                                                <div class="col-md-5 col-xs-12">
+                                                                    <img class="imgMenu"
+                                                                        [src]="ImageURLPath + '01)AngularEnvision%20Images/Menu%20Images/publicMaps.png'" />
+                                                                </div>
+                                                                <div class="col-md-7 col-xs-12">
+                                                                    <a href="javascript:void(0)"
+                                                                        (click)="OpenSharedMaps()">Shared
+                                                                        Maps</a>
+                                                                    <p>View maps created by other users</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="nav-item dropdown menuList">
+                                                <a class="dropdown-toggle p-r-10 p-t-5 p-b-5 p-l-10">
+                                                    Data
+                                                </a>
+                                                <div class="dropdown-content data-menu-content">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            Add Data
+                                                        </div>
+                                                        <div class="card-body row">
+                                                            <div class="col-md-6 col-xs-12"
+                                                                style="border-right:0.5px solid lightgray">
+                                                                <div class="row subMenu">
+                                                                    <div class="col-md-5 col-xs-12">
+                                                                        <img class="imgMenu" (click)="mapsearchData(1)"
+                                                                            [src]="ImageURLPath + '01)AngularEnvision%20Images/Menu%20Images/EnergyLayers.png'" />
+                                                                    </div>
+                                                                    <div class="col-md-7 col-xs-12"
+                                                                        style="padding-right:2px">
+                                                                        <a href="javascript:void(0)"
+                                                                            (click)="mapsearchData(1)">MAPSearch
+                                                                            Data</a>
+                                                                        <p>Premium energy and supplymental data powered
+                                                                            by MAPSearch...</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row subMenu">
+                                                                    <div class="col-md-5 col-xs-12">
+                                                                        <img class="imgMenu"
+                                                                            [src]="ImageURLPath + '01)AngularEnvision%20Images/Menu%20Images/PrivateLayers.png'" />
+                                                                    </div>
+                                                                    <div class="col-md-7 col-xs-12">
+                                                                        <a href="javascript:void(0)"
+                                                                            (click)="OpenMyData()">My
+                                                                            Data</a>
+                                                                        <p>Data you have created or uploaded into the
+                                                                            product...</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row subMenu"
+                                                                    *ngIf="AuthServices.ShowSharedRightsUIBaedOnRole()">
+                                                                    <div class="col-md-5 col-xs-12">
+                                                                        <img class="imgMenu"
+                                                                            [src]="ImageURLPath + '01)AngularEnvision%20Images/Menu%20Images/PublicLayers.png'" />
+                                                                    </div>
+                                                                    <div class="col-md-7 col-xs-12">
+                                                                        <a href="javascript:void(0)"
+                                                                            (click)="OpenSharedData()">Shared
+                                                                            Data</a>
+                                                                        <p>Data shared by other users within your
+                                                                            company...</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row subMenu"
+                                                                    *ngIf="AuthServices.ShowSiteSelectionWizardRightsRightsUIBasedOnRole()">
+                                                                    <div class="col-md-5 col-xs-12">
+                                                                        <img class="imgMenu"
+                                                                            [src]="ImageURLPath + '01)AngularEnvision%20Images/Menu%20Images/SiteSelection.png'" />
+                                                                    </div>
+                                                                    <div class="col-md-7 col-xs-12">
+                                                                        <a href="javascript:void(0)"
+                                                                            (click)="OpenSiteSelection()">Site
+                                                                            Selection
+                                                                            Wizard</a>
+                                                                        <p>Site Selection Wizard...</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-6 col-xs-12">
+                                                                <div class="row subMenu">
+                                                                    <div class="col-md-5 col-xs-12">
+                                                                        <img class="imgMenu"
+                                                                            [src]="ImageURLPath + '01)AngularEnvision%20Images/Menu%20Images/BaseMaps.png'" />
+                                                                    </div>
+                                                                    <div class="col-md-7 col-xs-12">
+                                                                        <a href="javascript:void(0)"
+                                                                            (click)="OpenBaseMap()">Change
+                                                                            Basemap</a>
+                                                                        <p>Select a different Basemap</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row subMenu"
+                                                                    *ngIf="AuthServices.ShowAddDataUIBasedOnRole()">
+                                                                    <div class="col-md-5 col-xs-12">
+                                                                        <img class="imgMenu"
+                                                                            [src]="ImageURLPath + '01)AngularEnvision%20Images/Menu%20Images/UploadLayers.png'" />
+                                                                    </div>
+                                                                    <div class="col-md-7 col-xs-12">
+                                                                        <a href="javascript:void(0)"
+                                                                            (click)="OpenAddadtaModal()">Add
+                                                                            Data</a>
+                                                                        <p>Upload your own files</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row subMenu"
+                                                                    *ngIf="AuthServices.ShowRailWizardcreateLayerRightsUIBasedOnRole()==true || AuthServices.ShowPipelineWizardcreateLayerRightsUIBasedOnRole()==true">
+                                                                    <div class="col-md-5 col-xs-12">
+                                                                        <img class="imgMenu"
+                                                                            [src]="ImageURLPath + '01)AngularEnvision%20Images/Menu%20Images/pipewizard3.png'" />
+                                                                    </div>
+                                                                    <div class="col-md-7 col-xs-12">
+                                                                        <a href="javascript:void(0)"
+                                                                            (click)="OpenCreateLayer()">
+                                                                            Create Layer
+                                                                        </a>
+                                                                        <p>
+                                                                            Create a custom pipeline or railroad
+                                                                            layer...
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row subMenu"
+                                                                    *ngIf="AuthServices.ShowParcelBufferToolUIBasedOnRole()">
+                                                                    <div class="col-md-5 col-xs-12">
+                                                                        <img class="imgMenu"
+                                                                            [src]="ImageURLPath + '01)AngularEnvision%20Images/Menu%20Images/ParcelBuffer4.png'" />
+                                                                    </div>
+                                                                    <div class="col-md-7 col-xs-12">
+                                                                        <a href="javascript:void(0)"
+                                                                            (click)="OpenParcelBuffer()">Parcel
+                                                                            Buffer</a>
+                                                                        <p>Parcel Buffer Tool</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <!-- <a class="dropdown-item" href="javascript:void(0)" (click)="mapsearchData()">MAPSearch
+                                                        Data</a>
+                                                    <a class="dropdown-item" href="javascript:void(0)">User Data</a>
+                                                    <a class="dropdown-item" href="javascript:void(0)">Basemaps</a>
+                                                    <a class="dropdown-item" href="javascript:void(0)">Layer Tools</a> -->
+                                                </div>
+                                            </li>
+                                            <li class="nav-item dropdown menuList">
+                                                <a class="dropdown-toggle p-r-10 p-t-5 p-b-5 p-l-10">
+                                                    Tools
+                                                </a>
+                                                <div class="dropdown-content tools-menu-content" id="dropdownMenu">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            Tools
+                                                        </div>
+                                                        <div class="card-body row">
+                                                            <div class="col-md-7 col-xs-12"
+                                                                style="border-right:0.5px solid lightgray">
+                                                                <div class="row subMenu">
+                                                                    <div class="col-md-5 col-xs-12">
+                                                                        <img class="imgMenu"
+                                                                            [src]="ImageURLPath + '01)AngularEnvision%20Images/Menu%20Images/CustomShapes.png'" />
+                                                                    </div>
+                                                                    <div class="col-md-7 col-xs-12"
+                                                                        style="padding-right:2px">
+                                                                        <a href="javascript:void(0)"
+                                                                            (click)="OpenDrawTools()">Draw
+                                                                            Tools</a>
+                                                                        <p>Add your own custom drawings, shapes, labels
+                                                                            and images...</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row subMenu">
+                                                                    <div class="col-md-5 col-xs-12">
+                                                                        <img class="imgMenu"
+                                                                            [src]="ImageURLPath + '01)AngularEnvision%20Images/Menu%20Images/Integration_1.png'" />
+                                                                    </div>
+                                                                    <div class="col-md-7 col-xs-12">
+                                                                        <a href="javascript:void(0)"
+                                                                            (click)="SearchLocation()">Search
+                                                                            location</a>
+                                                                        <p>Zoom to location by search...</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row subMenu">
+                                                                    <div class="col-md-5 col-xs-12">
+                                                                        <img class="imgMenu"
+                                                                            [src]="ImageURLPath + '01)AngularEnvision%20Images/Menu%20Images/Integration_2.png'" />
+                                                                    </div>
+                                                                    <div class="col-md-7 col-xs-12">
+                                                                        <a href="javascript:void(0)"
+                                                                            (click)="ReverseGeoCode()">
+                                                                            Reverse Geocode
+                                                                        </a>
+                                                                        <p>Get the physical address by longitude and
+                                                                            latitude</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row subMenu">
+                                                                    <div class="col-md-5 col-xs-12">
+                                                                        <img class="imgMenu"
+                                                                            [src]="ImageURLPath + '01)AngularEnvision%20Images/Menu%20Images/Integration_3.png'" />
+                                                                    </div>
+                                                                    <div class="col-md-7 col-xs-12">
+                                                                        <a href="javascript:void(0)"
+                                                                            (click)="MeasureDistance()">Measure
+                                                                            Distance/Area</a>
+                                                                        <p>Tool to use measure area and distance...</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row subMenu">
+                                                                    <div class="col-md-5 col-xs-12">
+                                                                        <img class="imgMenu"
+                                                                            [src]="ImageURLPath + '01)AngularEnvision%20Images/Menu%20Images/elevation.png'" />
+                                                                    </div>
+                                                                    <div class="col-md-7 col-xs-12">
+                                                                        <a href="javascript:void(0)"
+                                                                            (click)="ElevationProfile()">Elevation
+                                                                            Profile</a>
+                                                                        <p>Draw a line to see the changes in
+                                                                            elevation...</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-5 col-xs-12">
+                                                                <div class="subMenu subMenuRight">
+                                                                    <span class="linkTitle">Cartographic Tools</span>
+                                                                    <ul>
+                                                                        <!--<li><a href="javascript:void(0)" (click)="CartoGraphicTools()">North
+                                                                                Arrow</a></li>-->
+                                                                        <li><a href="javascript:void(0)"
+                                                                                (click)="CartoGraphicTools()">Scale
+                                                                                Indicator</a></li>
+                                                                        <li>
+                                                                            <!--<a href="javascript:void(0)" (click)="CartoGraphicTools()">Title</a>-->
+                                                                        </li>
+                                                                        <li><a href="javascript:void(0)"
+                                                                                (click)="CartoGraphicTools()">Lat/Long</a>
+                                                                        </li>
+                                                                        <li><a href="javascript:void(0)"
+                                                                                (click)="CartoGraphicTools()">Elevation</a>
+                                                                        </li>
+
+                                                                        <li (click)="ShowLegends()">
+                                                                            <a id="_ShowLegends"
+                                                                                href="javascript:void(0)">
+                                                                                <span id="ToggleLegend">Show
+                                                                                    Legend</span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <span
+                                                                        *ngIf="AuthServices.ShowExportDataGridRightsUIBasedOnRole()==true"
+                                                                        class="linkTitle">Export</span>
+                                                                    <ul
+                                                                        *ngIf="AuthServices.ShowExportDataGridRightsUIBasedOnRole()==true">
+                                                                        <li><a href="javascript:void(0)"
+                                                                                (click)="OpenSaveImage()">Export
+                                                                                as
+                                                                                Image</a></li>
+                                                                    </ul>
+                                                                    <span class="linkTitle">Other</span>
+                                                                    <ul>
+                                                                        <li><a href="javascript:void(0)"
+                                                                                (click)="OpenBookmark()">Bookmarks</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <!-- <a class="dropdown-item" href="javascript:void(0)">Draw Tools</a>
+                                                    <a class="dropdown-item" href="javascript:void(0)">Location Tools</a>
+                                                                        <a class="dropdown-item" href="javascript:void(0)">Measure</a>
+                                                                        <a class="dropdown-item" href="javascript:void(0)">Elevation</a>
+                                                    <a class="dropdown-item" href="javascript:void(0)">Map Creation</a> -->
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!---->
+                        </div>
+
+
+                    </div>
+
+                </nav>
+                <app-home-new [ngClass]="router?.url?.includes('home-new')?'d-block':'d-none'">
+                </app-home-new>
+                <google-map-page [ngClass]="router?.url?.includes('maps')?'showMap':'hideMap'">
+                </google-map-page>
+                <router-outlet></router-outlet>
+            </div>
+            <!-- END PAGE CONTENT -->
+            <!-- START COPYRIGHT -->
+            <ng-template [ngIf]="_footer">
+                <div class=" container-fluid container-fixed-lg footer">
+                    <div class="copyright sm-text-center">
+                        <p class="small no-margin pull-left sm-pull-reset">
+                            <span class="hint-text">Copyright &copy; 2017</span>
+                            <span class="font-montserrat">REVOX</span>.
+                            <span class="hint-text">All rights reserved.
+                            </span>
+                            <span class="sm-block">
+                                <a class="m-l-10 m-r-10" href="javascript:void(0)">Terms of use</a>
+                                <span class="muted">|</span>
+                                <a class="m-l-10" href="javascript:void(0)">Privacy Policy</a>
+                            </span>
+                        </p>
+
+                        <p class="small no-margin pull-right sm-pull-reset">
+                            Hand-crafted
+                            <span class="hint-text">&amp; made with Love</span>
+                        </p>
+
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                </div>
+                <!-- END COPYRIGHT -->
+            </ng-template>
+        </div>
+    </page-container>
+    <!-- QUICKSEARCH -->
+    <app-search-overlay></app-search-overlay>
+    <!-- QUICKVIEW -->
+    <app-quickview></app-quickview>
+</ng-template>

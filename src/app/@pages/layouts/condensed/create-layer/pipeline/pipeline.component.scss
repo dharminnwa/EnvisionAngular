@@ -1,0 +1,25 @@
+#pipelineTabPane{
+    width: 100%;
+}
+
+#pipelineList p-pickList .ui-picklist-listwrapper ul li .checkbox{
+    padding:0px;
+    margin: 0px !important;
+}
+
+#pipelineList .tab-wrapper .tab-content-wrapper{
+    padding: 5px;
+}
+.txtFilterInput{
+    width:200px;
+    margin-left:10px;
+}
+
+.tab-heading-text {
+    margin: -7px;
+    padding: 6px;
+}
+
+/deep/ .nav-tabs-navigator { 
+    display: none !important;
+}

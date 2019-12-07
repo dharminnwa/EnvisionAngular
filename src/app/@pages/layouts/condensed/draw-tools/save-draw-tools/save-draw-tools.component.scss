@@ -1,0 +1,12 @@
+/deep/ .checkbox.check-success input[type=checkbox]:checked + label:before{
+    border-color:#053b8b!important;
+}
+
+.check-success {
+    float: left;
+    margin-top: 4px;
+}
+
+label {
+    text-align: left;
+}

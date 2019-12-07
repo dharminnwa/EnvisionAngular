@@ -1,0 +1,1 @@
+{"version":3,"file":"extra.routing.js","sourceRoot":"","sources":["../../../../../src/app/extra/extra.routing.ts"],"names":[],"mappings":";;AACA,uEAAqE;AACrE,oEAAoE;AACpE,iEAAiE;AACjE,iEAAiE;AACjE,QAAQ;AACK,QAAA,UAAU,GAAW;IAChC;QACE,IAAI,EAAE,EAAE;QACR,QAAQ,EAAE,CAAC;gBACT,IAAI,EAAE,OAAO;gBACb,SAAS,EAAE,wCAAkB;aAC9B;SA+BF;KACA;CACF,CAAC"}
